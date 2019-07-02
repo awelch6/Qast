@@ -9,7 +9,10 @@ target 'Qast' do
   pod 'SnapKit', '~>5.0.0'
   pod 'Alamofire', '~>4.8.1'
   
-  # Pods for Qast
+  # Bose AR SDK
+  pod 'BoseWearable', :path => 'BoseWearable/'
+  pod 'BLECore', :path => 'BoseWearable/'
+  pod 'Logging', :path => 'BoseWearable/'
 
   target 'QastTests' do
     inherit! :search_paths

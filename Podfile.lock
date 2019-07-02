@@ -1,10 +1,19 @@
 PODS:
   - Alamofire (4.8.2)
+  - BLECore (4.0.8):
+    - Logging (= 4.0.8)
+  - BoseWearable (4.0.8):
+    - BLECore (= 4.0.8)
+    - Logging (= 4.0.8)
+  - Logging (4.0.8)
   - SnapKit (5.0.0)
   - SwiftLint (0.33.0)
 
 DEPENDENCIES:
   - Alamofire (~> 4.8.1)
+  - BLECore (from `BoseWearable/`)
+  - BoseWearable (from `BoseWearable/`)
+  - Logging (from `BoseWearable/`)
   - SnapKit (~> 5.0.0)
   - SwiftLint
 
@@ -14,11 +23,22 @@ SPEC REPOS:
     - SnapKit
     - SwiftLint
 
+EXTERNAL SOURCES:
+  BLECore:
+    :path: BoseWearable/
+  BoseWearable:
+    :path: BoseWearable/
+  Logging:
+    :path: BoseWearable/
+
 SPEC CHECKSUMS:
   Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  BLECore: 66201cd79e9acde48d95fb7e4b7e9c5a86a17121
+  BoseWearable: 99e4fde335b54c93820336d938c5499c1f16ad1f
+  Logging: 6532aa2593d0b66b077fc391fce6f6ed94e98f11
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
 
-PODFILE CHECKSUM: 83288e4477a072d05a9e1bc15c43a56dc6d639d1
+PODFILE CHECKSUM: 7014cf5c8020e365229c52fc6541e607ad5ca607
 
 COCOAPODS: 1.5.3
