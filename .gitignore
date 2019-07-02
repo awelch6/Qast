@@ -1,0 +1,44 @@
+# General
+*.swp
+*.swo
+*.rbo
+*.gem
+.DS_Store
+.rbenv-version
+.rbx/
+xcuserdata
+DerivedData
+/concatenated.*
+*.ipa
+*.zip
+
+# Yardoc
+.yardoc
+/doc
+
+# Specs
+spec/fixtures/banana-lib
+spec/fixtures/cache
+spec/fixtures/chameleon
+spec/fixtures/integration/Headers/
+spec/fixtures/snake
+spec/fixtures/vcr
+tmp
+
+# Examples
+examples/**/Podfile.lock
+examples/Pods
+examples/**/Pods
+examples/RelativePathProject/RelativePathProject/RelativePathProject.xcodeproj
+coverage/
+.coveralls.yml
+
+# IDEs
+*.xccheckout
+.idea/
+
+# Cocoa Pods
+Pods/*
+
+#IntelliJ and AppCode files
+.idea/

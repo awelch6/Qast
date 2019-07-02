@@ -1,0 +1,650 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		05D60D2F43E00012AF2BBAF6 /* Pods_Qast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B34E9A658915814279F1C7 /* Pods_Qast.framework */; };
+		1AC3D15EE8D67EF30B3221E4 /* Pods_QastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD881D6E2EC7047D6EEB28F6 /* Pods_QastTests.framework */; };
+		2BB8F16722CAE131003BFBA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F16622CAE131003BFBA5 /* AppDelegate.swift */; };
+		2BB8F16922CAE131003BFBA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F16822CAE131003BFBA5 /* ViewController.swift */; };
+		2BB8F16E22CAE132003BFBA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16D22CAE132003BFBA5 /* Assets.xcassets */; };
+		2BB8F17122CAE132003BFBA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16F22CAE132003BFBA5 /* LaunchScreen.storyboard */; };
+		2BB8F17C22CAE132003BFBA5 /* QastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F17B22CAE132003BFBA5 /* QastTests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2BB8F17822CAE132003BFBA5 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 2BB8F15B22CAE131003BFBA5 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2BB8F16222CAE131003BFBA5;
+			remoteInfo = Qast;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		24B34E9A658915814279F1C7 /* Pods_Qast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BB8F16322CAE131003BFBA5 /* Qast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qast.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BB8F16622CAE131003BFBA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		2BB8F16822CAE131003BFBA5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2BB8F16D22CAE132003BFBA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		2BB8F17022CAE132003BFBA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		2BB8F17222CAE132003BFBA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BB8F17722CAE132003BFBA5 /* QastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		2BB8F17B22CAE132003BFBA5 /* QastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QastTests.swift; sourceTree = "<group>"; };
+		2BB8F17D22CAE132003BFBA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		576B0074E8DC05358D881186 /* Pods-QastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QastTests/Pods-QastTests.release.xcconfig"; sourceTree = "<group>"; };
+		9E7E693DB0310FEF888CE173 /* Pods-Qast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qast.release.xcconfig"; path = "Pods/Target Support Files/Pods-Qast/Pods-Qast.release.xcconfig"; sourceTree = "<group>"; };
+		CB73906A245800CD0D5ED108 /* Pods-QastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QastTests/Pods-QastTests.debug.xcconfig"; sourceTree = "<group>"; };
+		DD881D6E2EC7047D6EEB28F6 /* Pods_QastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		DECEA67BF984DBE2E84756A2 /* Pods-Qast.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qast.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Qast/Pods-Qast.debug.xcconfig"; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		2BB8F16022CAE131003BFBA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				05D60D2F43E00012AF2BBAF6 /* Pods_Qast.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BB8F17422CAE132003BFBA5 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1AC3D15EE8D67EF30B3221E4 /* Pods_QastTests.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		17D2CCA706D72D277F090098 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				24B34E9A658915814279F1C7 /* Pods_Qast.framework */,
+				DD881D6E2EC7047D6EEB28F6 /* Pods_QastTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		21F18B82001A327A9160C889 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				DECEA67BF984DBE2E84756A2 /* Pods-Qast.debug.xcconfig */,
+				9E7E693DB0310FEF888CE173 /* Pods-Qast.release.xcconfig */,
+				CB73906A245800CD0D5ED108 /* Pods-QastTests.debug.xcconfig */,
+				576B0074E8DC05358D881186 /* Pods-QastTests.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		2BB8F15A22CAE131003BFBA5 = {
+			isa = PBXGroup;
+			children = (
+				2BB8F16522CAE131003BFBA5 /* Qast */,
+				2BB8F17A22CAE132003BFBA5 /* QastTests */,
+				2BB8F16422CAE131003BFBA5 /* Products */,
+				21F18B82001A327A9160C889 /* Pods */,
+				17D2CCA706D72D277F090098 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		2BB8F16422CAE131003BFBA5 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				2BB8F16322CAE131003BFBA5 /* Qast.app */,
+				2BB8F17722CAE132003BFBA5 /* QastTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		2BB8F16522CAE131003BFBA5 /* Qast */ = {
+			isa = PBXGroup;
+			children = (
+				2BB8F18F22CAE5CD003BFBA5 /* Resources */,
+				2BB8F18E22CAE5C5003BFBA5 /* Extensions */,
+				2BB8F18D22CAE5B1003BFBA5 /* Managers */,
+				2BB8F18C22CAE5AA003BFBA5 /* ViewControllers */,
+				2BB8F18B22CAE5A3003BFBA5 /* Configurations */,
+				2BB8F18A22CAE59F003BFBA5 /* Views */,
+				2BB8F18922CAE597003BFBA5 /* Protocols */,
+				2BB8F18822CAE591003BFBA5 /* Enums */,
+			);
+			path = Qast;
+			sourceTree = "<group>";
+		};
+		2BB8F17A22CAE132003BFBA5 /* QastTests */ = {
+			isa = PBXGroup;
+			children = (
+				2BB8F17B22CAE132003BFBA5 /* QastTests.swift */,
+				2BB8F17D22CAE132003BFBA5 /* Info.plist */,
+			);
+			path = QastTests;
+			sourceTree = "<group>";
+		};
+		2BB8F18822CAE591003BFBA5 /* Enums */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Enums;
+			sourceTree = "<group>";
+		};
+		2BB8F18922CAE597003BFBA5 /* Protocols */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Protocols;
+			sourceTree = "<group>";
+		};
+		2BB8F18A22CAE59F003BFBA5 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		2BB8F18B22CAE5A3003BFBA5 /* Configurations */ = {
+			isa = PBXGroup;
+			children = (
+				2BB8F17222CAE132003BFBA5 /* Info.plist */,
+			);
+			path = Configurations;
+			sourceTree = "<group>";
+		};
+		2BB8F18C22CAE5AA003BFBA5 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				2BB8F16822CAE131003BFBA5 /* ViewController.swift */,
+			);
+			path = ViewControllers;
+			sourceTree = "<group>";
+		};
+		2BB8F18D22CAE5B1003BFBA5 /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+				2BB8F16622CAE131003BFBA5 /* AppDelegate.swift */,
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		2BB8F18E22CAE5C5003BFBA5 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		2BB8F18F22CAE5CD003BFBA5 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				2BB8F16F22CAE132003BFBA5 /* LaunchScreen.storyboard */,
+				2BB8F16D22CAE132003BFBA5 /* Assets.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		2BB8F16222CAE131003BFBA5 /* Qast */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BB8F18022CAE132003BFBA5 /* Build configuration list for PBXNativeTarget "Qast" */;
+			buildPhases = (
+				5C5AF15211C504D42AC99901 /* [CP] Check Pods Manifest.lock */,
+				2BB8F15F22CAE131003BFBA5 /* Sources */,
+				2BB8F16022CAE131003BFBA5 /* Frameworks */,
+				2BB8F16122CAE131003BFBA5 /* Resources */,
+				2BB8F18622CAE426003BFBA5 /* ShellScript */,
+				5834C47C597760AD336560A9 /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Qast;
+			productName = Qast;
+			productReference = 2BB8F16322CAE131003BFBA5 /* Qast.app */;
+			productType = "com.apple.product-type.application";
+		};
+		2BB8F17622CAE132003BFBA5 /* QastTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2BB8F18322CAE132003BFBA5 /* Build configuration list for PBXNativeTarget "QastTests" */;
+			buildPhases = (
+				D49E3C103F6E369F66C1D313 /* [CP] Check Pods Manifest.lock */,
+				2BB8F17322CAE132003BFBA5 /* Sources */,
+				2BB8F17422CAE132003BFBA5 /* Frameworks */,
+				2BB8F17522CAE132003BFBA5 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				2BB8F17922CAE132003BFBA5 /* PBXTargetDependency */,
+			);
+			name = QastTests;
+			productName = QastTests;
+			productReference = 2BB8F17722CAE132003BFBA5 /* QastTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		2BB8F15B22CAE131003BFBA5 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1020;
+				LastUpgradeCheck = 1020;
+				ORGANIZATIONNAME = Qast;
+				TargetAttributes = {
+					2BB8F16222CAE131003BFBA5 = {
+						CreatedOnToolsVersion = 10.2.1;
+					};
+					2BB8F17622CAE132003BFBA5 = {
+						CreatedOnToolsVersion = 10.2.1;
+						TestTargetID = 2BB8F16222CAE131003BFBA5;
+					};
+				};
+			};
+			buildConfigurationList = 2BB8F15E22CAE131003BFBA5 /* Build configuration list for PBXProject "Qast" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 2BB8F15A22CAE131003BFBA5;
+			productRefGroup = 2BB8F16422CAE131003BFBA5 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				2BB8F16222CAE131003BFBA5 /* Qast */,
+				2BB8F17622CAE132003BFBA5 /* QastTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2BB8F16122CAE131003BFBA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BB8F17122CAE132003BFBA5 /* LaunchScreen.storyboard in Resources */,
+				2BB8F16E22CAE132003BFBA5 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BB8F17522CAE132003BFBA5 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		2BB8F18622CAE426003BFBA5 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\n\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
+		};
+		5834C47C597760AD336560A9 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Qast/Pods-Qast-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
+				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Qast/Pods-Qast-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		5C5AF15211C504D42AC99901 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Qast-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		D49E3C103F6E369F66C1D313 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-QastTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		2BB8F15F22CAE131003BFBA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BB8F16922CAE131003BFBA5 /* ViewController.swift in Sources */,
+				2BB8F16722CAE131003BFBA5 /* AppDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		2BB8F17322CAE132003BFBA5 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2BB8F17C22CAE132003BFBA5 /* QastTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2BB8F17922CAE132003BFBA5 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2BB8F16222CAE131003BFBA5 /* Qast */;
+			targetProxy = 2BB8F17822CAE132003BFBA5 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		2BB8F16F22CAE132003BFBA5 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				2BB8F17022CAE132003BFBA5 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		2BB8F17E22CAE132003BFBA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		2BB8F17F22CAE132003BFBA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.2;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		2BB8F18122CAE132003BFBA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = DECEA67BF984DBE2E84756A2 /* Pods-Qast.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XYA5KJEM32;
+				INFOPLIST_FILE = Qast/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bose.Qast.Qast;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		2BB8F18222CAE132003BFBA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E7E693DB0310FEF888CE173 /* Pods-Qast.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XYA5KJEM32;
+				INFOPLIST_FILE = Qast/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bose.Qast.Qast;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		2BB8F18422CAE132003BFBA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = CB73906A245800CD0D5ED108 /* Pods-QastTests.debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XYA5KJEM32;
+				INFOPLIST_FILE = QastTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bose.Qast.QastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Qast.app/Qast";
+			};
+			name = Debug;
+		};
+		2BB8F18522CAE132003BFBA5 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 576B0074E8DC05358D881186 /* Pods-QastTests.release.xcconfig */;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = XYA5KJEM32;
+				INFOPLIST_FILE = QastTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.bose.Qast.QastTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Qast.app/Qast";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		2BB8F15E22CAE131003BFBA5 /* Build configuration list for PBXProject "Qast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BB8F17E22CAE132003BFBA5 /* Debug */,
+				2BB8F17F22CAE132003BFBA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2BB8F18022CAE132003BFBA5 /* Build configuration list for PBXNativeTarget "Qast" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BB8F18122CAE132003BFBA5 /* Debug */,
+				2BB8F18222CAE132003BFBA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		2BB8F18322CAE132003BFBA5 /* Build configuration list for PBXNativeTarget "QastTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2BB8F18422CAE132003BFBA5 /* Debug */,
+				2BB8F18522CAE132003BFBA5 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 2BB8F15B22CAE131003BFBA5 /* Project object */;
+}

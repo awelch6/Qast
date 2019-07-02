@@ -1,0 +1,24 @@
+PODS:
+  - Alamofire (4.8.2)
+  - SnapKit (5.0.0)
+  - SwiftLint (0.33.0)
+
+DEPENDENCIES:
+  - Alamofire (~> 4.8.1)
+  - SnapKit (~> 5.0.0)
+  - SwiftLint
+
+SPEC REPOS:
+  https://github.com/cocoapods/specs.git:
+    - Alamofire
+    - SnapKit
+    - SwiftLint
+
+SPEC CHECKSUMS:
+  Alamofire: ae5c501addb7afdbb13687d7f2f722c78734c2d3
+  SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
+  SwiftLint: fed9c66336e41fc74dc48a73678380718f0c8b0e
+
+PODFILE CHECKSUM: 83288e4477a072d05a9e1bc15c43a56dc6d639d1
+
+COCOAPODS: 1.5.3
