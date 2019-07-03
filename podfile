@@ -8,6 +8,7 @@ target 'Qast' do
   pod 'SwiftLint'
   pod 'SnapKit', '~>5.0.0'
   pod 'Alamofire', '~>4.8.1'
+  pod 'Mapbox-iOS-SDK', '~> 5.1'
   
   # Bose AR SDK
   pod 'BoseWearable', :path => 'BoseWearable/'

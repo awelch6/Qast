@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		05D60D2F43E00012AF2BBAF6 /* Pods_Qast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B34E9A658915814279F1C7 /* Pods_Qast.framework */; };
 		1AC3D15EE8D67EF30B3221E4 /* Pods_QastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD881D6E2EC7047D6EEB28F6 /* Pods_QastTests.framework */; };
+		2B82021822CC0B0E005E3BC1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B82021722CC0B0E005E3BC1 /* MapViewController.swift */; };
 		2BB8F16722CAE131003BFBA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F16622CAE131003BFBA5 /* AppDelegate.swift */; };
 		2BB8F16922CAE131003BFBA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F16822CAE131003BFBA5 /* ViewController.swift */; };
 		2BB8F16E22CAE132003BFBA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16D22CAE132003BFBA5 /* Assets.xcassets */; };
@@ -28,6 +29,7 @@
 
 /* Begin PBXFileReference section */
 		24B34E9A658915814279F1C7 /* Pods_Qast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B82021722CC0B0E005E3BC1 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		2BB8F16322CAE131003BFBA5 /* Qast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB8F16622CAE131003BFBA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BB8F16822CAE131003BFBA5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				2BB8F16822CAE131003BFBA5 /* ViewController.swift */,
+				2B82021722CC0B0E005E3BC1 /* MapViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -314,11 +317,13 @@
 			inputFileListPaths = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Qast/Pods-Qast-frameworks.sh",
+				"${PODS_ROOT}/Target Support Files/Pods-Qast/Pods-Qast-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${PODS_ROOT}/../BoseWearable/Frameworks/iOS/BLECore.framework",
 				"${PODS_ROOT}/../BoseWearable/Frameworks/iOS/BoseWearable.framework",
 				"${PODS_ROOT}/../BoseWearable/Frameworks/iOS/Logging.framework",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework",
+				"${PODS_ROOT}/Mapbox-iOS-SDK/dynamic/Mapbox.framework.dSYM",
 				"${BUILT_PRODUCTS_DIR}/SnapKit/SnapKit.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -329,11 +334,13 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BLECore.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BoseWearable.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Logging.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
+				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Qast/Pods-Qast-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Qast/Pods-Qast-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5C5AF15211C504D42AC99901 /* [CP] Check Pods Manifest.lock */ = {
@@ -388,6 +395,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				2BB8F16922CAE131003BFBA5 /* ViewController.swift in Sources */,
+				2B82021822CC0B0E005E3BC1 /* MapViewController.swift in Sources */,
 				2BB8F16722CAE131003BFBA5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

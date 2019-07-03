@@ -17,10 +17,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         
-         BoseWearable.enableCommonLogging()
+        BoseWearable.enableCommonLogging()
         BoseWearable.configure()
         
-        navigationController = UINavigationController(rootViewController: ViewController())
+        navigationController = UINavigationController(rootViewController: MapViewController())
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
