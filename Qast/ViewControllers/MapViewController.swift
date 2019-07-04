@@ -1,15 +1,9 @@
-//
-//  MapViewController.swift
-//  Qast
-//
-//  Created by Austin Welch on 7/2/19.
-//  Copyright © 2019 Qast. All rights reserved.
-//
-
 import UIKit
 import Mapbox
 
 class MapViewController: UIViewController {
+    
+    let soundZoneRepository = FirebaseSoundZoneRepository()
     
     let mapView = MGLMapView(frame: UIScreen.main.bounds, styleURL: URL(string: "mapbox://styles/mapbox/streets-v11"))
     
@@ -19,6 +13,17 @@ class MapViewController: UIViewController {
         super.viewDidLoad()
         
         setupMapView()
+        
+        let newSoundZone = SoundZone(soundUrl: "www.soundUrl.com", center: CLLocationCoordinate2D(latitude: 42.345, longitude: -83.432), radius: 3000, identifier: "identifier")
+        
+        soundZoneRepository.createSoundZone(newSoundZone) { (result) in
+            switch result {
+            case .value(let result):
+                print(result)
+            case .error(let error):
+                print(error)
+            }
+        }
     }
 
 }

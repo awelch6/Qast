@@ -1,13 +1,6 @@
-//
-//  AppDelegate.swift
-//  Qast
-//
-//  Created by Austin Welch on 7/1/19.
-//  Copyright © 2019 Qast. All rights reserved.
-//
-
 import UIKit
 import BoseWearable
+import Firebase
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -16,6 +9,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     var navigationController: UINavigationController?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
+        FirebaseApp.configure()
         
         BoseWearable.enableCommonLogging()
         BoseWearable.configure()
@@ -25,6 +19,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.rootViewController = navigationController
+        
+        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "wasLaunchedBefore")
+        //        let firstLaunch = FirstLaunch.alwaysFirst()
+        
+        if firstLaunch.isFirstLaunch {
+            print("Welcome to Qast!")
+        } else {
+            print("Welcome back to Qast!")
+        }
         
         return true
     }
