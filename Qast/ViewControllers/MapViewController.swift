@@ -8,6 +8,8 @@
 
 import UIKit
 import Mapbox
+import BoseWearable
+import simd
 
 class MapViewController: UIViewController {
     
@@ -15,10 +17,29 @@ class MapViewController: UIViewController {
     
     lazy var vision = VisionManager()
 
+    var sensorDispatch = SensorDispatch(queue: .main)
+    
+    public let session: WearableDeviceSession
+    
+    public var polygon: MGLPolygon?
+    
+    init(session: WearableDeviceSession) {
+        self.session = session
+        super.init(nibName: nil, bundle: nil)
+        
+        SessionManager.shared.configureSensors([.rotation, .accelerometer, .gyroscope, .magnetometer, .orientation])
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        sensorDispatch.handler = self
+        
         setupMapView()
+    }
+    
+    required init?(coder aDecoder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
 }
 
@@ -38,31 +59,48 @@ extension MapViewController {
 // MARK: MGLMapView Delegate
 
 extension MapViewController: MGLMapViewDelegate {
+    
     func mapView(_ mapView: MGLMapView, didUpdate userLocation: MGLUserLocation?) {
         guard let location = userLocation else {
             return
         }
-        visionPolygon(for: location.coordinate)
         mapView.setCenter(location.coordinate, animated: true)
     }
     
-    func visionPolygon(for coordinate: CLLocationCoordinate2D) {
-        vision.updateVisionPolygon(center: coordinate, orientation: 200)
+    func visionPolygon(for coordinate: CLLocationCoordinate2D, orientation: Double) {
+        self.mapView.annotations?.forEach { mapView.removeAnnotation($0) }
         
-        self.mapView.addAnnotation(vision.visionPolygon!)
+        self.mapView.addAnnotation(vision.updateVisionPolygon(center: coordinate, orientation: orientation))
+
     }
     
     func mapView(_ mapView: MGLMapView, alphaForShapeAnnotation annotation: MGLShape) -> CGFloat {
-        // Set the alpha for all shape annotations to 1 (full opacity)
         return 0.5
     }
     
     func mapView(_ mapView: MGLMapView, lineWidthForPolylineAnnotation annotation: MGLPolyline) -> CGFloat {
-        // Set the line width for polyline annotations
         return 5
     }
     
     func mapView(_ mapView: MGLMapView, fillColorForPolygonAnnotation annotation: MGLPolygon) -> UIColor {
-        return Int.random(in: 0...2) == 1 ? UIColor.red : UIColor.blue
+        return UIColor.blue
+    }
+}
+
+extension MapViewController: SensorDispatchHandler {
+    
+    func receivedRotation(quaternion: Quaternion, accuracy: QuaternionAccuracy, timestamp: SensorTimestamp) {
+        let qMap = Quaternion(ix: 1, iy: 0, iz: 0, r: 0)
+        let qResult = quaternion * qMap
+        let yaw: Double = (-qResult.zRotation).toDegrees()
+        
+        guard let userLocation = mapView.userLocation?.coordinate else {
+            return
+        }
+        
+        let magneticDegrees: Double = (yaw < 0) ? 360 + yaw : yaw
+        
+        visionPolygon(for: userLocation, orientation: magneticDegrees)
+        print("Yaw: ", magneticDegrees)
     }
 }

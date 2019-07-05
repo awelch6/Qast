@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BoseWearable.enableCommonLogging()
         BoseWearable.configure()
         
-        navigationController = UINavigationController(rootViewController: MapViewController())
+        navigationController = UINavigationController(rootViewController: ConnectionViewController())
         
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()

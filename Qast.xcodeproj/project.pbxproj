@@ -11,8 +11,11 @@
 		1AC3D15EE8D67EF30B3221E4 /* Pods_QastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD881D6E2EC7047D6EEB28F6 /* Pods_QastTests.framework */; };
 		2B82021822CC0B0E005E3BC1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B82021722CC0B0E005E3BC1 /* MapViewController.swift */; };
 		2BA4338B22CF628200C1D6F8 /* VisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4338A22CF628200C1D6F8 /* VisionManager.swift */; };
+		2BA4338F22CF651300C1D6F8 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4338E22CF651300C1D6F8 /* SessionManager.swift */; };
+		2BA4339122CF68C000C1D6F8 /* SessionManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4339022CF68C000C1D6F8 /* SessionManagerDelegate.swift */; };
+		2BA4339322CF6FA700C1D6F8 /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4339222CF6FA700C1D6F8 /* DoubleExtensions.swift */; };
 		2BB8F16722CAE131003BFBA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F16622CAE131003BFBA5 /* AppDelegate.swift */; };
-		2BB8F16922CAE131003BFBA5 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F16822CAE131003BFBA5 /* ViewController.swift */; };
+		2BB8F16922CAE131003BFBA5 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F16822CAE131003BFBA5 /* ConnectionViewController.swift */; };
 		2BB8F16E22CAE132003BFBA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16D22CAE132003BFBA5 /* Assets.xcassets */; };
 		2BB8F17122CAE132003BFBA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16F22CAE132003BFBA5 /* LaunchScreen.storyboard */; };
 		2BB8F17C22CAE132003BFBA5 /* QastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F17B22CAE132003BFBA5 /* QastTests.swift */; };
@@ -32,9 +35,12 @@
 		24B34E9A658915814279F1C7 /* Pods_Qast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B82021722CC0B0E005E3BC1 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		2BA4338A22CF628200C1D6F8 /* VisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionManager.swift; sourceTree = "<group>"; };
+		2BA4338E22CF651300C1D6F8 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
+		2BA4339022CF68C000C1D6F8 /* SessionManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerDelegate.swift; sourceTree = "<group>"; };
+		2BA4339222CF6FA700C1D6F8 /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
 		2BB8F16322CAE131003BFBA5 /* Qast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB8F16622CAE131003BFBA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		2BB8F16822CAE131003BFBA5 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		2BB8F16822CAE131003BFBA5 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
 		2BB8F16D22CAE132003BFBA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BB8F17022CAE132003BFBA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2BB8F17222CAE132003BFBA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -142,6 +148,7 @@
 		2BB8F18922CAE597003BFBA5 /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				2BA4339022CF68C000C1D6F8 /* SessionManagerDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -164,7 +171,7 @@
 		2BB8F18C22CAE5AA003BFBA5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				2BB8F16822CAE131003BFBA5 /* ViewController.swift */,
+				2BB8F16822CAE131003BFBA5 /* ConnectionViewController.swift */,
 				2B82021722CC0B0E005E3BC1 /* MapViewController.swift */,
 			);
 			path = ViewControllers;
@@ -175,6 +182,7 @@
 			children = (
 				2BB8F16622CAE131003BFBA5 /* AppDelegate.swift */,
 				2BA4338A22CF628200C1D6F8 /* VisionManager.swift */,
+				2BA4338E22CF651300C1D6F8 /* SessionManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -182,6 +190,7 @@
 		2BB8F18E22CAE5C5003BFBA5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				2BA4339222CF6FA700C1D6F8 /* DoubleExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -397,9 +406,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2BB8F16922CAE131003BFBA5 /* ViewController.swift in Sources */,
+				2BB8F16922CAE131003BFBA5 /* ConnectionViewController.swift in Sources */,
+				2BA4339122CF68C000C1D6F8 /* SessionManagerDelegate.swift in Sources */,
 				2BA4338B22CF628200C1D6F8 /* VisionManager.swift in Sources */,
 				2B82021822CC0B0E005E3BC1 /* MapViewController.swift in Sources */,
+				2BA4339322CF6FA700C1D6F8 /* DoubleExtensions.swift in Sources */,
+				2BA4338F22CF651300C1D6F8 /* SessionManager.swift in Sources */,
 				2BB8F16722CAE131003BFBA5 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -17,7 +17,7 @@ struct VisionManager {
     
     private(set) public var visionPolygon: MGLPolygon?
     
-    public mutating func updateVisionPolygon(center: CLLocationCoordinate2D, orientation: Double) {
+    public mutating func updateVisionPolygon(center: CLLocationCoordinate2D, orientation: Double) -> MGLPolygon {
         let radiusInMeters = radius.toMeters()
         
         let centerLatRadians = center.latitude.toRadians()
@@ -31,8 +31,12 @@ struct VisionManager {
         let pointLonRadians2 = centerLonRadians - atan2(sin(rightOffset(orientation)) * sin(radiusInMeters) * cos(centerLatRadians), cos(radiusInMeters) - sin(centerLatRadians) * sin(pointLatRadians))
         let rightPoint = CLLocationCoordinate2D(latitude: pointLatRadians2.toDegrees(), longitude: pointLonRadians2.toDegrees())
         
-        visionPolygon = MGLPolygon(coordinates: [center, leftPoint, rightPoint], count: 3)
+        return MGLPolygon(coordinates: [center, leftPoint, rightPoint], count: 3)
     }
+}
+
+// MARK: Utilities
+extension VisionManager {
     
     private func leftOffset(_ orientation: Double) -> Double {
         return (orientation - (viewingAngle / 2)).toRadians()
@@ -43,16 +47,9 @@ struct VisionManager {
     }
 }
 
+// MARK: Utility Extensions
+
 private extension Double {
-    /// Converts a double in degrees to radians
-    func toRadians() -> Double {
-        return self * .pi / 180
-    }
-    
-    /// Converts a double in radians to degrees
-    func toDegrees() -> Double {
-        return self * 180 / .pi
-    }
     
     /// converts
     func toMeters() -> Double {
