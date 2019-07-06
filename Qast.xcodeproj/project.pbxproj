@@ -14,6 +14,8 @@
 		2BA4338F22CF651300C1D6F8 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4338E22CF651300C1D6F8 /* SessionManager.swift */; };
 		2BA4339122CF68C000C1D6F8 /* SessionManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4339022CF68C000C1D6F8 /* SessionManagerDelegate.swift */; };
 		2BA4339322CF6FA700C1D6F8 /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4339222CF6FA700C1D6F8 /* DoubleExtensions.swift */; };
+		2BA4339822D1284100C1D6F8 /* StreamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4339722D1284100C1D6F8 /* StreamManager.swift */; };
+		2BA4339A22D128C900C1D6F8 /* TrackManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4339922D128C900C1D6F8 /* TrackManagerDelegate.swift */; };
 		2BB8F16722CAE131003BFBA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F16622CAE131003BFBA5 /* AppDelegate.swift */; };
 		2BB8F16922CAE131003BFBA5 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F16822CAE131003BFBA5 /* ConnectionViewController.swift */; };
 		2BB8F16E22CAE132003BFBA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16D22CAE132003BFBA5 /* Assets.xcassets */; };
@@ -38,6 +40,8 @@
 		2BA4338E22CF651300C1D6F8 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
 		2BA4339022CF68C000C1D6F8 /* SessionManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManagerDelegate.swift; sourceTree = "<group>"; };
 		2BA4339222CF6FA700C1D6F8 /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
+		2BA4339722D1284100C1D6F8 /* StreamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamManager.swift; sourceTree = "<group>"; };
+		2BA4339922D128C900C1D6F8 /* TrackManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackManagerDelegate.swift; sourceTree = "<group>"; };
 		2BB8F16322CAE131003BFBA5 /* Qast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB8F16622CAE131003BFBA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BB8F16822CAE131003BFBA5 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
@@ -157,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				2BA4339022CF68C000C1D6F8 /* SessionManagerDelegate.swift */,
+				2BA4339922D128C900C1D6F8 /* TrackManagerDelegate.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -189,6 +194,7 @@
 			isa = PBXGroup;
 			children = (
 				2BB8F16622CAE131003BFBA5 /* AppDelegate.swift */,
+				2BA4339722D1284100C1D6F8 /* StreamManager.swift */,
 				2BA4338A22CF628200C1D6F8 /* VisionManager.swift */,
 				2BA4338E22CF651300C1D6F8 /* SessionManager.swift */,
 			);
@@ -420,7 +426,9 @@
 				2B82021822CC0B0E005E3BC1 /* MapViewController.swift in Sources */,
 				2BA4339322CF6FA700C1D6F8 /* DoubleExtensions.swift in Sources */,
 				2BA4338F22CF651300C1D6F8 /* SessionManager.swift in Sources */,
+				2BA4339822D1284100C1D6F8 /* StreamManager.swift in Sources */,
 				2BB8F16722CAE131003BFBA5 /* AppDelegate.swift in Sources */,
+				2BA4339A22D128C900C1D6F8 /* TrackManagerDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -6,4 +6,8 @@
 //  Copyright © 2019 Qast. All rights reserved.
 //
 
-import Foundation
+import AVFoundation
+
+protocol TrackManagerDelegate: class {
+    func player(_ player: AVPlayer, didFinishPlaying: Bool)
+}

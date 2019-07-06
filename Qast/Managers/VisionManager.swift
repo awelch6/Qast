@@ -42,6 +42,7 @@ struct VisionManager {
         
         visionPath = path
     }
+    
     ///This function is just for showing viewing angle.
     public mutating func updateVisionPolygon(center: CLLocationCoordinate2D, orientation: Double) -> MGLPolygon {
         let radiusInMeters = radius.toMeters()

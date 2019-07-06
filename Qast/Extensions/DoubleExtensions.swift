@@ -17,4 +17,3 @@ extension Double {
         return self * 180 / .pi
     }
 }
-
