@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>385767968816-oc10mu0ncqvuhqu6mb8comfql02lccp2.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.385767968816-oc10mu0ncqvuhqu6mb8comfql02lccp2</string>
+	<key>API_KEY</key>
+	<string>AIzaSyASLL1EVkQgVIzrsLE75Ipg-Voyv-boQhM</string>
+	<key>GCM_SENDER_ID</key>
+	<string>385767968816</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.bose.Qast.Qast</string>
+	<key>PROJECT_ID</key>
+	<string>qast-dcefd</string>
+	<key>STORAGE_BUCKET</key>
+	<string>qast-dcefd.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false/>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false/>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true/>
+	<key>IS_GCM_ENABLED</key>
+	<true/>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true/>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:385767968816:ios:134043f8be0b32e8</string>
+	<key>DATABASE_URL</key>
+	<string>https://qast-dcefd.firebaseio.com</string>
+</dict>
+</plist>

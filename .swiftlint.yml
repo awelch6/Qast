@@ -15,7 +15,8 @@ excluded:
 - Pods
 - SwiftLint/Common/3rdPartyLib
 
-variable_name:
+identifier_name:
+  allowed_symbols: "_"
   max_length:
     warning: 45
     error: 60
