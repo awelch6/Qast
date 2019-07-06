@@ -71,7 +71,6 @@ extension MapViewController: MGLMapViewDelegate {
         self.mapView.annotations?.forEach { mapView.removeAnnotation($0) }
         
         self.mapView.addAnnotation(vision.updateVisionPolygon(center: coordinate, orientation: orientation))
-
     }
     
     func mapView(_ mapView: MGLMapView, alphaForShapeAnnotation annotation: MGLShape) -> CGFloat {
@@ -94,13 +93,13 @@ extension MapViewController: SensorDispatchHandler {
         let qResult = quaternion * qMap
         let yaw: Double = (-qResult.zRotation).toDegrees()
         
-        guard let userLocation = mapView.userLocation?.coordinate else {
+        guard let userLocation = mapView.userLocation?.location, userLocation.horizontalAccuracy > 0 else {
             return
         }
         
         let magneticDegrees: Double = (yaw < 0) ? 360 + yaw : yaw
         
-        visionPolygon(for: userLocation, orientation: magneticDegrees)
+        visionPolygon(for: userLocation.coordinate, orientation: 360 - magneticDegrees)
         print("Yaw: ", magneticDegrees)
     }
 }

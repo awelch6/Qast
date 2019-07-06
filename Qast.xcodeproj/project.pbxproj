@@ -94,6 +94,13 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
+		2BA4339422CFE1CC00C1D6F8 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		2BB8F15A22CAE131003BFBA5 = {
 			isa = PBXGroup;
 			children = (
@@ -124,6 +131,7 @@
 				2BB8F18B22CAE5A3003BFBA5 /* Configurations */,
 				2BB8F18A22CAE59F003BFBA5 /* Views */,
 				2BB8F18922CAE597003BFBA5 /* Protocols */,
+				2BA4339422CFE1CC00C1D6F8 /* Models */,
 				2BB8F18822CAE591003BFBA5 /* Enums */,
 			);
 			path = Qast;
