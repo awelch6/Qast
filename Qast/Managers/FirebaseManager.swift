@@ -1,35 +1,25 @@
-//
-//  FirebaseManager.swift
-//  Qast
-//
-//  Created by Austin Welch on 7/6/19.
-//  Copyright © 2019 Qast. All rights reserved.
-//
-
+import Foundation
+import Firebase
 import FirebaseFirestore
-import CoreLocation.CLLocation
+
+let DB_BASE = Firestore.firestore()
 
 typealias SoundZoneCompletionBlock = ([SoundZone], Error?) -> Void
 
-struct FirebaseManager {
+class FirebaseManager {
+    static let instance = FirebaseManager()
     
-    private let datastore = Firestore.firestore()
+    private var _REF_BASE = DB_BASE
+    private var _REF_SOUNDZONE = DB_BASE.collection("sound_zones")
     
-    public func soundZones(nearby location: CLLocationCoordinate2D, distance: Double = 30, _ completion: @escaping SoundZoneCompletionBlock) {
-        
-        let bounds = boundingPoints(for: location, distance: distance)
-        
-        datastore.collection("sound_zones")
-            .whereField("center", isGreaterThan: bounds.lesserPoint)
-            .whereField("center", isLessThan: bounds.greaterPoint)
-            .getDocuments { (snapshot, error) in
-            if let error = error {
-               completion([], error)
-            } else if let snapshot = snapshot {
-                completion(snapshot.documents.compactMap({ SoundZone(dictionary: $0.data()) }), nil)
-            }
-        }
+    var REF_BASE: Firestore {
+        return _REF_BASE
     }
+    
+    var REF_SOUNDZONES: CollectionReference {
+        return _REF_SOUNDZONE
+    }
+    
 }
 
 // MARK: Utility Functions
