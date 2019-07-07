@@ -29,10 +29,12 @@ struct VisionManager {
         let centerLonRadians = center.longitude.toRadians()
         
         let pointLatRadians = asin(sin(centerLatRadians) * cos(radiusInMeters) + cos(centerLatRadians) * sin(radiusInMeters) * cos(leftOffset(orientation)))
-        let pointLonRadians = centerLonRadians - atan2(sin(leftOffset(orientation)) * sin(radiusInMeters) * cos(centerLatRadians), cos(radiusInMeters) - sin(centerLatRadians) * sin(pointLatRadians))
+        let pointLonRadians = centerLonRadians - atan2(sin(leftOffset(orientation))
+            * sin(radiusInMeters) * cos(centerLatRadians), cos(radiusInMeters) - sin(centerLatRadians) * sin(pointLatRadians))
 
         let pointLatRadians2 = asin(sin(centerLatRadians) * cos(radiusInMeters) + cos(centerLatRadians) * sin(radiusInMeters) * cos(rightOffset(orientation)))
-        let pointLonRadians2 = centerLonRadians - atan2(sin(rightOffset(orientation)) * sin(radiusInMeters) * cos(centerLatRadians), cos(radiusInMeters) - sin(centerLatRadians) * sin(pointLatRadians))
+        let pointLonRadians2 = centerLonRadians - atan2(sin(rightOffset(orientation))
+            * sin(radiusInMeters) * cos(centerLatRadians), cos(radiusInMeters) - sin(centerLatRadians) * sin(pointLatRadians))
 
         let path = UIBezierPath()
         path.move(to: CGPoint(x: center.latitude, y: center.longitude))
@@ -51,11 +53,13 @@ struct VisionManager {
         let centerLonRadians = center.longitude.toRadians()
         
         let pointLatRadians = asin(sin(centerLatRadians) * cos(radiusInMeters) + cos(centerLatRadians) * sin(radiusInMeters) * cos(leftOffset(orientation)))
-        let pointLonRadians = centerLonRadians - atan2(sin(leftOffset(orientation)) * sin(radiusInMeters) * cos(centerLatRadians), cos(radiusInMeters) - sin(centerLatRadians) * sin(pointLatRadians))
+        let pointLonRadians = centerLonRadians - atan2(sin(leftOffset(orientation))
+            * sin(radiusInMeters) * cos(centerLatRadians), cos(radiusInMeters) - sin(centerLatRadians) * sin(pointLatRadians))
         let leftPoint = CLLocationCoordinate2D(latitude: pointLatRadians.toDegrees(), longitude: pointLonRadians.toDegrees())
         
         let pointLatRadians2 = asin(sin(centerLatRadians) * cos(radiusInMeters) + cos(centerLatRadians) * sin(radiusInMeters) * cos(rightOffset(orientation)))
-        let pointLonRadians2 = centerLonRadians - atan2(sin(rightOffset(orientation)) * sin(radiusInMeters) * cos(centerLatRadians), cos(radiusInMeters) - sin(centerLatRadians) * sin(pointLatRadians))
+        let pointLonRadians2 = centerLonRadians - atan2(sin(rightOffset(orientation))
+            * sin(radiusInMeters) * cos(centerLatRadians), cos(radiusInMeters) - sin(centerLatRadians) * sin(pointLatRadians))
         let rightPoint = CLLocationCoordinate2D(latitude: pointLatRadians2.toDegrees(), longitude: pointLonRadians2.toDegrees())
         
         let path = UIBezierPath()
@@ -84,15 +88,5 @@ extension VisionManager {
     
     private func rightOffset(_ orientation: Double) -> Double {
         return (orientation + (viewingAngle / 2)).toRadians()
-    }
-}
-
-// MARK: Utility Extensions
-
-private extension Double {
-    
-    /// converts
-    func toMeters() -> Double {
-        return self / 6371000.0
     }
 }

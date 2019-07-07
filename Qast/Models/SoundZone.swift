@@ -1,44 +1,56 @@
-import MapKit
-import FirebaseFirestore
+//
+//  SoundZone.swift
+//  Qast
+//
+//  Created by Austin Welch on 7/6/19.
+//  Copyright © 2019 Qast. All rights reserved.
+//
 
-class SoundZone: CLCircularRegion {
-    var soundUrl: String = ""
+import FirebaseFirestore.FIRGeoPoint
+import CoreLocation.CLLocation
+
+struct SoundZone {
+    let id: String
+    let center: GeoPoint
+    let radius: Double
+    let trackId: String
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
+    var bufferRadius: Double {
+        return radius + 10 //add 10 meters for now.
     }
     
-    init(soundUrl: String, center: CLLocationCoordinate2D, radius: CLLocationDistance, identifier: String) {
-        self.soundUrl = soundUrl
-        super.init(center: center, radius: radius, identifier: identifier)
-    }
-    
-    convenience init(documentId: String, dictionary: [String:Any]) {
-        let soundUrl = dictionary["soundUrl"] as? String
-        let center = dictionary["center"] as? CLLocationCoordinate2D
-        let radius = dictionary["radius"] as? Double
-        let identifier = dictionary["identifier"] as? String
-        self.init(soundUrl: soundUrl!, center: center!, radius: radius!, identifier: identifier!)
+    init?(dictionary: [String: Any]) {
+        guard
+            let id = dictionary["id"] as? String,
+            let center = dictionary["center"] as? GeoPoint,
+            let radius = dictionary["radius"] as? Double,
+            let trackId = dictionary["trackId"] as? String
+            else {
+                return nil
+        }
+        self.id = id
+        self.center = center
+        self.radius = radius
+        self.trackId = trackId
     }
 }
 
+// MARK: Volume Control
+
 extension SoundZone {
     
-    convenience init?(document: QueryDocumentSnapshot) {
-        self.init(documentId: document.documentID, dictionary: document.data())
-    }
-    
-    convenience init?(document: DocumentSnapshot) {
-        guard let data = document.data() else { return nil }
-        self.init(documentId: document.documentID, dictionary: data)
-    }
-    
-    var documentData: [String: Any] {
-        return [
-            "soundUrl": soundUrl,
-            "center": GeoPoint(latitude: center.latitude, longitude: center.longitude),
-            "radius": radius as? Double,
-            "identifier": identifier as? String
-        ]
+    /// Returns the correct volume level for distance away from sound zone
+    func volume(from location: CLLocation) -> Float {
+        let zoneCenter = CLLocation(latitude: center.latitude, longitude: center.longitude)
+        
+        let distance = zoneCenter.distance(from: location)
+        
+        if distance <= radius {
+            return 1
+        } else if distance > bufferRadius {
+            return 0
+        } else {
+            return Float(1 - ((distance - radius) / (bufferRadius - radius)))
+        }
     }
 }

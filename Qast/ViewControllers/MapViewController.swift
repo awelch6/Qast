@@ -15,8 +15,6 @@ class MapViewController: UIViewController {
     
     public let session: WearableDeviceSession
     
-    public var polygon: MGLPolygon?
-    
     init(session: WearableDeviceSession) {
         self.session = session
         super.init(nibName: nil, bundle: nil)
@@ -26,19 +24,15 @@ class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupMapView()
+
         sensorDispatch.handler = self
         
-        setupMapView()
-        
-        let newSoundZone = SoundZone(soundUrl: "www.soundUrl.com", center: CLLocationCoordinate2D(latitude: 42.345, longitude: -83.432), radius: 3000, identifier: "identifier")
-        
-        soundZoneRepository.createSoundZone(newSoundZone) { (result) in
-            switch result {
-            case .value(let result):
-                print(result)
-            case .error(let error):
-                print(error)
+        FirebaseManager.shared.soundZones(nearby: CLLocationCoordinate2D(latitude: 42.334811, longitude: -83.052395)) { (soundZones, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                print(soundZones)
             }
         }
     }
@@ -66,9 +60,12 @@ extension MapViewController {
 extension MapViewController: MGLMapViewDelegate {
     
     func mapView(_ mapView: MGLMapView, didUpdate userLocation: MGLUserLocation?) {
-        guard let location = userLocation else {
+        guard let location = userLocation?.location, location.horizontalAccuracy > 0 else {
             return
         }
+        
+        /// Calculate sound volume here?
+
         mapView.setCenter(location.coordinate, animated: true)
     }
     
@@ -105,6 +102,5 @@ extension MapViewController: SensorDispatchHandler {
         let magneticDegrees: Double = (yaw < 0) ? 360 + yaw : yaw
         
         visionPolygon(for: userLocation.coordinate, orientation: 360 - magneticDegrees)
-        print("Yaw: ", magneticDegrees)
     }
 }

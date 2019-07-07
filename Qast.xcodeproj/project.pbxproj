@@ -21,6 +21,7 @@
 		2BB8F16E22CAE132003BFBA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16D22CAE132003BFBA5 /* Assets.xcassets */; };
 		2BB8F17122CAE132003BFBA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16F22CAE132003BFBA5 /* LaunchScreen.storyboard */; };
 		2BB8F17C22CAE132003BFBA5 /* QastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F17B22CAE132003BFBA5 /* QastTests.swift */; };
+		2BF6AD1D22D1610900A752D0 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6AD1C22D1610900A752D0 /* FirebaseManager.swift */; };
 		5981795122CD2EA60091605E /* SoundZoneRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795022CD2EA60091605E /* SoundZoneRepository.swift */; };
 		5981795422CD2F230091605E /* SoundZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795322CD2F230091605E /* SoundZone.swift */; };
 		5981795822CD2FE70091605E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795722CD2FE70091605E /* Result.swift */; };
@@ -57,6 +58,7 @@
 		2BB8F17722CAE132003BFBA5 /* QastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB8F17B22CAE132003BFBA5 /* QastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QastTests.swift; sourceTree = "<group>"; };
 		2BB8F17D22CAE132003BFBA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		2BF6AD1C22D1610900A752D0 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
 		576B0074E8DC05358D881186 /* Pods-QastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QastTests/Pods-QastTests.release.xcconfig"; sourceTree = "<group>"; };
 		5981795022CD2EA60091605E /* SoundZoneRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZoneRepository.swift; sourceTree = "<group>"; };
 		5981795322CD2F230091605E /* SoundZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZone.swift; sourceTree = "<group>"; };
@@ -111,13 +113,6 @@
 			name = Pods;
 			sourceTree = "<group>";
 		};
-		2BA4339422CFE1CC00C1D6F8 /* Models */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Models;
-			sourceTree = "<group>";
-		};
 		2BB8F15A22CAE131003BFBA5 = {
 			isa = PBXGroup;
 			children = (
@@ -150,7 +145,6 @@
 				2BB8F18B22CAE5A3003BFBA5 /* Configurations */,
 				2BB8F18A22CAE59F003BFBA5 /* Views */,
 				2BB8F18922CAE597003BFBA5 /* Protocols */,
-				2BA4339422CFE1CC00C1D6F8 /* Models */,
 				2BB8F18822CAE591003BFBA5 /* Enums */,
 				5981796022CD5DA60091605E /* .swiftlint.yml */,
 			);
@@ -215,6 +209,7 @@
 				2BA4338A22CF628200C1D6F8 /* VisionManager.swift */,
 				2BA4338E22CF651300C1D6F8 /* SessionManager.swift */,
 				5981795A22CD30FF0091605E /* FirebaseDataService.swift */,
+				2BF6AD1C22D1610900A752D0 /* FirebaseManager.swift */,
 				5981795C22CD324D0091605E /* FirstLaunch.swift */,
 			);
 			path = Managers;
@@ -378,23 +373,15 @@
 			files = (
 			);
 			inputFileListPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-Qast/Pods-Qast-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+				"${PODS_ROOT}/Target Support Files/Pods-Qast/Pods-Qast-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
-			);
-			outputPaths = (
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BLECore.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/BoseWearable.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Logging.framework",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mapbox.framework",
-				"${DWARF_DSYM_FOLDER_PATH}/Mapbox.framework.dSYM",
-				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SnapKit.framework",
+				"${PODS_ROOT}/Target Support Files/Pods-Qast/Pods-Qast-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Qast/Pods-Qast-frameworks.sh\"\n";
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Qast/Pods-Qast-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		5C5AF15211C504D42AC99901 /* [CP] Check Pods Manifest.lock */ = {
@@ -460,6 +447,7 @@
 				2BA4339A22D128C900C1D6F8 /* TrackManagerDelegate.swift in Sources */,
 				5981795822CD2FE70091605E /* Result.swift in Sources */,
 				5981795D22CD324D0091605E /* FirstLaunch.swift in Sources */,
+				2BF6AD1D22D1610900A752D0 /* FirebaseManager.swift in Sources */,
 				5981795422CD2F230091605E /* SoundZone.swift in Sources */,
 				5981795122CD2EA60091605E /* SoundZoneRepository.swift in Sources */,
 			);
