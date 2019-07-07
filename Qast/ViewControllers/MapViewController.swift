@@ -5,18 +5,18 @@ import simd
 
 class MapViewController: UIViewController {
     
-    let soundZoneRepository = FirebaseSoundZoneRepository()
-    
-    let mapView = MGLMapView(frame: UIScreen.main.bounds, styleURL: URL(string: "mapbox://styles/mapbox/streets-v11"))
+    let mapView = QastMapView()
     
     lazy var vision = VisionManager()
 
     var sensorDispatch = SensorDispatch(queue: .main)
     
     public let session: WearableDeviceSession
+    public let networker: FirebaseManager
     
-    init(session: WearableDeviceSession) {
+    init(session: WearableDeviceSession, networker: FirebaseManager = FirebaseManager()) {
         self.session = session
+        self.networker = networker
         super.init(nibName: nil, bundle: nil)
         
         SessionManager.shared.configureSensors([.rotation, .accelerometer, .gyroscope, .magnetometer, .orientation])
@@ -28,11 +28,11 @@ class MapViewController: UIViewController {
 
         sensorDispatch.handler = self
         
-        FirebaseManager.shared.soundZones(nearby: CLLocationCoordinate2D(latitude: 42.334811, longitude: -83.052395)) { (soundZones, error) in
+        networker.soundZones(nearby: CLLocationCoordinate2D(latitude: 42.334811, longitude: -83.052395), distance: 100) { (soundZones, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
-                print(soundZones)
+                self.mapView.addAnnotations(soundZones.map { SoundZoneAnnotation(soundZone: $0) })
             }
         }
     }
@@ -48,9 +48,6 @@ extension MapViewController {
     
     private func setupMapView() {
         view.addSubview(mapView)
-        mapView.showsUserLocation = true
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.zoomLevel = 20
         mapView.delegate = self
     }
 }
@@ -63,16 +60,13 @@ extension MapViewController: MGLMapViewDelegate {
         guard let location = userLocation?.location, location.horizontalAccuracy > 0 else {
             return
         }
-        
-        /// Calculate sound volume here?
-
         mapView.setCenter(location.coordinate, animated: true)
     }
     
     func visionPolygon(for coordinate: CLLocationCoordinate2D, orientation: Double) {
-        self.mapView.annotations?.forEach { mapView.removeAnnotation($0) }
+        //self.mapView.annotations?.forEach { mapView.removeAnnotation($0) }
         
-        self.mapView.addAnnotation(vision.updateVisionPolygon(center: coordinate, orientation: orientation))
+        //self.mapView.addAnnotation(vision.updateVisionPolygon(center: coordinate, orientation: orientation))
     }
     
     func mapView(_ mapView: MGLMapView, alphaForShapeAnnotation annotation: MGLShape) -> CGFloat {
@@ -85,6 +79,13 @@ extension MapViewController: MGLMapViewDelegate {
     
     func mapView(_ mapView: MGLMapView, fillColorForPolygonAnnotation annotation: MGLPolygon) -> UIColor {
         return UIColor.blue
+    }
+    
+    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
+        if let annotation = annotation as? SoundZoneAnnotation {
+            return SoundZoneAnnotationView(annotation: annotation, reuseIdentifier: "asd")
+        }
+        return nil
     }
 }
 

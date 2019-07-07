@@ -16,6 +16,9 @@
 		2BA4339322CF6FA700C1D6F8 /* DoubleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4339222CF6FA700C1D6F8 /* DoubleExtensions.swift */; };
 		2BA4339822D1284100C1D6F8 /* StreamManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4339722D1284100C1D6F8 /* StreamManager.swift */; };
 		2BA4339A22D128C900C1D6F8 /* TrackManagerDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4339922D128C900C1D6F8 /* TrackManagerDelegate.swift */; };
+		2BA4339C22D1867E00C1D6F8 /* QastMapView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4339B22D1867E00C1D6F8 /* QastMapView.swift */; };
+		2BA4339E22D187F600C1D6F8 /* SoundZoneAnnotation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4339D22D187F600C1D6F8 /* SoundZoneAnnotation.swift */; };
+		2BA433A022D189D100C1D6F8 /* SoundZoneAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4339F22D189D100C1D6F8 /* SoundZoneAnnotationView.swift */; };
 		2BB8F16722CAE131003BFBA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F16622CAE131003BFBA5 /* AppDelegate.swift */; };
 		2BB8F16922CAE131003BFBA5 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F16822CAE131003BFBA5 /* ConnectionViewController.swift */; };
 		2BB8F16E22CAE132003BFBA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16D22CAE132003BFBA5 /* Assets.xcassets */; };
@@ -49,6 +52,9 @@
 		2BA4339222CF6FA700C1D6F8 /* DoubleExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DoubleExtensions.swift; sourceTree = "<group>"; };
 		2BA4339722D1284100C1D6F8 /* StreamManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamManager.swift; sourceTree = "<group>"; };
 		2BA4339922D128C900C1D6F8 /* TrackManagerDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackManagerDelegate.swift; sourceTree = "<group>"; };
+		2BA4339B22D1867E00C1D6F8 /* QastMapView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QastMapView.swift; sourceTree = "<group>"; };
+		2BA4339D22D187F600C1D6F8 /* SoundZoneAnnotation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZoneAnnotation.swift; sourceTree = "<group>"; };
+		2BA4339F22D189D100C1D6F8 /* SoundZoneAnnotationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZoneAnnotationView.swift; sourceTree = "<group>"; };
 		2BB8F16322CAE131003BFBA5 /* Qast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB8F16622CAE131003BFBA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BB8F16822CAE131003BFBA5 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
@@ -179,6 +185,8 @@
 		2BB8F18A22CAE59F003BFBA5 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				2BA4339B22D1867E00C1D6F8 /* QastMapView.swift */,
+				2BA4339F22D189D100C1D6F8 /* SoundZoneAnnotationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -244,6 +252,7 @@
 			isa = PBXGroup;
 			children = (
 				5981795322CD2F230091605E /* SoundZone.swift */,
+				2BA4339D22D187F600C1D6F8 /* SoundZoneAnnotation.swift */,
 				5981795722CD2FE70091605E /* Result.swift */,
 			);
 			path = Models;
@@ -444,11 +453,14 @@
 				2BA4338F22CF651300C1D6F8 /* SessionManager.swift in Sources */,
 				2BA4339822D1284100C1D6F8 /* StreamManager.swift in Sources */,
 				2BB8F16722CAE131003BFBA5 /* AppDelegate.swift in Sources */,
+				2BA433A022D189D100C1D6F8 /* SoundZoneAnnotationView.swift in Sources */,
 				2BA4339A22D128C900C1D6F8 /* TrackManagerDelegate.swift in Sources */,
+				2BA4339E22D187F600C1D6F8 /* SoundZoneAnnotation.swift in Sources */,
 				5981795822CD2FE70091605E /* Result.swift in Sources */,
 				5981795D22CD324D0091605E /* FirstLaunch.swift in Sources */,
 				2BF6AD1D22D1610900A752D0 /* FirebaseManager.swift in Sources */,
 				5981795422CD2F230091605E /* SoundZone.swift in Sources */,
+				2BA4339C22D1867E00C1D6F8 /* QastMapView.swift in Sources */,
 				5981795122CD2EA60091605E /* SoundZoneRepository.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -605,7 +617,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VK9Q399257;
+				DEVELOPMENT_TEAM = XYA5KJEM32;
 				INFOPLIST_FILE = "$(SRCROOT)/Qast/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -624,7 +636,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = VK9Q399257;
+				DEVELOPMENT_TEAM = XYA5KJEM32;
 				INFOPLIST_FILE = "$(SRCROOT)/Qast/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

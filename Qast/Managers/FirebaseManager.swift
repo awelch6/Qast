@@ -13,8 +13,6 @@ typealias SoundZoneCompletionBlock = ([SoundZone], Error?) -> Void
 
 struct FirebaseManager {
     
-    static let shared = FirebaseManager()
-    
     private let datastore = Firestore.firestore()
     
     public func soundZones(nearby location: CLLocationCoordinate2D, distance: Double = 30, _ completion: @escaping SoundZoneCompletionBlock) {
