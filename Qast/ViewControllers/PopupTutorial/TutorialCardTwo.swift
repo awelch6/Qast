@@ -18,6 +18,7 @@ class TutorialCardTwo: UIViewController {
         super.viewDidLoad()
         setupText()
         view.backgroundColor = .clear
+        navigationController?.navigationBar.isHidden = true
     }
 }
 

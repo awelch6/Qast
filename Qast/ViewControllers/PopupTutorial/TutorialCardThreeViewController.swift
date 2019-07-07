@@ -22,6 +22,7 @@ class TutorialCardThreeViewController: UIViewController {
         SessionManager.shared.delegate = self
         setupConnectButton()
         view.backgroundColor = .clear
+        navigationController?.navigationBar.isHidden = true
     }
     
 }
@@ -54,6 +55,7 @@ extension TutorialCardThreeViewController {
 extension TutorialCardThreeViewController: SessionManagerDelegate {
     
     func session(_ session: WearableDeviceSession, didOpen: Bool) {
+        print("session did open")
         navigationController?.pushViewController(MapViewController(session: session), animated: true)
     }
     

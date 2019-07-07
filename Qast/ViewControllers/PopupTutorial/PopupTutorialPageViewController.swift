@@ -10,7 +10,7 @@ import UIKit
 
 class PopupTutorialPageViewController: UIPageViewController {
     
-    init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation navigationOrientation: UIPageViewController.NavigationOrientation, options options: [UIPageViewController.OptionsKey : AnyObject]!) {
+    init(transitionStyle style: UIPageViewController.TransitionStyle, navigationOrientation: UIPageViewController.NavigationOrientation, options: [UIPageViewController.OptionsKey : AnyObject]!) {
         super.init(transitionStyle: style, navigationOrientation: navigationOrientation, options: options)
     }
     

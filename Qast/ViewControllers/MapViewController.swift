@@ -1,3 +1,11 @@
+//
+//  MapViewController.swift
+//  Qast
+//
+//  Created by Austin Welch on 7/5/19.
+//  Copyright © 2019 Qast. All rights reserved.
+//
+
 import UIKit
 import Mapbox
 import BoseWearable
@@ -12,13 +20,13 @@ class MapViewController: UIViewController {
     var sensorDispatch = SensorDispatch(queue: .main)
     
     public let session: WearableDeviceSession
-    public let networker: FirebaseManager
+    public let networker: SoundZoneAPI
     
-    init(session: WearableDeviceSession, networker: FirebaseManager = FirebaseManager()) {
+    init(session: WearableDeviceSession, networker: SoundZoneAPI = FirebaseManager()) {
         self.session = session
         self.networker = networker
         super.init(nibName: nil, bundle: nil)
-        
+        navigationController?.navigationBar.isHidden = true
         SessionManager.shared.configureSensors([.rotation, .accelerometer, .gyroscope, .magnetometer, .orientation])
     }
 

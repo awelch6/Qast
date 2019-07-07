@@ -12,4 +12,12 @@ typealias SoundZoneCompletionBlock = ([SoundZone], Error?) -> Void
 
 protocol SoundZoneAPI {
     func soundZones(nearby location: CLLocationCoordinate2D, distance: Double, _ completion: @escaping SoundZoneCompletionBlock)
+    
+    func getSoundZone(id: String, completion: @escaping (Result<SoundZone>) -> Void)
+    func createSoundZone(_ soundZone: SoundZone, completion: @escaping (Result<SoundZone>) -> Void)
+}
+
+extension SoundZoneAPI {
+    func getSoundZone(id: String, completion: @escaping (Result<SoundZone>) -> Void) { }
+    func createSoundZone(_ soundZone: SoundZone, completion: @escaping (Result<SoundZone>) -> Void) { }
 }
