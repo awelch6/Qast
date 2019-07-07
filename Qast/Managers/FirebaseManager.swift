@@ -9,9 +9,7 @@
 import FirebaseFirestore
 import CoreLocation.CLLocation
 
-typealias SoundZoneCompletionBlock = ([SoundZone], Error?) -> Void
-
-struct FirebaseManager {
+struct FirebaseManager: SoundZoneAPI {
     
     private let datastore = Firestore.firestore()
     

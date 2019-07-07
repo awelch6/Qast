@@ -24,6 +24,8 @@
 		2BB8F16E22CAE132003BFBA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16D22CAE132003BFBA5 /* Assets.xcassets */; };
 		2BB8F17122CAE132003BFBA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16F22CAE132003BFBA5 /* LaunchScreen.storyboard */; };
 		2BB8F17C22CAE132003BFBA5 /* QastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F17B22CAE132003BFBA5 /* QastTests.swift */; };
+		2BF6AD1D22D1610900A752D0 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6AD1C22D1610900A752D0 /* FirebaseManager.swift */; };
+		2BF6AD2122D2521800A752D0 /* SoundZoneAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6AD2022D2521700A752D0 /* SoundZoneAPI.swift */; };
 		5944D97422D1556400579892 /* TutorialCardOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97322D1556400579892 /* TutorialCardOneViewController.swift */; };
 		5944D97622D1561700579892 /* PopupTutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97522D1561700579892 /* PopupTutorialPageViewController.swift */; };
 		5944D97822D1574700579892 /* TutorialCardTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97722D1574700579892 /* TutorialCardTwo.swift */; };
@@ -31,7 +33,6 @@
 		5944D97C22D159EB00579892 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97B22D159EB00579892 /* UIColorExtensions.swift */; };
 		5944D97E22D15B7500579892 /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97D22D15B7500579892 /* UINavigationBarExtension.swift */; };
 		5944D98022D15B9400579892 /* UITabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97F22D15B9400579892 /* UITabBarExtension.swift */; };
-		2BF6AD1D22D1610900A752D0 /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6AD1C22D1610900A752D0 /* FirebaseManager.swift */; };
 		5981795122CD2EA60091605E /* SoundZoneRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795022CD2EA60091605E /* SoundZoneRepository.swift */; };
 		5981795422CD2F230091605E /* SoundZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795322CD2F230091605E /* SoundZone.swift */; };
 		5981795822CD2FE70091605E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795722CD2FE70091605E /* Result.swift */; };
@@ -72,6 +73,7 @@
 		2BB8F17B22CAE132003BFBA5 /* QastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QastTests.swift; sourceTree = "<group>"; };
 		2BB8F17D22CAE132003BFBA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BF6AD1C22D1610900A752D0 /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
+		2BF6AD2022D2521700A752D0 /* SoundZoneAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZoneAPI.swift; sourceTree = "<group>"; };
 		576B0074E8DC05358D881186 /* Pods-QastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QastTests/Pods-QastTests.release.xcconfig"; sourceTree = "<group>"; };
 		5944D97322D1556400579892 /* TutorialCardOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCardOneViewController.swift; sourceTree = "<group>"; };
 		5944D97522D1561700579892 /* PopupTutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupTutorialPageViewController.swift; sourceTree = "<group>"; };
@@ -192,6 +194,7 @@
 			children = (
 				2BA4339022CF68C000C1D6F8 /* SessionManagerDelegate.swift */,
 				2BA4339922D128C900C1D6F8 /* TrackManagerDelegate.swift */,
+				2BF6AD2022D2521700A752D0 /* SoundZoneAPI.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -491,6 +494,7 @@
 				5944D97A22D1578400579892 /* TutorialCardThreeViewController.swift in Sources */,
 				2BA4339E22D187F600C1D6F8 /* SoundZoneAnnotation.swift in Sources */,
 				5981795822CD2FE70091605E /* Result.swift in Sources */,
+				2BF6AD2122D2521800A752D0 /* SoundZoneAPI.swift in Sources */,
 				5981795D22CD324D0091605E /* FirstLaunch.swift in Sources */,
 				2BF6AD1D22D1610900A752D0 /* FirebaseManager.swift in Sources */,
 				5944D97422D1556400579892 /* TutorialCardOneViewController.swift in Sources */,
