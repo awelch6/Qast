@@ -12,13 +12,13 @@ class MapViewController: UIViewController {
     var sensorDispatch = SensorDispatch(queue: .main)
     
     public let session: WearableDeviceSession
-    public let networker: FirebaseManager
+    public let soundZoneRepository: SoundZoneRepository
     
-    init(session: WearableDeviceSession, networker: FirebaseManager = FirebaseManager()) {
+    init(session: WearableDeviceSession, soundZoneRepository: SoundZoneRepository = FirebaseSoundZoneRepository()) {
         self.session = session
-        self.networker = networker
+        self.soundZoneRepository = soundZoneRepository
         super.init(nibName: nil, bundle: nil)
-        
+        navigationController?.navigationBar.isHidden = true
         SessionManager.shared.configureSensors([.rotation, .accelerometer, .gyroscope, .magnetometer, .orientation])
     }
 
@@ -28,7 +28,7 @@ class MapViewController: UIViewController {
 
         sensorDispatch.handler = self
         
-        networker.soundZones(nearby: CLLocationCoordinate2D(latitude: 42.334811, longitude: -83.052395), distance: 100) { (soundZones, error) in
+        soundZoneRepository.getNearbySoundZones(nearby: CLLocationCoordinate2D(latitude: 42.334811, longitude: -83.052395), distance: 100) { (soundZones, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {

@@ -1,6 +1,7 @@
 import Foundation
 import Firebase
 import FirebaseFirestore
+import CoreLocation.CLLocation
 
 let DB_BASE = Firestore.firestore()
 
@@ -27,7 +28,7 @@ class FirebaseManager {
 extension FirebaseManager {
     
     /// Returns a lower geopoint, and a greater geopoint based on the given distance
-    private func boundingPoints(for location: CLLocationCoordinate2D, distance: Double) -> (lesserPoint: GeoPoint, greaterPoint: GeoPoint) {
+    public static func boundingPoints(for location: CLLocationCoordinate2D, distance: Double) -> (lesserPoint: GeoPoint, greaterPoint: GeoPoint) {
         let lat = 0.0144927536231884
         let lon = 0.0181818181818182
         
