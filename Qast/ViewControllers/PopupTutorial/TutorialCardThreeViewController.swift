@@ -1,17 +1,18 @@
 //
-//  ViewController.swift
+//  CardOneViewController.swift
 //  Qast
 //
-//  Created by Austin Welch on 7/1/19.
+//  Created by Andrew O'Brien on 7/6/19.
 //  Copyright © 2019 Qast. All rights reserved.
 //
 
+import Foundation
 import UIKit
 import SnapKit
 import BoseWearable
 
-class ConnectionViewController: UIViewController {
-
+class TutorialCardThreeViewController: UIViewController {
+    
     private var session: WearableDeviceSession?
     
     let connectButton = UIButton()
@@ -20,12 +21,14 @@ class ConnectionViewController: UIViewController {
         super.viewDidLoad()
         SessionManager.shared.delegate = self
         setupConnectButton()
+        view.backgroundColor = .clear
     }
+    
 }
 
 // MARK: UI Setup
 
-extension ConnectionViewController {
+extension TutorialCardThreeViewController {
     
     private func setupConnectButton() {
         view.addSubview(connectButton)
@@ -34,7 +37,6 @@ extension ConnectionViewController {
             make.width.equalTo(200)
             make.height.equalTo(60)
         }
-        
         connectButton.setTitle("Connect", for: .normal)
         connectButton.addTarget(self, action: #selector(connectButtonPressed), for: .touchUpInside)
     }
@@ -42,14 +44,14 @@ extension ConnectionViewController {
 
 // MARK: Button Actions
 
-extension ConnectionViewController {
+extension TutorialCardThreeViewController {
     
     @objc func connectButtonPressed() {
         SessionManager.shared.startConnection()
     }
 }
 
-extension ConnectionViewController: SessionManagerDelegate {
+extension TutorialCardThreeViewController: SessionManagerDelegate {
     
     func session(_ session: WearableDeviceSession, didOpen: Bool) {
         navigationController?.pushViewController(MapViewController(session: session), animated: true)

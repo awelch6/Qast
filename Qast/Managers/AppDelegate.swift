@@ -17,17 +17,19 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         navigationController = UINavigationController(rootViewController: ConnectionViewController())
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.makeKeyAndVisible()
-        window?.rootViewController = navigationController
-        
-        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "wasLaunchedBefore")
-        //        let firstLaunch = FirstLaunch.alwaysFirst()
+        window?.backgroundColor = UIColor.init(hexString: "#F96170", alpha: 1.0)
+//        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "wasLaunchedBefore")
+        let firstLaunch = FirstLaunch.alwaysFirst()
         
         if firstLaunch.isFirstLaunch {
             print("Welcome to Qast!")
+            window?.rootViewController = PopupTutorialPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil)
         } else {
             print("Welcome back to Qast!")
+            window?.rootViewController = navigationController
         }
+        
+        window?.makeKeyAndVisible()
         
         return true
     }

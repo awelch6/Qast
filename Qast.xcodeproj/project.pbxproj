@@ -21,6 +21,13 @@
 		2BB8F16E22CAE132003BFBA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16D22CAE132003BFBA5 /* Assets.xcassets */; };
 		2BB8F17122CAE132003BFBA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16F22CAE132003BFBA5 /* LaunchScreen.storyboard */; };
 		2BB8F17C22CAE132003BFBA5 /* QastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F17B22CAE132003BFBA5 /* QastTests.swift */; };
+		5944D97422D1556400579892 /* TutorialCardOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97322D1556400579892 /* TutorialCardOneViewController.swift */; };
+		5944D97622D1561700579892 /* PopupTutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97522D1561700579892 /* PopupTutorialPageViewController.swift */; };
+		5944D97822D1574700579892 /* TutorialCardTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97722D1574700579892 /* TutorialCardTwo.swift */; };
+		5944D97A22D1578400579892 /* TutorialCardThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97922D1578400579892 /* TutorialCardThreeViewController.swift */; };
+		5944D97C22D159EB00579892 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97B22D159EB00579892 /* UIColorExtensions.swift */; };
+		5944D97E22D15B7500579892 /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97D22D15B7500579892 /* UINavigationBarExtension.swift */; };
+		5944D98022D15B9400579892 /* UITabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97F22D15B9400579892 /* UITabBarExtension.swift */; };
 		5981795122CD2EA60091605E /* SoundZoneRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795022CD2EA60091605E /* SoundZoneRepository.swift */; };
 		5981795422CD2F230091605E /* SoundZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795322CD2F230091605E /* SoundZone.swift */; };
 		5981795822CD2FE70091605E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795722CD2FE70091605E /* Result.swift */; };
@@ -58,6 +65,13 @@
 		2BB8F17B22CAE132003BFBA5 /* QastTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QastTests.swift; sourceTree = "<group>"; };
 		2BB8F17D22CAE132003BFBA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		576B0074E8DC05358D881186 /* Pods-QastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QastTests/Pods-QastTests.release.xcconfig"; sourceTree = "<group>"; };
+		5944D97322D1556400579892 /* TutorialCardOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCardOneViewController.swift; sourceTree = "<group>"; };
+		5944D97522D1561700579892 /* PopupTutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupTutorialPageViewController.swift; sourceTree = "<group>"; };
+		5944D97722D1574700579892 /* TutorialCardTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCardTwo.swift; sourceTree = "<group>"; };
+		5944D97922D1578400579892 /* TutorialCardThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCardThreeViewController.swift; sourceTree = "<group>"; };
+		5944D97B22D159EB00579892 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
+		5944D97D22D15B7500579892 /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
+		5944D97F22D15B9400579892 /* UITabBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtension.swift; sourceTree = "<group>"; };
 		5981795022CD2EA60091605E /* SoundZoneRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZoneRepository.swift; sourceTree = "<group>"; };
 		5981795322CD2F230091605E /* SoundZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZone.swift; sourceTree = "<group>"; };
 		5981795722CD2FE70091605E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
@@ -201,6 +215,7 @@
 		2BB8F18C22CAE5AA003BFBA5 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
+				5944D97222D1553700579892 /* PopupTutorial */,
 				2BB8F16822CAE131003BFBA5 /* ConnectionViewController.swift */,
 				2B82021722CC0B0E005E3BC1 /* MapViewController.swift */,
 			);
@@ -224,6 +239,9 @@
 			isa = PBXGroup;
 			children = (
 				2BA4339222CF6FA700C1D6F8 /* DoubleExtensions.swift */,
+				5944D97B22D159EB00579892 /* UIColorExtensions.swift */,
+				5944D97D22D15B7500579892 /* UINavigationBarExtension.swift */,
+				5944D97F22D15B9400579892 /* UITabBarExtension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -235,6 +253,17 @@
 				2BB8F16D22CAE132003BFBA5 /* Assets.xcassets */,
 			);
 			path = Resources;
+			sourceTree = "<group>";
+		};
+		5944D97222D1553700579892 /* PopupTutorial */ = {
+			isa = PBXGroup;
+			children = (
+				5944D97322D1556400579892 /* TutorialCardOneViewController.swift */,
+				5944D97522D1561700579892 /* PopupTutorialPageViewController.swift */,
+				5944D97722D1574700579892 /* TutorialCardTwo.swift */,
+				5944D97922D1578400579892 /* TutorialCardThreeViewController.swift */,
+			);
+			path = PopupTutorial;
 			sourceTree = "<group>";
 		};
 		5981794F22CD2E8B0091605E /* Repositories */ = {
@@ -450,18 +479,25 @@
 			files = (
 				2BB8F16922CAE131003BFBA5 /* ConnectionViewController.swift in Sources */,
 				2BA4339122CF68C000C1D6F8 /* SessionManagerDelegate.swift in Sources */,
+				5944D97822D1574700579892 /* TutorialCardTwo.swift in Sources */,
 				2BA4338B22CF628200C1D6F8 /* VisionManager.swift in Sources */,
 				5981795B22CD30FF0091605E /* FirebaseDataService.swift in Sources */,
 				2B82021822CC0B0E005E3BC1 /* MapViewController.swift in Sources */,
+				5944D97C22D159EB00579892 /* UIColorExtensions.swift in Sources */,
 				2BA4339322CF6FA700C1D6F8 /* DoubleExtensions.swift in Sources */,
 				2BA4338F22CF651300C1D6F8 /* SessionManager.swift in Sources */,
+				5944D98022D15B9400579892 /* UITabBarExtension.swift in Sources */,
+				5944D97E22D15B7500579892 /* UINavigationBarExtension.swift in Sources */,
 				2BA4339822D1284100C1D6F8 /* StreamManager.swift in Sources */,
 				2BB8F16722CAE131003BFBA5 /* AppDelegate.swift in Sources */,
 				2BA4339A22D128C900C1D6F8 /* TrackManagerDelegate.swift in Sources */,
+				5944D97A22D1578400579892 /* TutorialCardThreeViewController.swift in Sources */,
 				5981795822CD2FE70091605E /* Result.swift in Sources */,
 				5981795D22CD324D0091605E /* FirstLaunch.swift in Sources */,
+				5944D97422D1556400579892 /* TutorialCardOneViewController.swift in Sources */,
 				5981795422CD2F230091605E /* SoundZone.swift in Sources */,
 				5981795122CD2EA60091605E /* SoundZoneRepository.swift in Sources */,
+				5944D97622D1561700579892 /* PopupTutorialPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
