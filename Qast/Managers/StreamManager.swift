@@ -15,7 +15,7 @@ class StreamManager {
     weak var delegate: TrackManagerDelegate?
     
     init() {
-        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: NSNotification.Name.AVPlayerItemDidPlayToEndTime, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(playerDidFinishPlaying), name: .AVPlayerItemDidPlayToEndTime, object: nil)
     }
     
     public func stop() {
@@ -58,8 +58,10 @@ class StreamManager {
     }
     
     @objc public func playerDidFinishPlaying() {
-        guard let player = player else { return }
-        
+        guard let player = player else {
+            return
+        }
+
         delegate?.player(player, didFinishPlaying: true)
     }
     

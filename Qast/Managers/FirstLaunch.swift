@@ -8,7 +8,7 @@ final class FirstLaunch {
     }
     
     init(getWasLaunchedBefore: () -> Bool,
-         setWasLaunchedBefore: (Bool) -> ()) {
+         setWasLaunchedBefore: (Bool) -> Void) {
         let wasLaunchedBefore = getWasLaunchedBefore()
         self.wasLaunchedBefore = wasLaunchedBefore
         if !wasLaunchedBefore {

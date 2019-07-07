@@ -15,13 +15,13 @@ class FirebaseSoundZoneRepository: SoundZoneRepository {
     }
     
     func createSoundZone(_ soundZone: SoundZone, completion: @escaping (Result<SoundZone>) -> Void) {
-        soundZoneRef.addDocument(data: soundZone.documentData) { (error) in
-            if let error = error {
-                completion(.error(error))
-            } else {
-                completion(.value(soundZone))
-            }
-        }
+//        soundZoneRef.addDocument(data: soundZone.documentData) { (error) in
+//            if let error = error {
+//                completion(.error(error))
+//            } else {
+//                completion(.value(soundZone))
+//            }
+//        }
     }
 
 }

@@ -16,4 +16,9 @@ extension Double {
     func toDegrees() -> Double {
         return self * 180 / .pi
     }
+    
+    /// converts miles to meters
+    func toMeters() -> Double {
+        return self / 6371000.0
+    }
 }

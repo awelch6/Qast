@@ -5,20 +5,18 @@ import simd
 
 class MapViewController: UIViewController {
     
-    let soundZoneRepository = FirebaseSoundZoneRepository()
-    
-    let mapView = MGLMapView(frame: UIScreen.main.bounds, styleURL: URL(string: "mapbox://styles/mapbox/streets-v11"))
+    let mapView = QastMapView()
     
     lazy var vision = VisionManager()
 
     var sensorDispatch = SensorDispatch(queue: .main)
     
     public let session: WearableDeviceSession
+    public let networker: FirebaseManager
     
-    public var polygon: MGLPolygon?
-    
-    init(session: WearableDeviceSession) {
+    init(session: WearableDeviceSession, networker: FirebaseManager = FirebaseManager()) {
         self.session = session
+        self.networker = networker
         super.init(nibName: nil, bundle: nil)
         
         SessionManager.shared.configureSensors([.rotation, .accelerometer, .gyroscope, .magnetometer, .orientation])
@@ -26,19 +24,15 @@ class MapViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        setupMapView()
+
         sensorDispatch.handler = self
         
-        setupMapView()
-        
-        let newSoundZone = SoundZone(soundUrl: "www.soundUrl.com", center: CLLocationCoordinate2D(latitude: 42.345, longitude: -83.432), radius: 3000, identifier: "identifier")
-        
-        soundZoneRepository.createSoundZone(newSoundZone) { (result) in
-            switch result {
-            case .value(let result):
-                print(result)
-            case .error(let error):
-                print(error)
+        networker.soundZones(nearby: CLLocationCoordinate2D(latitude: 42.334811, longitude: -83.052395), distance: 100) { (soundZones, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                self.mapView.addAnnotations(soundZones.map { SoundZoneAnnotation(soundZone: $0) })
             }
         }
     }
@@ -54,9 +48,6 @@ extension MapViewController {
     
     private func setupMapView() {
         view.addSubview(mapView)
-        mapView.showsUserLocation = true
-        mapView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        mapView.zoomLevel = 20
         mapView.delegate = self
     }
 }
@@ -66,16 +57,16 @@ extension MapViewController {
 extension MapViewController: MGLMapViewDelegate {
     
     func mapView(_ mapView: MGLMapView, didUpdate userLocation: MGLUserLocation?) {
-        guard let location = userLocation else {
+        guard let location = userLocation?.location, location.horizontalAccuracy > 0 else {
             return
         }
         mapView.setCenter(location.coordinate, animated: true)
     }
     
     func visionPolygon(for coordinate: CLLocationCoordinate2D, orientation: Double) {
-        self.mapView.annotations?.forEach { mapView.removeAnnotation($0) }
+        //self.mapView.annotations?.forEach { mapView.removeAnnotation($0) }
         
-        self.mapView.addAnnotation(vision.updateVisionPolygon(center: coordinate, orientation: orientation))
+        //self.mapView.addAnnotation(vision.updateVisionPolygon(center: coordinate, orientation: orientation))
     }
     
     func mapView(_ mapView: MGLMapView, alphaForShapeAnnotation annotation: MGLShape) -> CGFloat {
@@ -88,6 +79,13 @@ extension MapViewController: MGLMapViewDelegate {
     
     func mapView(_ mapView: MGLMapView, fillColorForPolygonAnnotation annotation: MGLPolygon) -> UIColor {
         return UIColor.blue
+    }
+    
+    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
+        if let annotation = annotation as? SoundZoneAnnotation {
+            return SoundZoneAnnotationView(annotation: annotation, reuseIdentifier: "asd")
+        }
+        return nil
     }
 }
 
@@ -105,6 +103,5 @@ extension MapViewController: SensorDispatchHandler {
         let magneticDegrees: Double = (yaw < 0) ? 360 + yaw : yaw
         
         visionPolygon(for: userLocation.coordinate, orientation: 360 - magneticDegrees)
-        print("Yaw: ", magneticDegrees)
     }
 }
