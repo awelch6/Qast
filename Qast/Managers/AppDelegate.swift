@@ -1,7 +1,7 @@
 import UIKit
 import BoseWearable
 import Firebase
-import CoreLocation
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
 

@@ -45,7 +45,7 @@ extension SoundZone {
         
         let distance = zoneCenter.distance(from: location)
         
-        //there is probably a better mathematical equation to handle this, but i don't know maths so this works fine for now 
+        //there is probably a better mathematical equation to handle this, but i don't know maths so this works fine for now
         if distance <= radius {
             return 1
         } else if distance > bufferRadius {

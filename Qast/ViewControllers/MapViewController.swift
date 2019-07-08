@@ -1,3 +1,11 @@
+//
+//  MapViewController.swift
+//  Qast
+//
+//  Created by Austin Welch on 7/5/19.
+//  Copyright © 2019 Qast. All rights reserved.
+//
+
 import UIKit
 import Mapbox
 import BoseWearable
@@ -12,11 +20,11 @@ class MapViewController: UIViewController {
     var sensorDispatch = SensorDispatch(queue: .main)
     
     public let session: WearableDeviceSession
-    public let soundZoneRepository: SoundZoneRepository
+    public let networker: SoundZoneAPI
     
-    init(session: WearableDeviceSession, soundZoneRepository: SoundZoneRepository = FirebaseSoundZoneRepository()) {
+    init(session: WearableDeviceSession, networker: SoundZoneAPI = FirebaseManager()) {
         self.session = session
-        self.soundZoneRepository = soundZoneRepository
+        self.networker = networker
         super.init(nibName: nil, bundle: nil)
         navigationController?.navigationBar.isHidden = true
         SessionManager.shared.configureSensors([.rotation, .accelerometer, .gyroscope, .magnetometer, .orientation])
@@ -28,7 +36,7 @@ class MapViewController: UIViewController {
 
         sensorDispatch.handler = self
         
-        soundZoneRepository.getNearbySoundZones(nearby: CLLocationCoordinate2D(latitude: 42.334811, longitude: -83.052395), distance: 100) { (soundZones, error) in
+        networker.soundZones(nearby: CLLocationCoordinate2D(latitude: 42.334811, longitude: -83.052395), distance: 100) { (soundZones, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {

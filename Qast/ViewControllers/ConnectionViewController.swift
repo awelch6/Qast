@@ -1,8 +1,8 @@
 //
-//  ViewController.swift
+//  ConnectionViewController.swift
 //  Qast
 //
-//  Created by Austin Welch on 7/1/19.
+//  Created by Austin Welch on 7/5/19.
 //  Copyright © 2019 Qast. All rights reserved.
 //
 
