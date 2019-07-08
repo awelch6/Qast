@@ -9,6 +9,20 @@
 import Mapbox
 import BoseWearable
 
+enum VisionOffsetType {
+    case left
+    case right
+    
+    public func offset(viewingAngle: Double, orientation: Double) -> Double {
+        switch self {
+        case .left:
+            return (orientation - (viewingAngle / 2)).toRadians()
+        case .right:
+            return (orientation + (viewingAngle / 2)).toRadians()
+        }
+    }
+}
+
 struct VisionManager {
     
     public let viewingAngle: Double
@@ -23,23 +37,14 @@ struct VisionManager {
     }
     
     public mutating func updateVisionPath(center: CLLocationCoordinate2D, orientation: Double) {
-        let radiusInMeters = radius.toMeters()
-        
-        let centerLatRadians = center.latitude.toRadians()
-        let centerLonRadians = center.longitude.toRadians()
-        
-        let pointLatRadians = asin(sin(centerLatRadians) * cos(radiusInMeters) + cos(centerLatRadians) * sin(radiusInMeters) * cos(leftOffset(orientation)))
-        let pointLonRadians = centerLonRadians - atan2(sin(leftOffset(orientation))
-            * sin(radiusInMeters) * cos(centerLatRadians), cos(radiusInMeters) - sin(centerLatRadians) * sin(pointLatRadians))
 
-        let pointLatRadians2 = asin(sin(centerLatRadians) * cos(radiusInMeters) + cos(centerLatRadians) * sin(radiusInMeters) * cos(rightOffset(orientation)))
-        let pointLonRadians2 = centerLonRadians - atan2(sin(rightOffset(orientation))
-            * sin(radiusInMeters) * cos(centerLatRadians), cos(radiusInMeters) - sin(centerLatRadians) * sin(pointLatRadians))
-
+        let leftPoint = offsetPoint(for: .left, center: center, orientation: orientation)
+        let rightPoint = offsetPoint(for: .right, center: center, orientation: orientation)
+        
         let path = UIBezierPath()
         path.move(to: CGPoint(x: center.latitude, y: center.longitude))
-        path.addLine(to: CGPoint(x: pointLatRadians.toDegrees(), y: pointLonRadians.toDegrees()))
-        path.addLine(to: CGPoint(x: pointLatRadians2.toDegrees(), y: pointLonRadians2.toDegrees()))
+        path.addLine(to: CGPoint(x: leftPoint.x, y: leftPoint.y))
+        path.addLine(to: CGPoint(x: rightPoint.x, y: rightPoint.y))
         path.close()
         
         visionPath = path
@@ -47,28 +52,13 @@ struct VisionManager {
     
     ///This function is just for showing viewing angle.
     public mutating func updateVisionPolygon(center: CLLocationCoordinate2D, orientation: Double) -> MGLPolygon {
-        let radiusInMeters = radius.toMeters()
+        let leftPoint = offsetPoint(for: .left, center: center, orientation: orientation)
+        let rightPoint = offsetPoint(for: .right, center: center, orientation: orientation)
+
+        let coordinates = [center, CLLocationCoordinate2D(latitude: Double(leftPoint.x), longitude: Double(leftPoint.y)),
+                           CLLocationCoordinate2D(latitude: Double(rightPoint.x), longitude: Double(rightPoint.y))]
         
-        let centerLatRadians = center.latitude.toRadians()
-        let centerLonRadians = center.longitude.toRadians()
-        
-        let pointLatRadians = asin(sin(centerLatRadians) * cos(radiusInMeters) + cos(centerLatRadians) * sin(radiusInMeters) * cos(leftOffset(orientation)))
-        let pointLonRadians = centerLonRadians - atan2(sin(leftOffset(orientation))
-            * sin(radiusInMeters) * cos(centerLatRadians), cos(radiusInMeters) - sin(centerLatRadians) * sin(pointLatRadians))
-        let leftPoint = CLLocationCoordinate2D(latitude: pointLatRadians.toDegrees(), longitude: pointLonRadians.toDegrees())
-        
-        let pointLatRadians2 = asin(sin(centerLatRadians) * cos(radiusInMeters) + cos(centerLatRadians) * sin(radiusInMeters) * cos(rightOffset(orientation)))
-        let pointLonRadians2 = centerLonRadians - atan2(sin(rightOffset(orientation))
-            * sin(radiusInMeters) * cos(centerLatRadians), cos(radiusInMeters) - sin(centerLatRadians) * sin(pointLatRadians))
-        let rightPoint = CLLocationCoordinate2D(latitude: pointLatRadians2.toDegrees(), longitude: pointLonRadians2.toDegrees())
-        
-        let path = UIBezierPath()
-        path.move(to: CGPoint(x: center.latitude, y: center.longitude))
-        path.addLine(to: CGPoint(x: pointLatRadians.toDegrees(), y: pointLonRadians.toDegrees()))
-        path.addLine(to: CGPoint(x: pointLatRadians2.toDegrees(), y: pointLonRadians2.toDegrees()))
-        path.close()
-        
-        return MGLPolygon(coordinates: [center, leftPoint, rightPoint], count: 3)
+        return MGLPolygon(coordinates: coordinates, count: 3)
     }
     
     public func contains(_ coordinate: CLLocationCoordinate2D) -> Bool {
@@ -80,13 +70,21 @@ struct VisionManager {
 }
 
 // MARK: Utilities
+
 extension VisionManager {
     
-    private func leftOffset(_ orientation: Double) -> Double {
-        return (orientation - (viewingAngle / 2)).toRadians()
-    }
-    
-    private func rightOffset(_ orientation: Double) -> Double {
-        return (orientation + (viewingAngle / 2)).toRadians()
+    private func offsetPoint(for type: VisionOffsetType, center: CLLocationCoordinate2D, orientation: Double) -> CGPoint {
+        let radiusInMeters = radius.toMeters()
+        
+        let centerLatRadians = center.latitude.toRadians()
+        let centerLonRadians = center.longitude.toRadians()
+        
+        let pointLatRadians = asin(sin(centerLatRadians) * cos(radiusInMeters) + cos(centerLatRadians)
+            * sin(radiusInMeters) * cos(type.offset(viewingAngle: viewingAngle, orientation: orientation)))
+        
+        let pointLonRadians = centerLonRadians - atan2(sin(type.offset(viewingAngle: viewingAngle, orientation: orientation))
+            * sin(radiusInMeters) * cos(centerLatRadians), cos(radiusInMeters) - sin(centerLatRadians) * sin(pointLatRadians))
+        
+        return CGPoint(x: pointLatRadians.toDegrees(), y: pointLonRadians.toDegrees())
     }
 }
