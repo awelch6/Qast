@@ -72,9 +72,11 @@ extension MapViewController: MGLMapViewDelegate {
     }
     
     func visionPolygon(for coordinate: CLLocationCoordinate2D, orientation: Double) {
-        //self.mapView.annotations?.forEach { mapView.removeAnnotation($0) }
+        if let annotation = mapView.annotations?.first(where: { $0 is MGLPolygon }) {
+            mapView.removeAnnotation(annotation)
+        }
         
-        //self.mapView.addAnnotation(vision.updateVisionPolygon(center: coordinate, orientation: orientation))
+        self.mapView.addAnnotation(vision.updateVisionPolygon(center: coordinate, orientation: orientation))
     }
     
     func mapView(_ mapView: MGLMapView, alphaForShapeAnnotation annotation: MGLShape) -> CGFloat {
@@ -110,6 +112,17 @@ extension MapViewController: SensorDispatchHandler {
         
         let magneticDegrees: Double = (yaw < 0) ? 360 + yaw : yaw
         
+        vision.updateVisionPath(center: userLocation.coordinate, orientation: 360 - magneticDegrees)
         visionPolygon(for: userLocation.coordinate, orientation: 360 - magneticDegrees)
+        
+        guard let annotations = mapView.annotations?.filter({ $0 is SoundZoneAnnotation }) else { return }
+
+        for annotation in annotations {
+            if vision.contains(annotation.coordinate) {
+                title = "Found Sound Zone!"
+            } else {
+                 title = "Did not find Sound Zone"
+            }
+        }
     }
 }

@@ -61,7 +61,7 @@ extension SessionManager {
     public func configureSensors(_ sensors: [SensorType]) {
         session?.device?.configureSensors({ (config) in
             config.disableAll()
-            sensors.forEach { config.enable(sensor: $0, at: ._160ms) }
+            sensors.forEach { config.enable(sensor: $0, at: ._320ms) }
         })
     }
 }
