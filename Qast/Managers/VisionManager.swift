@@ -31,7 +31,7 @@ struct VisionManager {
     
     private(set) public var visionPath: UIBezierPath?
     
-    init(viewingAngle: Double = 90, radius: Double = 10) {
+    init(viewingAngle: Double = 90, radius: Double = 100) {
         self.viewingAngle = viewingAngle
         self.radius = radius
     }
