@@ -11,7 +11,7 @@ target 'Qast' do
   pod 'Mapbox-iOS-SDK', '~> 5.1'
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
-
+  pod 'GeoFire', '~> 3.0'
   # Bose AR SDK
   pod 'BoseWearable', :path => 'BoseWearable/'
   pod 'BLECore', :path => 'BoseWearable/'

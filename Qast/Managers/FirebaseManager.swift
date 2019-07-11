@@ -8,24 +8,40 @@
 
 import FirebaseFirestore
 import CoreLocation.CLLocation
+import GeoFire
 
 struct FirebaseManager: SoundZoneAPI {
 
     private let datastore = Firestore.firestore()
     
     func soundZones(nearby location: CLLocationCoordinate2D, distance: Double = 30, _ completion: @escaping SoundZoneCompletionBlock) {
+        guard let queries = GFGeoHashQuery.queries(forLocation: location, radius: distance) else {
+            return completion([], NSError())
+        }
         
-        let bounds = FirebaseManager.boundingPoints(for: location, distance: distance)
-        
-        datastore.collection("sound_zones")
-            .whereField("center", isGreaterThan: bounds.lesserPoint)
-            .whereField("center", isLessThan: bounds.greaterPoint)
-            .getDocuments { (snapshot, error) in
-                if let error = error {
-                    completion([], error)
-                } else if let snapshot = snapshot {
-                    completion(snapshot.documents.compactMap({ SoundZone(dictionary: $0.data()) }), nil)
+        for query in queries {
+            guard let query = query as? GFGeoHashQuery else {
+                continue
+            }
+            
+            convert(query).getDocuments { (snapshot, error) in
+                guard let documents = snapshot?.documents, error == nil else {
+                    return completion([], error ?? NSError())
                 }
+                completion(documents.compactMap { SoundZone(dictionary: $0.data()) }, nil)
+            }
+        }
+    }
+    
+    func create(_ soundZone: SoundZone, completion: @escaping (Error?) -> Void) {
+        guard let geohash = GFGeoHash(location: soundZone.center.location).geoHashValue  else {
+            return completion(NSError())
+        }
+        
+        let data: [String: Any] = soundZone.data.merging(["l": soundZone.center, "g": geohash]) { $1 } //merging geopoint data into soundZone
+        
+        datastore.collection("sound_zones").addDocument(data: data) { (error) in
+            completion(error)
         }
     }
 }
@@ -34,17 +50,10 @@ struct FirebaseManager: SoundZoneAPI {
 
 extension FirebaseManager {
 
-    /// Returns a lower geopoint, and a greater geopoint based on the given distance
-    public static func boundingPoints(for location: CLLocationCoordinate2D, distance: Double) -> (lesserPoint: GeoPoint, greaterPoint: GeoPoint) {
-        let lat = 0.0144927536231884
-        let lon = 0.0181818181818182
-
-        let lowerLat = location.latitude - (lat * distance)
-        let lowerLon = location.longitude - (lon * distance)
-
-        let greaterLat = location.latitude + (lat * distance)
-        let greaterLon = location.longitude + (lon * distance)
-
-        return (GeoPoint(latitude: lowerLat, longitude: lowerLon), GeoPoint(latitude: greaterLat, longitude: greaterLon))
+    func convert(_ query: GFGeoHashQuery) -> Query {
+        return datastore.collection("sound_zones").order(by: "g")
+            .whereField("g", isGreaterThan: query.startValue)
+            .whereField("g", isLessThan: query.endValue)
+            .limit(to: 10)
     }
 }

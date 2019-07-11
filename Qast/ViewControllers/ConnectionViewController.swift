@@ -9,6 +9,8 @@
 import UIKit
 import SnapKit
 import BoseWearable
+import CoreLocation
+import FirebaseFirestore
 
 class ConnectionViewController: UIViewController {
 
