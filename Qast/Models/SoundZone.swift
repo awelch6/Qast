@@ -19,6 +19,10 @@ struct SoundZone {
         return radius + 10 //add 10 meters for now.
     }
     
+    var data: [String: Any] {
+        return ["id": id, "trackId": trackId, "center": center, "radius": radius]
+    }
+    
     init?(dictionary: [String: Any]) {
         guard
             let id = dictionary["id"] as? String,

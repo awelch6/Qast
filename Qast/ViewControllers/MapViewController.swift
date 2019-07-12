@@ -36,7 +36,7 @@ class MapViewController: UIViewController {
 
         sensorDispatch.handler = self
         
-        networker.soundZones(nearby: CLLocationCoordinate2D(latitude: 42.334811, longitude: -83.052395), distance: 100) { (soundZones, error) in
+        networker.soundZones(nearby: CLLocationCoordinate2D(latitude: 42.334811, longitude: -83.052395), distance: 600) { (soundZones, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
@@ -68,7 +68,7 @@ extension MapViewController: MGLMapViewDelegate {
         guard let location = userLocation?.location, location.horizontalAccuracy > 0 else {
             return
         }
-        mapView.setCenter(location.coordinate, animated: true)
+        mapView.setCenter(location.coordinate, zoomLevel: 12, animated: true)
     }
     
     func visionPolygon(for coordinate: CLLocationCoordinate2D, orientation: Double) {

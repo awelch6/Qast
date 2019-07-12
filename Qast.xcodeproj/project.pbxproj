@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		05D60D2F43E00012AF2BBAF6 /* Pods_Qast.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24B34E9A658915814279F1C7 /* Pods_Qast.framework */; };
 		1AC3D15EE8D67EF30B3221E4 /* Pods_QastTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = DD881D6E2EC7047D6EEB28F6 /* Pods_QastTests.framework */; };
+		2B10558E22D8005700B7E003 /* GeoPointExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B10558D22D8005700B7E003 /* GeoPointExtensions.swift */; };
+		2B10559022D8006400B7E003 /* CLLocationCoordinate2DExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B10558F22D8006400B7E003 /* CLLocationCoordinate2DExtensions.swift */; };
 		2B82021822CC0B0E005E3BC1 /* MapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2B82021722CC0B0E005E3BC1 /* MapViewController.swift */; };
 		2BA4338B22CF628200C1D6F8 /* VisionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4338A22CF628200C1D6F8 /* VisionManager.swift */; };
 		2BA4338F22CF651300C1D6F8 /* SessionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4338E22CF651300C1D6F8 /* SessionManager.swift */; };
@@ -51,6 +53,8 @@
 
 /* Begin PBXFileReference section */
 		24B34E9A658915814279F1C7 /* Pods_Qast.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Qast.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2B10558D22D8005700B7E003 /* GeoPointExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GeoPointExtensions.swift; sourceTree = "<group>"; };
+		2B10558F22D8006400B7E003 /* CLLocationCoordinate2DExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CLLocationCoordinate2DExtensions.swift; sourceTree = "<group>"; };
 		2B82021722CC0B0E005E3BC1 /* MapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MapViewController.swift; sourceTree = "<group>"; };
 		2BA4338A22CF628200C1D6F8 /* VisionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisionManager.swift; sourceTree = "<group>"; };
 		2BA4338E22CF651300C1D6F8 /* SessionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionManager.swift; sourceTree = "<group>"; };
@@ -242,6 +246,8 @@
 				5944D97B22D159EB00579892 /* UIColorExtensions.swift */,
 				5944D97D22D15B7500579892 /* UINavigationBarExtension.swift */,
 				5944D97F22D15B9400579892 /* UITabBarExtension.swift */,
+				2B10558D22D8005700B7E003 /* GeoPointExtensions.swift */,
+				2B10558F22D8006400B7E003 /* CLLocationCoordinate2DExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -470,6 +476,7 @@
 				2B82021822CC0B0E005E3BC1 /* MapViewController.swift in Sources */,
 				5944D97C22D159EB00579892 /* UIColorExtensions.swift in Sources */,
 				2BA4339322CF6FA700C1D6F8 /* DoubleExtensions.swift in Sources */,
+				2B10558E22D8005700B7E003 /* GeoPointExtensions.swift in Sources */,
 				2BA4338F22CF651300C1D6F8 /* SessionManager.swift in Sources */,
 				5944D98022D15B9400579892 /* UITabBarExtension.swift in Sources */,
 				5944D97E22D15B7500579892 /* UINavigationBarExtension.swift in Sources */,
@@ -479,6 +486,7 @@
 				2BA4339A22D128C900C1D6F8 /* TrackManagerDelegate.swift in Sources */,
 				5944D97A22D1578400579892 /* TutorialCardThreeViewController.swift in Sources */,
 				2BA4339E22D187F600C1D6F8 /* SoundZoneAnnotation.swift in Sources */,
+				2B10559022D8006400B7E003 /* CLLocationCoordinate2DExtensions.swift in Sources */,
 				5981795822CD2FE70091605E /* Result.swift in Sources */,
 				2BF6AD2122D2521800A752D0 /* SoundZoneAPI.swift in Sources */,
 				5981795D22CD324D0091605E /* FirstLaunch.swift in Sources */,
