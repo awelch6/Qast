@@ -102,6 +102,7 @@ PODS:
   - gRPC-Core/Interface (1.17.0)
   - leveldb-library (1.20)
   - Logging (4.0.8)
+  - lottie-ios (3.1.1)
   - Mapbox-iOS-SDK (5.1.0)
   - nanopb (0.3.901):
     - nanopb/decode (= 0.3.901)
@@ -120,6 +121,7 @@ DEPENDENCIES:
   - Firebase/Firestore
   - GeoFire (~> 3.0)
   - Logging (from `BoseWearable/`)
+  - lottie-ios (~> 3.1.1)
   - Mapbox-iOS-SDK (~> 5.1)
   - SnapKit (~> 5.0.0)
   - SwiftLint
@@ -141,6 +143,7 @@ SPEC REPOS:
     - "gRPC-C++"
     - gRPC-Core
     - leveldb-library
+    - lottie-ios
     - Mapbox-iOS-SDK
     - nanopb
     - Protobuf
@@ -174,12 +177,13 @@ SPEC CHECKSUMS:
   gRPC-Core: 4028031ed2c5267cca0d846c876d8046b1ecb9b6
   leveldb-library: 08cba283675b7ed2d99629a4bc5fd052cd2bb6a5
   Logging: 1056b6c8f3fb71a468315a7f41ca9326f22cc022
+  lottie-ios: 43a472d22b2dd2bed292cc4010c0b4d2e66d3ba8
   Mapbox-iOS-SDK: 4106f0f6808a0362233a703fb22369b3af3e9b8c
   nanopb: 2901f78ea1b7b4015c860c2fdd1ea2fee1a18d48
   Protobuf: 3f617b9a6e73605565086864c9bc26b2bf2dd5a3
   SnapKit: fd22d10eb9aff484d79a8724eab922c1ddf89bcf
   SwiftLint: 9fc1143bbacec37f94994a7d0d2a85b2154b6294
 
-PODFILE CHECKSUM: 2f6735642976bcd280b45dce151e1b63733bc00f
+PODFILE CHECKSUM: 46a48a708514adfd49a24a7b8391792529dbc072
 
-COCOAPODS: 1.7.3
+COCOAPODS: 1.7.1

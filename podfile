@@ -16,7 +16,8 @@ target 'Qast' do
   pod 'BoseWearable', :path => 'BoseWearable/'
   pod 'BLECore', :path => 'BoseWearable/'
   pod 'Logging', :path => 'BoseWearable/'
-
+  pod 'lottie-ios', '~> 3.1.1'
+  
   target 'QastTests' do
     inherit! :search_paths
     # Pods for testing
