@@ -12,7 +12,7 @@ import BoseWearable
 import simd
 
 class MapViewController: UIViewController {
-    
+    var counter: Int = 0
     let mapView = QastMapView()
     
     lazy var vision = VisionManager()
@@ -26,7 +26,6 @@ class MapViewController: UIViewController {
         self.session = session
         self.networker = networker
         super.init(nibName: nil, bundle: nil)
-        navigationController?.navigationBar.isHidden = true
         SessionManager.shared.configureSensors([.rotation, .accelerometer, .gyroscope, .magnetometer, .orientation])
     }
 
@@ -36,10 +35,11 @@ class MapViewController: UIViewController {
 
         sensorDispatch.handler = self
         
-        networker.soundZones(nearby: CLLocationCoordinate2D(latitude: 42.334811, longitude: -83.052395), distance: 600) { (soundZones, error) in
+        networker.soundZones(nearby: CLLocationCoordinate2D(latitude: 42.334811, longitude: -83.052395), distance: 10000) { (soundZones, error) in
             if let error = error {
                 print(error.localizedDescription)
             } else {
+                self.mapView.addAnnotations(soundZones.map { $0.renderableGeofence })
                 self.mapView.addAnnotations(soundZones.map { SoundZoneAnnotation(soundZone: $0) })
             }
         }
@@ -58,6 +58,7 @@ extension MapViewController {
         view.addSubview(mapView)
         mapView.delegate = self
     }
+    
 }
 
 // MARK: MGLMapView Delegate
@@ -72,11 +73,10 @@ extension MapViewController: MGLMapViewDelegate {
     }
     
     func visionPolygon(for coordinate: CLLocationCoordinate2D, orientation: Double) {
-        if let annotation = mapView.annotations?.first(where: { $0 is MGLPolygon }) {
-            mapView.removeAnnotation(annotation)
-        }
-        
-        self.mapView.addAnnotation(vision.updateVisionPolygon(center: coordinate, orientation: orientation))
+//        if let annotation = mapView.annotations?.first(where: { $0 is MGLPolygon }) {
+//            mapView.removeAnnotation(annotation)
+//        }
+//        self.mapView.addAnnotation(vision.updateVisionPolygon(center: coordinate, orientation: orientation))
     }
     
     func mapView(_ mapView: MGLMapView, alphaForShapeAnnotation annotation: MGLShape) -> CGFloat {
@@ -91,12 +91,6 @@ extension MapViewController: MGLMapViewDelegate {
         return UIColor.blue
     }
     
-    func mapView(_ mapView: MGLMapView, viewFor annotation: MGLAnnotation) -> MGLAnnotationView? {
-        if let annotation = annotation as? SoundZoneAnnotation {
-            return SoundZoneAnnotationView(annotation: annotation, reuseIdentifier: "asd")
-        }
-        return nil
-    }
 }
 
 extension MapViewController: SensorDispatchHandler {

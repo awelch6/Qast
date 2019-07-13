@@ -8,12 +8,27 @@
 
 import FirebaseFirestore.FIRGeoPoint
 import CoreLocation.CLLocation
+import Mapbox
 
-struct SoundZone {
+/// Render-ability and query-ability do not collocate in MapBox
+protocol GeoQueryable {
+    var renderableGeofence: MGLPolygon { get }
+    var queryableGeofence: CLCircularRegion { get }
+}
+
+struct SoundZone: GeoQueryable {
     let id: String
     let center: GeoPoint
     let radius: Double
     let trackId: String
+    
+    var renderableGeofence: MGLPolygon {
+        return polygonCircleForCoordinate(coordinate: self.center.location, withMeterRadius: self.radius)
+    }
+    
+    var queryableGeofence: CLCircularRegion {
+        return CLCircularRegion(center: self.center.location, radius: radius, identifier: "random")
+    }
     
     var bufferRadius: Double {
         return radius + 10 //add 10 meters for now.
@@ -57,5 +72,32 @@ extension SoundZone {
         } else {
             return Float(1 - ((distance - radius) / (bufferRadius - radius)))
         }
+    }
+    
+    /// Approximate a circle using a 45-sided MGLPolygon
+    private func polygonCircleForCoordinate(coordinate: CLLocationCoordinate2D, withMeterRadius: Double) -> MGLPolygon {
+        let SHRINK_OFFSET: Double = 43.5
+        let degreesBetweenPoints = 8.0
+        //45 sides
+        let numberOfPoints = floor(360.0 / degreesBetweenPoints)
+        let distRadians: Double = (withMeterRadius - SHRINK_OFFSET) / 6371000.0
+        
+        // earth radius in meters
+        let centerLatRadians: Double = coordinate.latitude * Double.pi / 180
+        let centerLonRadians: Double = coordinate.longitude * Double.pi / 180
+        var coordinates = [CLLocationCoordinate2D]()
+        //array to hold all the points
+        for index in 0 ..< Int(numberOfPoints) {
+            let degrees: Double = Double(index) * Double(degreesBetweenPoints)
+            let degreeRadians: Double = degrees * Double.pi / 180
+            let pointLatRadians: Double = asin(sin(centerLatRadians) * cos(distRadians) + cos(centerLatRadians) * sin(distRadians) * cos(degreeRadians))
+            let pointLonRadians: Double = centerLonRadians + atan2(sin(degreeRadians) * sin(distRadians) * cos(centerLatRadians), cos(distRadians) - sin(centerLatRadians) * sin(pointLatRadians))
+            let pointLat: Double = pointLatRadians * 180 / Double.pi
+            let pointLon: Double = pointLonRadians * 180 / Double.pi
+            let point: CLLocationCoordinate2D = CLLocationCoordinate2DMake(pointLat, pointLon)
+            coordinates.append(point)
+        }
+        let polygon = MGLPolygon(coordinates: &coordinates, count: UInt(coordinates.count))
+        return polygon
     }
 }
