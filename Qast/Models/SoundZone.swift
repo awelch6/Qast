@@ -10,7 +10,8 @@ import FirebaseFirestore.FIRGeoPoint
 import CoreLocation.CLLocation
 import Mapbox
 
-/// Render-ability and query-ability do not collocate in MapBox
+/// MapBox is great for rendering, but can't geoquery well. CoreLocation can query, but can't render onto MGLMapView
+/// This protocol is to enforce both behaviors on any Zones we use in the future
 protocol GeoQueryable {
     var renderableGeofence: MGLPolygon { get }
     var queryableGeofence: CLCircularRegion { get }
@@ -91,7 +92,8 @@ extension SoundZone {
             let degrees: Double = Double(index) * Double(degreesBetweenPoints)
             let degreeRadians: Double = degrees * Double.pi / 180
             let pointLatRadians: Double = asin(sin(centerLatRadians) * cos(distRadians) + cos(centerLatRadians) * sin(distRadians) * cos(degreeRadians))
-            let pointLonRadians: Double = centerLonRadians + atan2(sin(degreeRadians) * sin(distRadians) * cos(centerLatRadians), cos(distRadians) - sin(centerLatRadians) * sin(pointLatRadians))
+            let pointLonRadians: Double =
+                centerLonRadians + atan2(sin(degreeRadians) * sin(distRadians) * cos(centerLatRadians), cos(distRadians) - sin(centerLatRadians) * sin(pointLatRadians))
             let pointLat: Double = pointLatRadians * 180 / Double.pi
             let pointLon: Double = pointLonRadians * 180 / Double.pi
             let point: CLLocationCoordinate2D = CLLocationCoordinate2DMake(pointLat, pointLon)

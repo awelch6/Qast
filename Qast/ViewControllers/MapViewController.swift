@@ -12,7 +12,7 @@ import BoseWearable
 import simd
 
 class MapViewController: UIViewController {
-    var counter: Int = 0
+
     let mapView = QastMapView()
     
     lazy var vision = VisionManager()
