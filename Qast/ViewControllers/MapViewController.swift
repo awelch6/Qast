@@ -124,23 +124,23 @@ extension MapViewController: MGLMapViewDelegate {
         if isInitialLocationUpdate { mapView.setCenter(location.coordinate, zoomLevel: 15, animated: true) }
         isInitialLocationUpdate = false
         
-        let soundZoneContainingUser = determineWhichSoundZoneContainsUser(for: location)
+        let soundZoneContainingUser = determineWhichSoundZoneContainsUser(for: location.coordinate)
         updateCurrentSoundZone(currentSoundZone: self.currentSoundZone, soundZoneContainingUser: soundZoneContainingUser)
     }
     
-    func determineWhichSoundZoneContainsUser(for location: CLLocation) -> SoundZone? {
+    func determineWhichSoundZoneContainsUser(for coordinate: CLLocationCoordinate2D) -> SoundZone? {
         guard let nearbySoundZones = nearbySoundZones else { return nil }
         
-        let cgLocationPoint = mapView.convert(location.coordinate, toPointTo: mapView)
+        let cgLocationPoint = mapView.convert(coordinate, toPointTo: nil)
         
         // OPTION 1: CoreGraphics using CGRect.contains. Most accurate, particularly excelled in smaller SoundZones
         return nearbySoundZones.filter({ soundZoneRect(soundZonePolygon: $0.renderableGeofence).contains(cgLocationPoint) }).first
         
 //        // OPTION 2: Mapbox using MGLCoordinateInCoordinateBounds. Fairly accurate in open spaces, excelled in Medium SoundZones
-//        return nearbySoundZones.filter({ MGLCoordinateInCoordinateBounds(location.coordinate, $0.renderableGeofence.overlayBounds) }).first
-//
+//        return nearbySoundZones.filter({ MGLCoordinateInCoordinateBounds(coordinate, $0.renderableGeofence.overlayBounds) }).first
+
 //        // OPTION 3: CoreLocation using CLCircularRegion.contains. This was least accurate. Only worked in large SoundZones
-//        return nearbySoundZones.filter({ $0.queryableGeofence.contains(location.coordinate) }).first
+//        return nearbySoundZones.filter({ $0.queryableGeofence.contains(coordinate) }).first
     }
     
     func soundZoneRect(soundZonePolygon: MGLPolygon) -> CGRect {

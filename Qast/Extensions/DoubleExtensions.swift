@@ -22,4 +22,10 @@ extension Double {
         return self / 6371000.0
     }
     
+    /// meters to points
+    func toPoints() -> Double {
+        // Approximated a conversion factor based on 90 meters (1 block) at zoom level 15
+        return self * 0.55
+    }
+    
 }
