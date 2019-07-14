@@ -22,12 +22,4 @@ extension Double {
         return self / 6371000.0
     }
     
-    /// meters to points
-    func toPoints() -> Double {
-        // MGLAnnotationViews are defined in pixels. We use meters in SoundZone
-        // Approximated a conversion factor based on 90 meters (1 block) at zoom level 15
-        // Would require a zoom-level divisor and tweening to update annotation radius with zoom
-        return self * 0.55
-    }
-    
 }
