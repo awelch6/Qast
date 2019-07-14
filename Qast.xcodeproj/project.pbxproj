@@ -34,6 +34,8 @@
 		5944D97C22D159EB00579892 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97B22D159EB00579892 /* UIColorExtensions.swift */; };
 		5944D97E22D15B7500579892 /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97D22D15B7500579892 /* UINavigationBarExtension.swift */; };
 		5944D98022D15B9400579892 /* UITabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97F22D15B9400579892 /* UITabBarExtension.swift */; };
+		597CD73C22DB793B00B56C6F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597CD73B22DB793B00B56C6F /* NotificationManager.swift */; };
+		5981045F22DA96A00084337A /* SoundZoneTransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981045E22DA96A00084337A /* SoundZoneTransitionType.swift */; };
 		5981795422CD2F230091605E /* SoundZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795322CD2F230091605E /* SoundZone.swift */; };
 		5981795822CD2FE70091605E /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795722CD2FE70091605E /* Result.swift */; };
 		5981795B22CD30FF0091605E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795A22CD30FF0091605E /* FirebaseManager.swift */; };
@@ -83,6 +85,8 @@
 		5944D97B22D159EB00579892 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		5944D97D22D15B7500579892 /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
 		5944D97F22D15B9400579892 /* UITabBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtension.swift; sourceTree = "<group>"; };
+		597CD73B22DB793B00B56C6F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
+		5981045E22DA96A00084337A /* SoundZoneTransitionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZoneTransitionType.swift; sourceTree = "<group>"; };
 		5981795322CD2F230091605E /* SoundZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZone.swift; sourceTree = "<group>"; };
 		5981795722CD2FE70091605E /* Result.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		5981795A22CD30FF0091605E /* FirebaseManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseManager.swift; sourceTree = "<group>"; };
@@ -184,6 +188,7 @@
 		2BB8F18822CAE591003BFBA5 /* Enums */ = {
 			isa = PBXGroup;
 			children = (
+				5981045E22DA96A00084337A /* SoundZoneTransitionType.swift */,
 			);
 			path = Enums;
 			sourceTree = "<group>";
@@ -235,6 +240,7 @@
 				2BA4338E22CF651300C1D6F8 /* SessionManager.swift */,
 				5981795A22CD30FF0091605E /* FirebaseManager.swift */,
 				5981795C22CD324D0091605E /* FirstLaunch.swift */,
+				597CD73B22DB793B00B56C6F /* NotificationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -336,6 +342,11 @@
 				TargetAttributes = {
 					2BB8F16222CAE131003BFBA5 = {
 						CreatedOnToolsVersion = 10.2.1;
+						SystemCapabilities = {
+							com.apple.BackgroundModes = {
+								enabled = 1;
+							};
+						};
 					};
 					2BB8F17622CAE132003BFBA5 = {
 						CreatedOnToolsVersion = 10.2.1;
@@ -468,6 +479,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				5981045F22DA96A00084337A /* SoundZoneTransitionType.swift in Sources */,
 				2BB8F16922CAE131003BFBA5 /* ConnectionViewController.swift in Sources */,
 				2BA4339122CF68C000C1D6F8 /* SessionManagerDelegate.swift in Sources */,
 				5944D97822D1574700579892 /* TutorialCardTwo.swift in Sources */,
@@ -493,6 +505,7 @@
 				5944D97422D1556400579892 /* TutorialCardOneViewController.swift in Sources */,
 				5981795422CD2F230091605E /* SoundZone.swift in Sources */,
 				2BA4339C22D1867E00C1D6F8 /* QastMapView.swift in Sources */,
+				597CD73C22DB793B00B56C6F /* NotificationManager.swift in Sources */,
 				5944D97622D1561700579892 /* PopupTutorialPageViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

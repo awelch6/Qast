@@ -18,17 +18,20 @@ protocol GeoQueryable {
 }
 
 struct SoundZone: GeoQueryable {
+    
+    let mapView = MGLMapView()
+    
     let id: String
     let center: GeoPoint
     let radius: Double
-    let trackId: String
+    let streamId: String
     
     var renderableGeofence: MGLPolygon {
         return polygonCircleForCoordinate(coordinate: self.center.location, withMeterRadius: self.radius)
     }
     
     var queryableGeofence: CLCircularRegion {
-        return CLCircularRegion(center: self.center.location, radius: radius, identifier: "random")
+        return CLCircularRegion(center: self.center.location, radius: radius, identifier: self.id)
     }
     
     var bufferRadius: Double {
@@ -36,7 +39,7 @@ struct SoundZone: GeoQueryable {
     }
     
     var data: [String: Any] {
-        return ["id": id, "trackId": trackId, "center": center, "radius": radius]
+        return ["id": id, "streamId": streamId, "center": center, "radius": radius]
     }
     
     init?(dictionary: [String: Any]) {
@@ -44,14 +47,14 @@ struct SoundZone: GeoQueryable {
             let id = dictionary["id"] as? String,
             let center = dictionary["center"] as? GeoPoint,
             let radius = dictionary["radius"] as? Double,
-            let trackId = dictionary["trackId"] as? String
+            let streamId = dictionary["streamId"] as? String
             else {
                 return nil
         }
         self.id = id
         self.center = center
         self.radius = radius
-        self.trackId = trackId
+        self.streamId = streamId
     }
 }
 

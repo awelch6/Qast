@@ -20,6 +20,17 @@
 	<string>1</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+	<key>MGLMapboxAccessToken</key>
+	<string>pk.eyJ1Ijoid2VsY2gzYW0iLCJhIjoiY2pzaWE5eTYyMjl5bTRhb2E5aDR3YjdqbiJ9.hG5trWOKzx2-4yd1G9Mqew</string>
+	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
+	<string>We need your location so we can determine what music stream to deliver.</string>
+	<key>NSLocationWhenInUseUsageDescription</key>
+	<string>We need your location so we can determine what music stream to deliver.</string>
+	<key>UIBackgroundModes</key>
+	<array>
+		<string>audio</string>
+		<string>location</string>
+	</array>
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIRequiredDeviceCapabilities</key>
@@ -39,11 +50,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-	<key>MGLMapboxAccessToken</key>
-	<string>pk.eyJ1Ijoid2VsY2gzYW0iLCJhIjoiY2pzaWE5eTYyMjl5bTRhb2E5aDR3YjdqbiJ9.hG5trWOKzx2-4yd1G9Mqew</string>
-	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
-	<string>Shows your location on the map and helps improve OpenStreetMap.</string>
-	<key>NSLocationWhenInUseUsageDescription</key>
-	<string>Shows your location on the map and helps improve OpenStreetMap.</string>
 </dict>
 </plist>
