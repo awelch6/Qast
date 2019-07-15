@@ -39,6 +39,7 @@
 		5981795B22CD30FF0091605E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795A22CD30FF0091605E /* FirebaseManager.swift */; };
 		5981795D22CD324D0091605E /* FirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795C22CD324D0091605E /* FirstLaunch.swift */; };
 		5981795F22CD3E470091605E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5981795E22CD3E460091605E /* GoogleService-Info.plist */; };
+		59ED351F22D8F89100FA8CF2 /* soundZoneTutorial.json in Resources */ = {isa = PBXBuildFile; fileRef = 59ED351E22D8F89100FA8CF2 /* soundZoneTutorial.json */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -89,6 +90,7 @@
 		5981795C22CD324D0091605E /* FirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunch.swift; sourceTree = "<group>"; };
 		5981795E22CD3E460091605E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5981796022CD5DA60091605E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		59ED351E22D8F89100FA8CF2 /* soundZoneTutorial.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = soundZoneTutorial.json; path = "../../Qast copy/Qast/soundZoneTutorial.json"; sourceTree = "<group>"; };
 		9E7E693DB0310FEF888CE173 /* Pods-Qast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qast.release.xcconfig"; path = "Pods/Target Support Files/Pods-Qast/Pods-Qast.release.xcconfig"; sourceTree = "<group>"; };
 		CB73906A245800CD0D5ED108 /* Pods-QastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QastTests/Pods-QastTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD881D6E2EC7047D6EEB28F6 /* Pods_QastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -158,6 +160,7 @@
 		2BB8F16522CAE131003BFBA5 /* Qast */ = {
 			isa = PBXGroup;
 			children = (
+				59ED351E22D8F89100FA8CF2 /* soundZoneTutorial.json */,
 				5981795222CD2F100091605E /* Models */,
 				2BB8F18F22CAE5CD003BFBA5 /* Resources */,
 				2BB8F18E22CAE5C5003BFBA5 /* Extensions */,
@@ -370,6 +373,7 @@
 				5981795F22CD3E470091605E /* GoogleService-Info.plist in Resources */,
 				2BB8F17122CAE132003BFBA5 /* LaunchScreen.storyboard in Resources */,
 				2BB8F16E22CAE132003BFBA5 /* Assets.xcassets in Resources */,
+				59ED351F22D8F89100FA8CF2 /* soundZoneTutorial.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -649,7 +653,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XYA5KJEM32;
+				DEVELOPMENT_TEAM = VK9Q399257;
 				INFOPLIST_FILE = "$(SRCROOT)/Qast/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -668,7 +672,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XYA5KJEM32;
+				DEVELOPMENT_TEAM = VK9Q399257;
 				INFOPLIST_FILE = "$(SRCROOT)/Qast/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
