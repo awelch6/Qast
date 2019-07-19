@@ -50,7 +50,7 @@ extension TutorialCardOneViewController {
         }
         soundZoneTutorialAnimationView.contentMode = .scaleAspectFit
         soundZoneTutorialAnimationView.play { (finished) in
-            if (finished) {
+            if finished {
                 print("Animation finished!")
             }
         }

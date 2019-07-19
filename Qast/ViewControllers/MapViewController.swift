@@ -14,26 +14,13 @@ import CoreGraphics
 
 class MapViewController: UIViewController {
 
-    var currentSoundZone: SoundZone? {
-        didSet {
-            if let currentSoundZone = currentSoundZone {
-                self.title = currentSoundZone.id
-                notificationManager.displaySoundZoneChangeNotification(currentSoundZone, spoken: true)
-                streamingManager.stop()
-                streamingManager.enqueue(currentSoundZone.streamId)
-            } else {
-                self.title = "Not in any SoundZone"
-                notificationManager.displaySoundZoneChangeNotification(currentSoundZone, spoken: true)
-                streamingManager.stop()
-            }
-        }
-    }
+    let locationManager: LocationManager = LocationManager()
     
     var isInitialLocationUpdate: Bool = true
     
     var nearbySoundZones: [SoundZone]?
     
-    let mapView = QastMapView()
+    var mapView: MGLMapView = QastMapView()
     
     lazy var vision = VisionManager()
 
@@ -43,11 +30,10 @@ class MapViewController: UIViewController {
     var sensorDispatch = SensorDispatch(queue: .main)
     
     public let session: WearableDeviceSession
-    public let networker: SoundZoneAPI
     
-    init(session: WearableDeviceSession, networker: SoundZoneAPI = FirebaseManager()) {
+    init(session: WearableDeviceSession) {
         self.session = session
-        self.networker = networker
+        locationManager.getNearbySoundZones()
         super.init(nibName: nil, bundle: nil)
         SessionManager.shared.configureSensors([.rotation, .accelerometer, .gyroscope, .magnetometer, .orientation])
     }
@@ -58,16 +44,6 @@ class MapViewController: UIViewController {
         setupCenterOnUserButton()
         
         sensorDispatch.handler = self
-        
-        networker.soundZones(nearby: CLLocationCoordinate2D(latitude: 42.334811, longitude: -83.052395), distance: 10000) { (soundZones, error) in
-            if let error = error {
-                print(error.localizedDescription)
-            } else {
-                self.mapView.addAnnotations(soundZones.map { $0.renderableGeofence })
-                self.mapView.addAnnotations(soundZones.map { SoundZoneAnnotation(soundZone: $0) })
-                self.nearbySoundZones = soundZones
-            }
-        }
         
 //        let soundZoneDict: [String: Any] = ["id": "andrews_apartment", "center": CLLocationCoordinate2D(latitude: 42.331424, longitude:  -83.041958).geopoint, "radius": 90.0, "streamId": "USCA20100402"]
 //
@@ -91,7 +67,10 @@ extension MapViewController {
     
     private func setupMapView() {
         view.addSubview(mapView)
-        mapView.delegate = self
+        
+        // This sets up the two way street between MapViewController and LocationManager
+        mapView.delegate = locationManager
+        locationManager.delegate = self
     }
     
     private func setupCenterOnUserButton() {
@@ -113,88 +92,34 @@ extension MapViewController {
     
 }
 
-// MARK: MGLMapView Delegate
+// MARK: LocationManager Delegate
 
-extension MapViewController: MGLMapViewDelegate {
-    
-    func mapView(_ mapView: MGLMapView, didUpdate userLocation: MGLUserLocation?) {
-        guard let location = userLocation?.location, location.horizontalAccuracy > 0 else {
-            return
-        }
-        if isInitialLocationUpdate { mapView.setCenter(location.coordinate, zoomLevel: 15, animated: true) }
+extension MapViewController: LocationManagerDelegate {
+    func qastMap(didUpdate userLocation: CLLocation) {
+        // I really want MapViewController to well...control the MapView and nothing else
+        // This could be in LocationManager, but feels more semantically at home here
+        if isInitialLocationUpdate { mapView.setCenter(userLocation.coordinate, zoomLevel: 15, animated: true) }
         isInitialLocationUpdate = false
-        
-        let soundZoneContainingUser = determineWhichSoundZoneContainsUser(for: location.coordinate)
-        updateCurrentSoundZone(currentSoundZone: self.currentSoundZone, soundZoneContainingUser: soundZoneContainingUser)
     }
     
-    func determineWhichSoundZoneContainsUser(for coordinate: CLLocationCoordinate2D) -> SoundZone? {
-        guard let nearbySoundZones = nearbySoundZones else { return nil }
-        
-        let cgLocationPoint = mapView.convert(coordinate, toPointTo: nil)
-        
-        // OPTION 1: CoreGraphics using CGRect.contains. Most accurate, particularly excelled in smaller SoundZones
-        return nearbySoundZones.filter({ soundZoneRect(soundZonePolygon: $0.renderableGeofence).contains(cgLocationPoint) }).first
-        
-//        // OPTION 2: Mapbox using MGLCoordinateInCoordinateBounds. Fairly accurate in open spaces, excelled in Medium SoundZones
-//        return nearbySoundZones.filter({ MGLCoordinateInCoordinateBounds(coordinate, $0.renderableGeofence.overlayBounds) }).first
-
-//        // OPTION 3: CoreLocation using CLCircularRegion.contains. This was least accurate. Only worked in large SoundZones
-//        return nearbySoundZones.filter({ $0.queryableGeofence.contains(coordinate) }).first
+    func qastMap(didReceive nearbySoundZones: [SoundZone]) {
+        self.mapView.addAnnotations(nearbySoundZones.map { $0.renderableGeofence })
+        self.mapView.addAnnotations(nearbySoundZones.map { SoundZoneAnnotation(soundZone: $0) })
     }
     
-    func soundZoneRect(soundZonePolygon: MGLPolygon) -> CGRect {
-        return mapView.convert(soundZonePolygon.overlayBounds, toRectTo: nil)
-    }
-    
-    func determineSoundZoneTransitionType(currentSoundZone: SoundZone?, soundZoneContainingUser: SoundZone?) -> SoundZoneTransitionType {
-        if currentSoundZone == nil && soundZoneContainingUser == nil { return .NIL_TO_NIL }
-        if currentSoundZone == nil && soundZoneContainingUser != nil { return .NIL_TO_SOME }
-        if currentSoundZone != nil && soundZoneContainingUser == nil { return .SOME_TO_NIL }
-        if currentSoundZone != nil && soundZoneContainingUser != nil { return .SOME_TO_SOME }
-        fatalError()
-    }
-    
-    func updateCurrentSoundZone(currentSoundZone: SoundZone?, soundZoneContainingUser: SoundZone?) {
-        // logic for updating soundzone
-        let transitionType = determineSoundZoneTransitionType(currentSoundZone: currentSoundZone, soundZoneContainingUser: soundZoneContainingUser)
-        
-        switch transitionType {
-        case .NIL_TO_NIL:
+    func qastMap(didUpdate currentSoundZone: SoundZone?) {
+        if let currentSoundZone = currentSoundZone {
+            self.title = currentSoundZone.id
+            notificationManager.displaySoundZoneChangeNotification(currentSoundZone, spoken: true)
+            streamingManager.stop()
+            streamingManager.enqueue(currentSoundZone.streamId)
+        } else {
             self.title = "Not in any SoundZone"
-            return
-        case .NIL_TO_SOME:
-            self.currentSoundZone = soundZoneContainingUser
-        case .SOME_TO_NIL:
-            self.currentSoundZone = soundZoneContainingUser
-        case .SOME_TO_SOME:
-            if currentSoundZone!.id == soundZoneContainingUser!.id {
-                return
-            } else {
-                self.currentSoundZone = soundZoneContainingUser
-            }
+            notificationManager.displaySoundZoneChangeNotification(currentSoundZone, spoken: false)
+            streamingManager.stop()
         }
     }
-    
-    func visionPolygon(for coordinate: CLLocationCoordinate2D, orientation: Double) {
-//        if let annotation = mapView.annotations?.first(where: { $0 is MGLPolygon }) {
-//            mapView.removeAnnotation(annotation)
-//        }
-//        self.mapView.addAnnotation(vision.updateVisionPolygon(center: coordinate, orientation: orientation))
-    }
-    
-    func mapView(_ mapView: MGLMapView, alphaForShapeAnnotation annotation: MGLShape) -> CGFloat {
-        return 0.5
-    }
-    
-    func mapView(_ mapView: MGLMapView, lineWidthForPolylineAnnotation annotation: MGLPolyline) -> CGFloat {
-        return 5
-    }
-    
-    func mapView(_ mapView: MGLMapView, fillColorForPolygonAnnotation annotation: MGLPolygon) -> UIColor {
-        return UIColor.blue
-    }
-    
+
 }
 
 extension MapViewController: SensorDispatchHandler {
@@ -211,7 +136,7 @@ extension MapViewController: SensorDispatchHandler {
         let magneticDegrees: Double = (yaw < 0) ? 360 + yaw : yaw
         
         vision.updateVisionPath(center: userLocation.coordinate, orientation: 360 - magneticDegrees)
-        visionPolygon(for: userLocation.coordinate, orientation: 360 - magneticDegrees)
+        locationManager.visionPolygon(for: userLocation.coordinate, orientation: 360 - magneticDegrees)
         
         guard let annotations = mapView.annotations?.filter({ $0 is SoundZoneAnnotation }) else { return }
 

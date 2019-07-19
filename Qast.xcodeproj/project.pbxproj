@@ -34,6 +34,7 @@
 		5944D97C22D159EB00579892 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97B22D159EB00579892 /* UIColorExtensions.swift */; };
 		5944D97E22D15B7500579892 /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97D22D15B7500579892 /* UINavigationBarExtension.swift */; };
 		5944D98022D15B9400579892 /* UITabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97F22D15B9400579892 /* UITabBarExtension.swift */; };
+		597A381122E14D2000562FF6 /* LocationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597A381022E14D2000562FF6 /* LocationManager.swift */; };
 		597CD73C22DB793B00B56C6F /* NotificationManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597CD73B22DB793B00B56C6F /* NotificationManager.swift */; };
 		5981045F22DA96A00084337A /* SoundZoneTransitionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981045E22DA96A00084337A /* SoundZoneTransitionType.swift */; };
 		5981795422CD2F230091605E /* SoundZone.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795322CD2F230091605E /* SoundZone.swift */; };
@@ -86,6 +87,7 @@
 		5944D97B22D159EB00579892 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		5944D97D22D15B7500579892 /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
 		5944D97F22D15B9400579892 /* UITabBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtension.swift; sourceTree = "<group>"; };
+		597A381022E14D2000562FF6 /* LocationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationManager.swift; sourceTree = "<group>"; };
 		597CD73B22DB793B00B56C6F /* NotificationManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationManager.swift; sourceTree = "<group>"; };
 		5981045E22DA96A00084337A /* SoundZoneTransitionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZoneTransitionType.swift; sourceTree = "<group>"; };
 		5981795322CD2F230091605E /* SoundZone.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZone.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 				5981795A22CD30FF0091605E /* FirebaseManager.swift */,
 				5981795C22CD324D0091605E /* FirstLaunch.swift */,
 				597CD73B22DB793B00B56C6F /* NotificationManager.swift */,
+				597A381022E14D2000562FF6 /* LocationManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -489,6 +492,7 @@
 				5944D97822D1574700579892 /* TutorialCardTwo.swift in Sources */,
 				2BA4338B22CF628200C1D6F8 /* VisionManager.swift in Sources */,
 				5981795B22CD30FF0091605E /* FirebaseManager.swift in Sources */,
+				597A381122E14D2000562FF6 /* LocationManager.swift in Sources */,
 				2B82021822CC0B0E005E3BC1 /* MapViewController.swift in Sources */,
 				5944D97C22D159EB00579892 /* UIColorExtensions.swift in Sources */,
 				2BA4339322CF6FA700C1D6F8 /* DoubleExtensions.swift in Sources */,
