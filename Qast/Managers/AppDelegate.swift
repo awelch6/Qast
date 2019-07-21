@@ -14,6 +14,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BoseWearable.enableCommonLogging()
         BoseWearable.configure()
         
+        window = UIWindow(frame: UIScreen.main.bounds)
         
 //        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "wasLaunchedBefore")
 //        let firstLaunch = FirstLaunch.alwaysFirst()
@@ -25,9 +26,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            print("Welcome back to Qast!")
 //            navigationController = UINavigationController(rootViewController: ConnectionViewController())
 //        }
-        navigationController = UINavigationController(rootViewController: ConnectionViewController())
         
-        window = UIWindow(frame: UIScreen.main.bounds)
+        navigationController = UINavigationController(rootViewController: ConnectionViewController())
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         

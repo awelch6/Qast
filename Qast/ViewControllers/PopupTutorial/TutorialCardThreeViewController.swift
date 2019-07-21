@@ -52,13 +52,11 @@ extension TutorialCardThreeViewController {
     }
 }
 
-// MARK: SessionManager Delegate
-
 extension TutorialCardThreeViewController: SessionManagerDelegate {
     
     func session(_ session: WearableDeviceSession, didOpen: Bool) {
-       let mainViewController = MainViewController(session: session)
-        navigationController?.pushViewController(mainViewController, animated: true)
+        print("session did open")
+        navigationController?.pushViewController(MapViewController(session: session), animated: true)
     }
     
     func session(_ session: WearableDeviceSession, didClose: Bool) {

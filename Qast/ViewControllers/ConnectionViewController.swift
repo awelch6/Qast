@@ -22,7 +22,6 @@ class ConnectionViewController: UIViewController {
         super.viewDidLoad()
         SessionManager.shared.delegate = self
         setupConnectButton()
-
     }
 }
 
@@ -52,13 +51,10 @@ extension ConnectionViewController {
     }
 }
 
-// MARK: SessionManager Delegate
-
 extension ConnectionViewController: SessionManagerDelegate {
     
     func session(_ session: WearableDeviceSession, didOpen: Bool) {
-        let mainViewController = MainViewController(session: session)
-        navigationController?.pushViewController(mainViewController, animated: true)
+        navigationController?.pushViewController(MapViewController(session: session), animated: true)
     }
     
     func session(_ session: WearableDeviceSession, didClose: Bool) {

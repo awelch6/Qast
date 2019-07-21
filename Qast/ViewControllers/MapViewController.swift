@@ -12,11 +12,6 @@ import BoseWearable
 import simd
 import CoreGraphics
 
-protocol MapViewControllerDelegate: class {
-    func mapViewController(_ mapViewController: MapViewController, shouldStartPlaying soundZone: SoundZone)
-    func mapViewController(_ mapViewController: MapViewController, shouldStopPlaying soundZone: SoundZone)
-}
-
 class MapViewController: UIViewController {
 
     let locationManager: LocationManager = LocationManager()
@@ -32,13 +27,15 @@ class MapViewController: UIViewController {
     var notificationManager = NotificationManager()
     let streamingManager = StreamManager()
     
-    weak var delegate: MapViewControllerDelegate?
-    
     var sensorDispatch = SensorDispatch(queue: .main)
     
-    init(networker: SoundZoneAPI) {
+    public let session: WearableDeviceSession
+    
+    init(session: WearableDeviceSession) {
+        self.session = session
         locationManager.getNearbySoundZones()
         super.init(nibName: nil, bundle: nil)
+        SessionManager.shared.configureSensors([.rotation, .accelerometer, .gyroscope, .magnetometer, .orientation])
     }
 
     override func viewDidLoad() {
@@ -92,6 +89,7 @@ extension MapViewController {
         guard let location = mapView.userLocation else { return }
         mapView.setCenter(location.coordinate, zoomLevel: 15, animated: true)
     }
+    
 }
 
 // MARK: LocationManager Delegate
@@ -113,15 +111,15 @@ extension MapViewController: LocationManagerDelegate {
         if let currentSoundZone = currentSoundZone {
             self.title = currentSoundZone.id
             notificationManager.displaySoundZoneChangeNotification(currentSoundZone, spoken: true)
-            delegate?.mapViewController(self, shouldStartPlaying: currentSoundZone)
-//            streamingManager.stop()
-//            streamingManager.enqueue(currentSoundZone.streamId)
+            streamingManager.stop()
+            streamingManager.enqueue(currentSoundZone.streamId)
         } else {
             self.title = "Not in any SoundZone"
             notificationManager.displaySoundZoneChangeNotification(currentSoundZone, spoken: false)
-//            streamingManager.stop()
+            streamingManager.stop()
         }
     }
+
 }
 
 extension MapViewController: SensorDispatchHandler {
