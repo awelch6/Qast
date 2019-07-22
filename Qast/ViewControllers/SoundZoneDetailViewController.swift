@@ -11,7 +11,6 @@ import UIKit
 class SoundZoneDetailViewController: UIViewController {
 
     let soundZone: SoundZone?
-    
     let soundZoneTitle = UILabel()
     let dismissIcon = UIImageView(image: UIImage(named: "x-button"))
     
@@ -62,7 +61,7 @@ extension SoundZoneDetailViewController {
     }
 }
 
-// MARK: Target Actions
+// MARK: Gesture Recognizer Actions
 extension SoundZoneDetailViewController {
     @objc func dismiss(_ sender: UIImageView) {
         self.dismiss(animated: true, completion: nil)

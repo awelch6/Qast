@@ -9,10 +9,6 @@
 // MARK: - CoverArtResponse
 struct CoverArtResponse: Codable {
     let coverUrl: String
-}
-
-struct CoverUrl: Codable {
-    let coverUrl: String
     
     enum CodingKeys: String, CodingKey {
         case coverUrl

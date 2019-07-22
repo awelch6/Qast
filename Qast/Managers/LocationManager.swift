@@ -18,7 +18,9 @@ protocol LocationManagerDelegate: class {
     func qastMap(didUpdate currentSoundZone: SoundZone?)
     func qastMap(didUpdate userLocation: CLLocation)
     
-    // once we have a MGLCustomCalloutView this will be moved to it's own delegate methods
+    // once we use our our MGLCalloutView, this method will move to MapViewController
+    // this is not location-related IMO
+    // mere product of LocationManager being mapView delegate to access the user's location...
     func qastMap(didTap soundZone: SoundZone)
 }
 
@@ -129,29 +131,26 @@ extension LocationManager {
         return UIColor.blue
     }
     
-    // this is NOT called for MGLPolygon annotations
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
         return true
     }
     
     func mapView(_ mapView: MGLMapView, rightCalloutAccessoryViewFor annotation: MGLAnnotation) -> UIView? {
         
-        guard let soundZoneAnnotation = annotation as? SoundZoneAnnotation else { return UIView() }
+        guard let soundZoneAnnotation = annotation as? SoundZoneAnnotation else { return nil }
         
-        let rightCalloutAccessoryView = UIImageView(image: UIImage(named: "cover_art_placeholder"))
-        rightCalloutAccessoryView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        let coverArtImageView = UIImageView(image: UIImage(named: "cover_art_placeholder"))
+        coverArtImageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         
         streamManager.fetchCoverArtUrl(for: soundZoneAnnotation.soundZone.streamId) { (result) in
             switch result {
-            case .value(let coverUrl):
-                print(coverUrl)
-                rightCalloutAccessoryView.sd_setImage(with: coverUrl, completed: nil)
+            case .value(let coverArtUrl):
+                coverArtImageView.sd_setImage(with: coverArtUrl, completed: nil)
             case .error(let error):
                 print(error)
             }
         }
-        
-        return rightCalloutAccessoryView
+        return coverArtImageView
     }
     
     func mapView(_ mapView: MGLMapView, didSelect annotation: MGLAnnotation) {
@@ -159,7 +158,6 @@ extension LocationManager {
             guard let polygonFeatureIdentifier = polygonFeatureAnnotation.identifier as? String else { return }
             guard let annotations = mapView.annotations else { return }
             guard let correspondingPointAnnotation = annotations.filter({ ($0 as? SoundZoneAnnotation)?.soundZone.id == polygonFeatureIdentifier }).first else { return }
-            
             mapView.selectAnnotation(correspondingPointAnnotation, animated: true)
         } else {
             return

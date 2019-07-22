@@ -29,14 +29,13 @@ class MapViewController: UIViewController {
     
     var sensorDispatch = SensorDispatch(queue: .main)
     
-//    public let session: WearableDeviceSession
+    public let session: WearableDeviceSession
     
-//    session: WearableDeviceSession
-    init() {
-//        self.session = session
+    init(session: WearableDeviceSession) {
+        self.session = session
         locationManager.getNearbySoundZones()
         super.init(nibName: nil, bundle: nil)
-//        SessionManager.shared.configureSensors([.rotation, .accelerometer, .gyroscope, .magnetometer, .orientation])
+        SessionManager.shared.configureSensors([.rotation, .accelerometer, .gyroscope, .magnetometer, .orientation])
     }
 
     override func viewDidLoad() {

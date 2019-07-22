@@ -103,9 +103,7 @@ extension SoundZone {
             coordinates.append(point)
         }
         let polygon = MGLPolygonFeature(coordinates: &coordinates, count: UInt(coordinates.count))
-        
         polygon.identifier = self.id
-        
         return polygon
     }
 }
