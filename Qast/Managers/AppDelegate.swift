@@ -27,7 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 //            navigationController = UINavigationController(rootViewController: ConnectionViewController())
 //        }
         
-        navigationController = UINavigationController(rootViewController: ConnectionViewController())
+        navigationController = UINavigationController(rootViewController: MapViewController())
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         

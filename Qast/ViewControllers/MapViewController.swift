@@ -29,13 +29,14 @@ class MapViewController: UIViewController {
     
     var sensorDispatch = SensorDispatch(queue: .main)
     
-    public let session: WearableDeviceSession
+//    public let session: WearableDeviceSession
     
-    init(session: WearableDeviceSession) {
-        self.session = session
+//    session: WearableDeviceSession
+    init() {
+//        self.session = session
         locationManager.getNearbySoundZones()
         super.init(nibName: nil, bundle: nil)
-        SessionManager.shared.configureSensors([.rotation, .accelerometer, .gyroscope, .magnetometer, .orientation])
+//        SessionManager.shared.configureSensors([.rotation, .accelerometer, .gyroscope, .magnetometer, .orientation])
     }
 
     override func viewDidLoad() {
@@ -88,6 +89,24 @@ extension MapViewController {
     @objc func singleTapping(recognizer: UIGestureRecognizer) {
         guard let location = mapView.userLocation else { return }
         mapView.setCenter(location.coordinate, zoomLevel: 15, animated: true)
+    }
+    
+    func handleMapViewTap(_ gesture: UITapGestureRecognizer) {
+        let tapSpot = gesture.location(in: mapView)
+        print(tapSpot)
+        guard let annotations = mapView.annotations else { return }
+//
+//        for annotation in annotations {
+//            if annotation is SoundZonePolygonView {
+//                if let soundZonePolygon = annotation as? SoundZonePolygonView {
+//                    if locationManager.soundZoneRect(soundZonePolygon: soundZonePolygon).contains(tapSpot) {
+//                        guard let correspondingAnnotation = annotations.filter({ $0.title == soundZonePolygon.id }).first else { return }
+//                        mapView.selectAnnotation(correspondingAnnotation, animated: true)
+//                    }
+//                }
+//            }
+//        }
+        
     }
     
 }

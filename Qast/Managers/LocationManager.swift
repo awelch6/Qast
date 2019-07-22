@@ -123,4 +123,45 @@ extension LocationManager {
     func mapView(_ mapView: MGLMapView, fillColorForPolygonAnnotation annotation: MGLPolygon) -> UIColor {
         return UIColor.blue
     }
+    
+    // this is NOT called for MGLPolygon annotations
+    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
+        print("Annotation \(annotation.title) tapped")
+        return true
+    }
+    
+    func mapView(_ mapView: MGLMapView, leftCalloutAccessoryViewFor annotation: MGLAnnotation) -> UIView? {
+        // Callout height is fixed; width expands to fit its content.
+        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: 50))
+        label.textAlignment = .right
+        label.textColor = UIColor(red: 0.81, green: 0.71, blue: 0.23, alpha: 1)
+        label.text = "金閣寺"
+        
+        return label
+    }
+    
+    func mapView(_ mapView: MGLMapView, rightCalloutAccessoryViewFor annotation: MGLAnnotation) -> UIView? {
+        return UIButton(type: .detailDisclosure)
+    }
+    
+    func mapView(_ mapView: MGLMapView, didSelect annotation: MGLAnnotation) {
+        
+        guard let annotations = mapView.annotations else { return }
+        print("annotations not null")
+        print("selected annotations are: \(mapView.selectedAnnotations)")
+        
+        if let polygonFeatureAnnotation = annotation as? MGLPolygonFeature {
+            guard let polygonFeatureIdentifier = polygonFeatureAnnotation.identifier as? String else { return }
+            guard let correspondingPointAnnotation = annotations.filter({ $0.title == polygonFeatureIdentifier }).first else { return }
+            print("found coorespondingAnnotation \(annotation.title)")
+            
+            mapView.deselectAnnotation(mapView.selectedAnnotations[0], animated: true)
+            mapView.selectAnnotation(correspondingPointAnnotation, animated: true)
+            print("set selected annotation")
+        } else {
+            return
+        }
+        
+    }
+
 }
