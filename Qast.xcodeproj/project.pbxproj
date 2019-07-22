@@ -43,6 +43,7 @@
 		5981795D22CD324D0091605E /* FirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795C22CD324D0091605E /* FirstLaunch.swift */; };
 		5981795F22CD3E470091605E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5981795E22CD3E460091605E /* GoogleService-Info.plist */; };
 		598E522222E62D6C00865556 /* CoverArtResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598E522122E62D6C00865556 /* CoverArtResponse.swift */; };
+		598E522422E64A3100865556 /* SoundZoneDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598E522322E64A3100865556 /* SoundZoneDetailViewController.swift */; };
 		59ED351F22D8F89100FA8CF2 /* soundZoneTutorial.json in Resources */ = {isa = PBXBuildFile; fileRef = 59ED351E22D8F89100FA8CF2 /* soundZoneTutorial.json */; };
 /* End PBXBuildFile section */
 
@@ -98,6 +99,7 @@
 		5981795E22CD3E460091605E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5981796022CD5DA60091605E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
 		598E522122E62D6C00865556 /* CoverArtResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverArtResponse.swift; sourceTree = "<group>"; };
+		598E522322E64A3100865556 /* SoundZoneDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZoneDetailViewController.swift; sourceTree = "<group>"; };
 		59ED351E22D8F89100FA8CF2 /* soundZoneTutorial.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = soundZoneTutorial.json; path = "../../Qast copy/Qast/soundZoneTutorial.json"; sourceTree = "<group>"; };
 		9E7E693DB0310FEF888CE173 /* Pods-Qast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qast.release.xcconfig"; path = "Pods/Target Support Files/Pods-Qast/Pods-Qast.release.xcconfig"; sourceTree = "<group>"; };
 		CB73906A245800CD0D5ED108 /* Pods-QastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QastTests/Pods-QastTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -234,6 +236,7 @@
 				5944D97222D1553700579892 /* PopupTutorial */,
 				2BB8F16822CAE131003BFBA5 /* ConnectionViewController.swift */,
 				2B82021722CC0B0E005E3BC1 /* MapViewController.swift */,
+				598E522322E64A3100865556 /* SoundZoneDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -504,6 +507,7 @@
 				5944D98022D15B9400579892 /* UITabBarExtension.swift in Sources */,
 				5944D97E22D15B7500579892 /* UINavigationBarExtension.swift in Sources */,
 				2BA4339822D1284100C1D6F8 /* StreamManager.swift in Sources */,
+				598E522422E64A3100865556 /* SoundZoneDetailViewController.swift in Sources */,
 				2BB8F16722CAE131003BFBA5 /* AppDelegate.swift in Sources */,
 				2BA433A022D189D100C1D6F8 /* SoundZoneAnnotationView.swift in Sources */,
 				2BA4339A22D128C900C1D6F8 /* TrackManagerDelegate.swift in Sources */,

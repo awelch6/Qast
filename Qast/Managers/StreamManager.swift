@@ -77,7 +77,6 @@ class StreamManager {
                 guard let coverArtResponse = try? JSONDecoder().decode(CoverArtResponse.self, from: data) else {
                     return completion(.error(NSError(domain: "Error", code: 303, userInfo: nil)))
                 }
-                print("Got URL: \(coverArtResponse.coverUrl)")
                 
                 guard let coverUrl = URL(string: coverArtResponse.coverUrl) else {
                     return completion(.error(NSError(domain: "Error", code: 303, userInfo: nil)))
@@ -86,8 +85,6 @@ class StreamManager {
                 return completion(.value(coverUrl))
             }
         }
-                
-        
     }
     
     @objc public func playerDidFinishPlaying() {

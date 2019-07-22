@@ -17,6 +17,9 @@ protocol LocationManagerDelegate: class {
     func qastMap(didReceive nearbySoundZones: [SoundZone])
     func qastMap(didUpdate currentSoundZone: SoundZone?)
     func qastMap(didUpdate userLocation: CLLocation)
+    
+    // once we have a MGLCustomCalloutView this will be moved to it's own delegate methods
+    func qastMap(didTap soundZone: SoundZone)
 }
 
 class LocationManager: NSObject, MGLMapViewDelegate {
@@ -133,10 +136,12 @@ extension LocationManager {
     
     func mapView(_ mapView: MGLMapView, rightCalloutAccessoryViewFor annotation: MGLAnnotation) -> UIView? {
         
+        guard let soundZoneAnnotation = annotation as? SoundZoneAnnotation else { return UIView() }
+        
         let rightCalloutAccessoryView = UIImageView(image: UIImage(named: "cover_art_placeholder"))
         rightCalloutAccessoryView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         
-        streamManager.fetchCoverArtUrl(for: "USKRS0326911") { (result) in
+        streamManager.fetchCoverArtUrl(for: soundZoneAnnotation.soundZone.streamId) { (result) in
             switch result {
             case .value(let coverUrl):
                 print(coverUrl)
@@ -147,24 +152,23 @@ extension LocationManager {
         }
         
         return rightCalloutAccessoryView
-        
     }
     
     func mapView(_ mapView: MGLMapView, didSelect annotation: MGLAnnotation) {
-        
         if let polygonFeatureAnnotation = annotation as? MGLPolygonFeature {
             guard let polygonFeatureIdentifier = polygonFeatureAnnotation.identifier as? String else { return }
             guard let annotations = mapView.annotations else { return }
             guard let correspondingPointAnnotation = annotations.filter({ ($0 as? SoundZoneAnnotation)?.soundZone.id == polygonFeatureIdentifier }).first else { return }
             
-            if correspondingPointAnnotation.title != mapView.selectedAnnotations[0].title {
-                mapView.selectAnnotation(correspondingPointAnnotation, animated: true)
-            }
-            
+            mapView.selectAnnotation(correspondingPointAnnotation, animated: true)
         } else {
             return
         }
-        
+    }
+    
+    func mapView(_ mapView: MGLMapView, tapOnCalloutFor annotation: MGLAnnotation) {
+        guard let soundZoneAnnotation = annotation as? SoundZoneAnnotation else { return }
+        delegate?.qastMap(didTap: soundZoneAnnotation.soundZone)
     }
 
 }

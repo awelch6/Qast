@@ -91,29 +91,15 @@ extension MapViewController {
         mapView.setCenter(location.coordinate, zoomLevel: 15, animated: true)
     }
     
-    func handleMapViewTap(_ gesture: UITapGestureRecognizer) {
-        let tapSpot = gesture.location(in: mapView)
-        print(tapSpot)
-        guard let annotations = mapView.annotations else { return }
-//
-//        for annotation in annotations {
-//            if annotation is SoundZonePolygonView {
-//                if let soundZonePolygon = annotation as? SoundZonePolygonView {
-//                    if locationManager.soundZoneRect(soundZonePolygon: soundZonePolygon).contains(tapSpot) {
-//                        guard let correspondingAnnotation = annotations.filter({ $0.title == soundZonePolygon.id }).first else { return }
-//                        mapView.selectAnnotation(correspondingAnnotation, animated: true)
-//                    }
-//                }
-//            }
-//        }
-        
-    }
-    
 }
 
 // MARK: LocationManager Delegate
 
 extension MapViewController: LocationManagerDelegate {
+    func qastMap(didTap soundZone: SoundZone) {
+        self.present(SoundZoneDetailViewController(soundZone), animated: true, completion: nil)
+    }
+    
     func qastMap(didUpdate userLocation: CLLocation) {
         // I really want MapViewController to well...control the MapView and nothing else
         // This could be in LocationManager, but feels more semantically at home here

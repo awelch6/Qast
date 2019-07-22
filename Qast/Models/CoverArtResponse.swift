@@ -15,6 +15,6 @@ struct CoverUrl: Codable {
     let coverUrl: String
     
     enum CodingKeys: String, CodingKey {
-        case coverUrl = "coverUrl"
+        case coverUrl
     }
 }
