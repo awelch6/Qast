@@ -12,11 +12,13 @@ target 'Qast' do
   pod 'Firebase/Core'
   pod 'Firebase/Firestore'
   pod 'GeoFire', '~> 3.0'
+  pod 'lottie-ios', '~> 3.1.1'
+  pod 'SDWebImage', '~> 5.0'
+  
   # Bose AR SDK
   pod 'BoseWearable', :path => 'BoseWearable/'
   pod 'BLECore', :path => 'BoseWearable/'
   pod 'Logging', :path => 'BoseWearable/'
-  pod 'lottie-ios', '~> 3.1.1'
   
   target 'QastTests' do
     inherit! :search_paths

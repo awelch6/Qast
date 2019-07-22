@@ -7,6 +7,9 @@
 //
 
 import AVFoundation
+import UIKit
+import SDWebImage
+import Alamofire
 
 var player: AVQueuePlayer?
 
@@ -55,6 +58,36 @@ class StreamManager {
         let asset = AVURLAsset(url: url, options: ["AVURLAssetHTTPHeaderFieldsKey": keyHeader])
         
         return AVPlayerItem(asset: asset)
+    }
+    
+    public func fetchCoverArtUrl(for isrc: String, _ completion: @escaping (Result<URL>) -> Void) {
+        let urlString = "https://hackathon.umusic.com/prod/v1/isrc/\(isrc)/cover"
+        
+        guard let url = URL(string: urlString) else {
+            return completion(.error(NSError(domain: "Error", code: 303, userInfo: nil)))
+        }
+        
+        let headers = ["x-api-key": "5dsb3jqxzX8D5dIlJzWoTaTM2TzcKufq1geS1SSb"]
+        
+        Alamofire.request(url, method: .get, encoding: JSONEncoding.default, headers: headers).responseJSON { (response) in
+            if let error = response.error {
+                print(error.localizedDescription)
+                return completion(.error(error))
+            } else if let data = response.data {
+                guard let coverArtResponse = try? JSONDecoder().decode(CoverArtResponse.self, from: data) else {
+                    return completion(.error(NSError(domain: "Error", code: 303, userInfo: nil)))
+                }
+                print("Got URL: \(coverArtResponse.coverUrl)")
+                
+                guard let coverUrl = URL(string: coverArtResponse.coverUrl) else {
+                    return completion(.error(NSError(domain: "Error", code: 303, userInfo: nil)))
+                }
+                
+                return completion(.value(coverUrl))
+            }
+        }
+                
+        
     }
     
     @objc public func playerDidFinishPlaying() {

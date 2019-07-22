@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import Mapbox
+import SDWebImage
 
 protocol LocationManagerDelegate: class {
     var mapView: MGLMapView { get }
@@ -22,6 +23,7 @@ class LocationManager: NSObject, MGLMapViewDelegate {
     
     weak var delegate: LocationManagerDelegate?
     var networker: SoundZoneAPI = FirebaseManager()
+    var streamManager = StreamManager()
     
     var nearbySoundZones: [SoundZone]?
     var currentSoundZone: SoundZone? {
@@ -126,38 +128,39 @@ extension LocationManager {
     
     // this is NOT called for MGLPolygon annotations
     func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
-        print("Annotation \(annotation.title) tapped")
         return true
     }
     
-    func mapView(_ mapView: MGLMapView, leftCalloutAccessoryViewFor annotation: MGLAnnotation) -> UIView? {
-        // Callout height is fixed; width expands to fit its content.
-        let label = UILabel(frame: CGRect(x: 0, y: 0, width: 60, height: 50))
-        label.textAlignment = .right
-        label.textColor = UIColor(red: 0.81, green: 0.71, blue: 0.23, alpha: 1)
-        label.text = "金閣寺"
-        
-        return label
-    }
-    
     func mapView(_ mapView: MGLMapView, rightCalloutAccessoryViewFor annotation: MGLAnnotation) -> UIView? {
-        return UIButton(type: .detailDisclosure)
+        
+        let rightCalloutAccessoryView = UIImageView(image: UIImage(named: "cover_art_placeholder"))
+        rightCalloutAccessoryView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        
+        streamManager.fetchCoverArtUrl(for: "USKRS0326911") { (result) in
+            switch result {
+            case .value(let coverUrl):
+                print(coverUrl)
+                rightCalloutAccessoryView.sd_setImage(with: coverUrl, completed: nil)
+            case .error(let error):
+                print(error)
+            }
+        }
+        
+        return rightCalloutAccessoryView
+        
     }
     
     func mapView(_ mapView: MGLMapView, didSelect annotation: MGLAnnotation) {
         
-        guard let annotations = mapView.annotations else { return }
-        print("annotations not null")
-        print("selected annotations are: \(mapView.selectedAnnotations)")
-        
         if let polygonFeatureAnnotation = annotation as? MGLPolygonFeature {
             guard let polygonFeatureIdentifier = polygonFeatureAnnotation.identifier as? String else { return }
-            guard let correspondingPointAnnotation = annotations.filter({ $0.title == polygonFeatureIdentifier }).first else { return }
-            print("found coorespondingAnnotation \(annotation.title)")
+            guard let annotations = mapView.annotations else { return }
+            guard let correspondingPointAnnotation = annotations.filter({ ($0 as? SoundZoneAnnotation)?.soundZone.id == polygonFeatureIdentifier }).first else { return }
             
-            mapView.deselectAnnotation(mapView.selectedAnnotations[0], animated: true)
-            mapView.selectAnnotation(correspondingPointAnnotation, animated: true)
-            print("set selected annotation")
+            if correspondingPointAnnotation.title != mapView.selectedAnnotations[0].title {
+                mapView.selectAnnotation(correspondingPointAnnotation, animated: true)
+            }
+            
         } else {
             return
         }

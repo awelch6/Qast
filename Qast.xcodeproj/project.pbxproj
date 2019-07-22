@@ -42,6 +42,7 @@
 		5981795B22CD30FF0091605E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795A22CD30FF0091605E /* FirebaseManager.swift */; };
 		5981795D22CD324D0091605E /* FirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795C22CD324D0091605E /* FirstLaunch.swift */; };
 		5981795F22CD3E470091605E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5981795E22CD3E460091605E /* GoogleService-Info.plist */; };
+		598E522222E62D6C00865556 /* CoverArtResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598E522122E62D6C00865556 /* CoverArtResponse.swift */; };
 		59ED351F22D8F89100FA8CF2 /* soundZoneTutorial.json in Resources */ = {isa = PBXBuildFile; fileRef = 59ED351E22D8F89100FA8CF2 /* soundZoneTutorial.json */; };
 /* End PBXBuildFile section */
 
@@ -96,6 +97,7 @@
 		5981795C22CD324D0091605E /* FirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunch.swift; sourceTree = "<group>"; };
 		5981795E22CD3E460091605E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5981796022CD5DA60091605E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		598E522122E62D6C00865556 /* CoverArtResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverArtResponse.swift; sourceTree = "<group>"; };
 		59ED351E22D8F89100FA8CF2 /* soundZoneTutorial.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = soundZoneTutorial.json; path = "../../Qast copy/Qast/soundZoneTutorial.json"; sourceTree = "<group>"; };
 		9E7E693DB0310FEF888CE173 /* Pods-Qast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qast.release.xcconfig"; path = "Pods/Target Support Files/Pods-Qast/Pods-Qast.release.xcconfig"; sourceTree = "<group>"; };
 		CB73906A245800CD0D5ED108 /* Pods-QastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QastTests/Pods-QastTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -290,6 +292,7 @@
 				5981795322CD2F230091605E /* SoundZone.swift */,
 				2BA4339D22D187F600C1D6F8 /* SoundZoneAnnotation.swift */,
 				5981795722CD2FE70091605E /* Result.swift */,
+				598E522122E62D6C00865556 /* CoverArtResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -510,6 +513,7 @@
 				5981795822CD2FE70091605E /* Result.swift in Sources */,
 				2BF6AD2122D2521800A752D0 /* SoundZoneAPI.swift in Sources */,
 				5981795D22CD324D0091605E /* FirstLaunch.swift in Sources */,
+				598E522222E62D6C00865556 /* CoverArtResponse.swift in Sources */,
 				5944D97422D1556400579892 /* TutorialCardOneViewController.swift in Sources */,
 				5981795422CD2F230091605E /* SoundZone.swift in Sources */,
 				2BA4339C22D1867E00C1D6F8 /* QastMapView.swift in Sources */,
