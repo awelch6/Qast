@@ -25,14 +25,13 @@ class UMGStreamMetadataAPI: StreamMetadataAPI {
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseObject { (response: DataResponse<CoverArtResponse>) in
             
-            if let coverArtResponse = response.value {
-                guard let coverUrl = URL(string: coverArtResponse.coverUrl) else {
+            switch response.result {
+            case .success(let coverArtUrlResponse):
+                guard let coverUrl = URL(string: coverArtUrlResponse.coverUrl) else {
                     return completion(.error(NSError(domain: "Unable to cast CoverArtUrlString to URL", code: 303, userInfo: nil)))
                 }
                 return completion(.value(coverUrl))
-            }
-            
-            if let error = response.error {
+            case .failure(let error):
                 return completion(.error(error))
             }
             
