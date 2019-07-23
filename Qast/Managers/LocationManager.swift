@@ -28,7 +28,7 @@ class LocationManager: NSObject, MGLMapViewDelegate {
     
     weak var delegate: LocationManagerDelegate?
     var networker: SoundZoneAPI = FirebaseManager()
-    var streamMetadataAPI: StreamMetadataAPI = UMGStreamMetadataAPI()
+    var streamMetadataAPI: StreamMetadataAPI = UMGStreamMetadataAPIManager()
     
     var nearbySoundZones: [SoundZone]?
     var currentSoundZone: SoundZone? {

@@ -12,8 +12,4 @@ struct CoverArtResponse: Codable {
     enum CodingKeys: String, CodingKey {
         case coverUrl
     }
-    
-    init() {
-        self.coverUrl = ""
-    }
 }

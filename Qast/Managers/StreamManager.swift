@@ -8,7 +8,6 @@
 
 import AVFoundation
 import UIKit
-import SDWebImage
 import Alamofire
 
 var player: AVQueuePlayer?

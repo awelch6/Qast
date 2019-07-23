@@ -9,12 +9,7 @@
 import Foundation
 import Alamofire
 
-// It's possible we'll be with multiple stream providers. Easy enough to prepare with an interface to code to
-protocol StreamMetadataAPI {
-    func streamMetadata(getCoverArtUrlforIsrc isrc: String, _ completion: @escaping (Result<URL>) -> Void)
-}
-
-class UMGStreamMetadataAPI: StreamMetadataAPI {
+class UMGStreamMetadataAPIManager: StreamMetadataAPI {
     
     func streamMetadata(getCoverArtUrlforIsrc isrc: String, _ completion: @escaping (Result<URL>) -> Void) {
         let urlString = "https://hackathon.umusic.com/prod/v1/isrc/\(isrc)/cover"
@@ -24,7 +19,6 @@ class UMGStreamMetadataAPI: StreamMetadataAPI {
         let headers = ["x-api-key": "5dsb3jqxzX8D5dIlJzWoTaTM2TzcKufq1geS1SSb"]
         
         Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseObject { (response: DataResponse<CoverArtResponse>) in
-            
             switch response.result {
             case .success(let coverArtUrlResponse):
                 guard let coverUrl = URL(string: coverArtUrlResponse.coverUrl) else {
@@ -34,7 +28,6 @@ class UMGStreamMetadataAPI: StreamMetadataAPI {
             case .failure(let error):
                 return completion(.error(error))
             }
-            
         }
         
     }
