@@ -7,8 +7,6 @@
 //
 
 import AVFoundation
-import UIKit
-import Alamofire
 
 var player: AVQueuePlayer?
 
