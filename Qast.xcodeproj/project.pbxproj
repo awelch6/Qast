@@ -27,6 +27,10 @@
 		2BB8F17122CAE132003BFBA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16F22CAE132003BFBA5 /* LaunchScreen.storyboard */; };
 		2BB8F17C22CAE132003BFBA5 /* QastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F17B22CAE132003BFBA5 /* QastTests.swift */; };
 		2BF6AD2122D2521800A752D0 /* SoundZoneAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6AD2022D2521700A752D0 /* SoundZoneAPI.swift */; };
+		5908184922E697A90032FF86 /* DataRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5908184822E697A90032FF86 /* DataRequestExtensions.swift */; };
+		5908184B22E697EB0032FF86 /* JSONDecoderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5908184A22E697EB0032FF86 /* JSONDecoderExtensions.swift */; };
+		5908184D22E6981D0032FF86 /* JSONEncoderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5908184C22E6981D0032FF86 /* JSONEncoderExtensions.swift */; };
+		5937CA2522E7B6C3006C73D0 /* StreamMetadataAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5937CA2422E7B6C3006C73D0 /* StreamMetadataAPI.swift */; };
 		5944D97422D1556400579892 /* TutorialCardOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97322D1556400579892 /* TutorialCardOneViewController.swift */; };
 		5944D97622D1561700579892 /* PopupTutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97522D1561700579892 /* PopupTutorialPageViewController.swift */; };
 		5944D97822D1574700579892 /* TutorialCardTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97722D1574700579892 /* TutorialCardTwo.swift */; };
@@ -42,6 +46,9 @@
 		5981795B22CD30FF0091605E /* FirebaseManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795A22CD30FF0091605E /* FirebaseManager.swift */; };
 		5981795D22CD324D0091605E /* FirstLaunch.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5981795C22CD324D0091605E /* FirstLaunch.swift */; };
 		5981795F22CD3E470091605E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 5981795E22CD3E460091605E /* GoogleService-Info.plist */; };
+		598E522222E62D6C00865556 /* CoverArtResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598E522122E62D6C00865556 /* CoverArtResponse.swift */; };
+		598E522422E64A3100865556 /* SoundZoneDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598E522322E64A3100865556 /* SoundZoneDetailViewController.swift */; };
+		598E522622E683CD00865556 /* StreamMetadataAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598E522522E683CD00865556 /* StreamMetadataAPIManager.swift */; };
 		59ED351F22D8F89100FA8CF2 /* soundZoneTutorial.json in Resources */ = {isa = PBXBuildFile; fileRef = 59ED351E22D8F89100FA8CF2 /* soundZoneTutorial.json */; };
 /* End PBXBuildFile section */
 
@@ -80,6 +87,10 @@
 		2BB8F17D22CAE132003BFBA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BF6AD2022D2521700A752D0 /* SoundZoneAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZoneAPI.swift; sourceTree = "<group>"; };
 		576B0074E8DC05358D881186 /* Pods-QastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QastTests/Pods-QastTests.release.xcconfig"; sourceTree = "<group>"; };
+		5908184822E697A90032FF86 /* DataRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestExtensions.swift; sourceTree = "<group>"; };
+		5908184A22E697EB0032FF86 /* JSONDecoderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderExtensions.swift; sourceTree = "<group>"; };
+		5908184C22E6981D0032FF86 /* JSONEncoderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderExtensions.swift; sourceTree = "<group>"; };
+		5937CA2422E7B6C3006C73D0 /* StreamMetadataAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamMetadataAPI.swift; sourceTree = "<group>"; };
 		5944D97322D1556400579892 /* TutorialCardOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCardOneViewController.swift; sourceTree = "<group>"; };
 		5944D97522D1561700579892 /* PopupTutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupTutorialPageViewController.swift; sourceTree = "<group>"; };
 		5944D97722D1574700579892 /* TutorialCardTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCardTwo.swift; sourceTree = "<group>"; };
@@ -96,6 +107,9 @@
 		5981795C22CD324D0091605E /* FirstLaunch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstLaunch.swift; sourceTree = "<group>"; };
 		5981795E22CD3E460091605E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		5981796022CD5DA60091605E /* .swiftlint.yml */ = {isa = PBXFileReference; lastKnownFileType = text; path = .swiftlint.yml; sourceTree = "<group>"; };
+		598E522122E62D6C00865556 /* CoverArtResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverArtResponse.swift; sourceTree = "<group>"; };
+		598E522322E64A3100865556 /* SoundZoneDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZoneDetailViewController.swift; sourceTree = "<group>"; };
+		598E522522E683CD00865556 /* StreamMetadataAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamMetadataAPIManager.swift; sourceTree = "<group>"; };
 		59ED351E22D8F89100FA8CF2 /* soundZoneTutorial.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; name = soundZoneTutorial.json; path = "../../Qast copy/Qast/soundZoneTutorial.json"; sourceTree = "<group>"; };
 		9E7E693DB0310FEF888CE173 /* Pods-Qast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qast.release.xcconfig"; path = "Pods/Target Support Files/Pods-Qast/Pods-Qast.release.xcconfig"; sourceTree = "<group>"; };
 		CB73906A245800CD0D5ED108 /* Pods-QastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QastTests/Pods-QastTests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -204,6 +218,7 @@
 				2BA4339022CF68C000C1D6F8 /* SessionManagerDelegate.swift */,
 				2BA4339922D128C900C1D6F8 /* TrackManagerDelegate.swift */,
 				2BF6AD2022D2521700A752D0 /* SoundZoneAPI.swift */,
+				5937CA2422E7B6C3006C73D0 /* StreamMetadataAPI.swift */,
 			);
 			path = Protocols;
 			sourceTree = "<group>";
@@ -232,6 +247,7 @@
 				5944D97222D1553700579892 /* PopupTutorial */,
 				2BB8F16822CAE131003BFBA5 /* ConnectionViewController.swift */,
 				2B82021722CC0B0E005E3BC1 /* MapViewController.swift */,
+				598E522322E64A3100865556 /* SoundZoneDetailViewController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -247,6 +263,7 @@
 				5981795C22CD324D0091605E /* FirstLaunch.swift */,
 				597CD73B22DB793B00B56C6F /* NotificationManager.swift */,
 				597A381022E14D2000562FF6 /* LocationManager.swift */,
+				598E522522E683CD00865556 /* StreamMetadataAPIManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -260,6 +277,9 @@
 				5944D97F22D15B9400579892 /* UITabBarExtension.swift */,
 				2B10558D22D8005700B7E003 /* GeoPointExtensions.swift */,
 				2B10558F22D8006400B7E003 /* CLLocationCoordinate2DExtensions.swift */,
+				5908184822E697A90032FF86 /* DataRequestExtensions.swift */,
+				5908184A22E697EB0032FF86 /* JSONDecoderExtensions.swift */,
+				5908184C22E6981D0032FF86 /* JSONEncoderExtensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -290,6 +310,7 @@
 				5981795322CD2F230091605E /* SoundZone.swift */,
 				2BA4339D22D187F600C1D6F8 /* SoundZoneAnnotation.swift */,
 				5981795722CD2FE70091605E /* Result.swift */,
+				598E522122E62D6C00865556 /* CoverArtResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -496,11 +517,14 @@
 				2B82021822CC0B0E005E3BC1 /* MapViewController.swift in Sources */,
 				5944D97C22D159EB00579892 /* UIColorExtensions.swift in Sources */,
 				2BA4339322CF6FA700C1D6F8 /* DoubleExtensions.swift in Sources */,
+				5908184B22E697EB0032FF86 /* JSONDecoderExtensions.swift in Sources */,
 				2B10558E22D8005700B7E003 /* GeoPointExtensions.swift in Sources */,
 				2BA4338F22CF651300C1D6F8 /* SessionManager.swift in Sources */,
 				5944D98022D15B9400579892 /* UITabBarExtension.swift in Sources */,
 				5944D97E22D15B7500579892 /* UINavigationBarExtension.swift in Sources */,
 				2BA4339822D1284100C1D6F8 /* StreamManager.swift in Sources */,
+				598E522422E64A3100865556 /* SoundZoneDetailViewController.swift in Sources */,
+				598E522622E683CD00865556 /* StreamMetadataAPIManager.swift in Sources */,
 				2BB8F16722CAE131003BFBA5 /* AppDelegate.swift in Sources */,
 				2BA433A022D189D100C1D6F8 /* SoundZoneAnnotationView.swift in Sources */,
 				2BA4339A22D128C900C1D6F8 /* TrackManagerDelegate.swift in Sources */,
@@ -508,9 +532,13 @@
 				2BA4339E22D187F600C1D6F8 /* SoundZoneAnnotation.swift in Sources */,
 				2B10559022D8006400B7E003 /* CLLocationCoordinate2DExtensions.swift in Sources */,
 				5981795822CD2FE70091605E /* Result.swift in Sources */,
+				5937CA2522E7B6C3006C73D0 /* StreamMetadataAPI.swift in Sources */,
 				2BF6AD2122D2521800A752D0 /* SoundZoneAPI.swift in Sources */,
 				5981795D22CD324D0091605E /* FirstLaunch.swift in Sources */,
+				5908184922E697A90032FF86 /* DataRequestExtensions.swift in Sources */,
+				598E522222E62D6C00865556 /* CoverArtResponse.swift in Sources */,
 				5944D97422D1556400579892 /* TutorialCardOneViewController.swift in Sources */,
+				5908184D22E6981D0032FF86 /* JSONEncoderExtensions.swift in Sources */,
 				5981795422CD2F230091605E /* SoundZone.swift in Sources */,
 				2BA4339C22D1867E00C1D6F8 /* QastMapView.swift in Sources */,
 				597CD73C22DB793B00B56C6F /* NotificationManager.swift in Sources */,

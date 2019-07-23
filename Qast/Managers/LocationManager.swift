@@ -9,6 +9,7 @@
 import Foundation
 import CoreLocation
 import Mapbox
+import SDWebImage
 
 protocol LocationManagerDelegate: class {
     var mapView: MGLMapView { get }
@@ -16,12 +17,18 @@ protocol LocationManagerDelegate: class {
     func qastMap(didReceive nearbySoundZones: [SoundZone])
     func qastMap(didUpdate currentSoundZone: SoundZone?)
     func qastMap(didUpdate userLocation: CLLocation)
+    
+    // once we use our our MGLCalloutView, this method will move to MapViewController
+    // this is not location-related IMO
+    // mere product of LocationManager being mapView delegate to access the user's location...
+    func qastMap(didTap soundZone: SoundZone)
 }
 
 class LocationManager: NSObject, MGLMapViewDelegate {
     
     weak var delegate: LocationManagerDelegate?
     var networker: SoundZoneAPI = FirebaseManager()
+    var streamMetadataAPI: StreamMetadataAPI = UMGStreamMetadataAPIManager()
     
     var nearbySoundZones: [SoundZone]?
     var currentSoundZone: SoundZone? {
@@ -123,4 +130,43 @@ extension LocationManager {
     func mapView(_ mapView: MGLMapView, fillColorForPolygonAnnotation annotation: MGLPolygon) -> UIColor {
         return UIColor.blue
     }
+    
+    func mapView(_ mapView: MGLMapView, annotationCanShowCallout annotation: MGLAnnotation) -> Bool {
+        return true
+    }
+    
+    func mapView(_ mapView: MGLMapView, rightCalloutAccessoryViewFor annotation: MGLAnnotation) -> UIView? {
+        
+        guard let soundZoneAnnotation = annotation as? SoundZoneAnnotation else { return nil }
+        
+        let coverArtImageView = UIImageView(image: UIImage(named: "cover_art_placeholder"))
+        coverArtImageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
+        
+        streamMetadataAPI.streamMetadata(getCoverArtUrlforIsrc: soundZoneAnnotation.soundZone.streamId) { (result) in
+            switch result {
+            case .value(let coverArtUrl):
+                coverArtImageView.sd_setImage(with: coverArtUrl, completed: nil)
+            case .error(let error):
+                print(error)
+            }
+        }
+        return coverArtImageView
+    }
+    
+    func mapView(_ mapView: MGLMapView, didSelect annotation: MGLAnnotation) {
+        if let polygonFeatureAnnotation = annotation as? MGLPolygonFeature {
+            guard let polygonFeatureIdentifier = polygonFeatureAnnotation.identifier as? String else { return }
+            guard let annotations = mapView.annotations else { return }
+            guard let correspondingPointAnnotation = annotations.filter({ ($0 as? SoundZoneAnnotation)?.soundZone.id == polygonFeatureIdentifier }).first else { return }
+            mapView.selectAnnotation(correspondingPointAnnotation, animated: true)
+        } else {
+            return
+        }
+    }
+    
+    func mapView(_ mapView: MGLMapView, tapOnCalloutFor annotation: MGLAnnotation) {
+        guard let soundZoneAnnotation = annotation as? SoundZoneAnnotation else { return }
+        delegate?.qastMap(didTap: soundZoneAnnotation.soundZone)
+    }
+
 }

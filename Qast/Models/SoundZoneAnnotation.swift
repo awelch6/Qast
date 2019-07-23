@@ -10,12 +10,16 @@ import Mapbox
 
 class SoundZoneAnnotation: NSObject, MGLAnnotation {
     var coordinate: CLLocationCoordinate2D
+    var title: String?
+    var subtitle: String?
     
     public let soundZone: SoundZone
     
     init(soundZone: SoundZone) {
         self.coordinate = CLLocationCoordinate2D(latitude: soundZone.center.latitude, longitude: soundZone.center.longitude)
         self.soundZone = soundZone
+        self.title = soundZone.id
+        self.subtitle = soundZone.streamId
         super.init()
     }
     

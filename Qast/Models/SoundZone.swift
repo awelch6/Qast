@@ -13,7 +13,7 @@ import Mapbox
 /// MapBox is great for rendering, but can't geoquery well. CoreLocation can query, but can't render onto MGLMapView
 /// This protocol is to enforce both behaviors on any Zones we use in the future
 protocol GeoQueryable {
-    var renderableGeofence: MGLPolygon { get }
+    var renderableGeofence: MGLPolygonFeature { get }
     var queryableGeofence: CLCircularRegion { get }
 }
 
@@ -26,8 +26,8 @@ struct SoundZone: GeoQueryable {
     let radius: Double
     let streamId: String
     
-    var renderableGeofence: MGLPolygon {
-        return polygonCircleForCoordinate(coordinate: self.center.location, withMeterRadius: self.radius)
+    var renderableGeofence: MGLPolygonFeature {
+        return polygonFeatureCircleForCoordinate(coordinate: self.center.location, withMeterRadius: self.radius)
     }
     
     var queryableGeofence: CLCircularRegion {
@@ -79,7 +79,7 @@ extension SoundZone {
     }
     
     /// Approximate a circle using a 45-sided MGLPolygon
-    private func polygonCircleForCoordinate(coordinate: CLLocationCoordinate2D, withMeterRadius: Double) -> MGLPolygon {
+    private func polygonFeatureCircleForCoordinate(coordinate: CLLocationCoordinate2D, withMeterRadius: Double) -> MGLPolygonFeature {
         let SHRINK_OFFSET: Double = 43.5
         let degreesBetweenPoints = 8.0
         //45 sides
@@ -102,7 +102,8 @@ extension SoundZone {
             let point: CLLocationCoordinate2D = CLLocationCoordinate2DMake(pointLat, pointLon)
             coordinates.append(point)
         }
-        let polygon = MGLPolygon(coordinates: &coordinates, count: UInt(coordinates.count))
+        let polygon = MGLPolygonFeature(coordinates: &coordinates, count: UInt(coordinates.count))
+        polygon.identifier = self.id
         return polygon
     }
 }

@@ -95,6 +95,10 @@ extension MapViewController {
 // MARK: LocationManager Delegate
 
 extension MapViewController: LocationManagerDelegate {
+    func qastMap(didTap soundZone: SoundZone) {
+        self.present(SoundZoneDetailViewController(soundZone), animated: true, completion: nil)
+    }
+    
     func qastMap(didUpdate userLocation: CLLocation) {
         // I really want MapViewController to well...control the MapView and nothing else
         // This could be in LocationManager, but feels more semantically at home here
