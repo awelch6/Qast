@@ -38,10 +38,8 @@ extension SoundZoneDetailViewController {
     func setupDismissIcon() {
         view.addSubview(dismissIcon)
         dismissIcon.snp.makeConstraints { (make) in
-            make.width.equalTo(40)
-            make.height.equalTo(40)
-            make.left.equalToSuperview().offset(30)
-            make.top.equalToSuperview().offset(30)
+            make.width.height.equalTo(40)
+            make.left.top.equalToSuperview().offset(30)
         }
         let dismissIconTapped = UITapGestureRecognizer(target: self, action: #selector(self.dismiss(_:)))
         dismissIcon.addGestureRecognizer(dismissIconTapped)

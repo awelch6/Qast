@@ -28,7 +28,7 @@ class LocationManager: NSObject, MGLMapViewDelegate {
     
     weak var delegate: LocationManagerDelegate?
     var networker: SoundZoneAPI = FirebaseManager()
-    var streamManager = StreamManager()
+    var streamMetadataAPI: StreamMetadataAPI = UMGStreamMetadataAPI()
     
     var nearbySoundZones: [SoundZone]?
     var currentSoundZone: SoundZone? {
@@ -142,7 +142,7 @@ extension LocationManager {
         let coverArtImageView = UIImageView(image: UIImage(named: "cover_art_placeholder"))
         coverArtImageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         
-        streamManager.fetchCoverArtUrl(for: soundZoneAnnotation.soundZone.streamId) { (result) in
+        streamMetadataAPI.streamMetadata(getCoverArtUrlforIsrc: soundZoneAnnotation.soundZone.streamId) { (result) in
             switch result {
             case .value(let coverArtUrl):
                 coverArtImageView.sd_setImage(with: coverArtUrl, completed: nil)

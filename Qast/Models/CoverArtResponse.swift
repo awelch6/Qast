@@ -6,11 +6,14 @@
 //  Copyright © 2019 Qast. All rights reserved.
 //
 
-// MARK: - CoverArtResponse
 struct CoverArtResponse: Codable {
     let coverUrl: String
     
     enum CodingKeys: String, CodingKey {
         case coverUrl
+    }
+    
+    init() {
+        self.coverUrl = ""
     }
 }
