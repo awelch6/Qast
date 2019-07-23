@@ -8,7 +8,7 @@
 
 import Foundation
 
-// It's possible we'll be with multiple stream providers. Easy enough to prepare with an interface to code to
+// May be dealing with multiple stream providers. Easy enough to prepare with an interface to code towards
 protocol StreamMetadataAPI {
     func streamMetadata(getCoverArtUrlforIsrc isrc: String, _ completion: @escaping (Result<URL>) -> Void)
 }
