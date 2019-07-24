@@ -77,13 +77,27 @@ extension MainViewController: MapViewControllerDelegate {
                 streamManager.start(playing: currentSoundZone)
                 
             } else {
-                guard let annotation = mapViewController.mapView.annotations?.filter({ $0 is SoundZoneAnnotation }).first as? SoundZoneAnnotation else {
+                guard let annotations = mapViewController.mapView.annotations?.filter({ $0 is SoundZoneAnnotation }) as? [SoundZoneAnnotation] else {
                     NotificationManager().noPreview()
                     return
                 }
-                NotificationManager().preview(soundZone: annotation.soundZone)
-                isPreviewing = true
-                streamManager.start(playing: annotation.soundZone)
+                
+                var soundZoneToPreview: SoundZone?
+                
+                for annotation in annotations {
+                    if mapViewController.vision.intersects(soundZone: annotation.soundZone) && annotation.soundZone.id != currentSoundZone?.id {
+                        soundZoneToPreview = annotation.soundZone
+                        break
+                    }
+                }
+
+                if let soundZone = soundZoneToPreview {
+                    NotificationManager().preview(soundZone: soundZone)
+                    isPreviewing = true
+                    streamManager.start(playing: soundZone)
+                } else {
+                    NotificationManager().noPreview()
+                }
             }
             
         default:
