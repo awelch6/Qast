@@ -14,11 +14,9 @@ class MainViewController: UIViewController {
     
     public lazy var mapViewController = MapViewController(networker: networker)
     
-    public var currentSoundZones: SoundZone? {
-        didSet {
-            
-        }
-    }
+    public var currentSoundZone: SoundZone?
+    
+    public var isPreviewing: Bool = false
     
     let session: WearableDeviceSession
     let streamManager: StreamManager
@@ -34,6 +32,7 @@ class MainViewController: UIViewController {
         
         SessionManager.shared.delegate = self
         SessionManager.shared.configureSensors([.rotation, .accelerometer, .gyroscope, .magnetometer, .orientation])
+        SessionManager.shared.configureGestures([.doubleTap])
     }
 
     override func viewDidLoad() {
@@ -59,6 +58,36 @@ extension MainViewController: MapViewControllerDelegate {
     
     func mapViewController(_ mapViewController: MapViewController, shouldStopPlaying soundZone: SoundZone) {
          streamManager.stop()
+    }
+    
+    func mapViewController(_ mapViewController: MapViewController, receivedGesture gestureType: GestureType) {
+        switch gestureType {
+        case .doubleTap:
+            print(isPreviewing)
+            if isPreviewing {
+                isPreviewing = false
+
+                guard let currentSoundZone = currentSoundZone else {
+                    streamManager.stop()
+                    return
+                }
+                
+                NotificationManager().preview(soundZone: currentSoundZone)
+                streamManager.start(playing: currentSoundZone)
+                
+            } else {
+                guard let annotation = mapViewController.mapView.annotations?.filter({ $0 is SoundZoneAnnotation }).first as? SoundZoneAnnotation else {
+                    NotificationManager().noPreview()
+                    return
+                }
+                NotificationManager().preview(soundZone: annotation.soundZone)
+                isPreviewing = true
+                streamManager.start(playing: annotation.soundZone)
+            }
+            
+        default:
+            break
+        }
     }
 }
 

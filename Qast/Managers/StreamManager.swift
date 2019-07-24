@@ -15,6 +15,8 @@ class StreamManager {
     public func start(playing soundZone: SoundZone) {
         if player == nil {
             player = makePlayer()
+        } else {
+            player?.removeAllItems()
         }
         
         var previous: AVPlayerItem?
@@ -26,6 +28,7 @@ class StreamManager {
             
             previous = playerItem
         }
+        player?.play()
     }
     
     public func stop() {
