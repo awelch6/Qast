@@ -54,7 +54,8 @@ extension ConnectionViewController {
 extension ConnectionViewController: SessionManagerDelegate {
     
     func session(_ session: WearableDeviceSession, didOpen: Bool) {
-        navigationController?.pushViewController(MapViewController(session: session), animated: true)
+        let mainViewController = MainViewController(session: session)
+        navigationController?.pushViewController(mainViewController, animated: true)
     }
     
     func session(_ session: WearableDeviceSession, didClose: Bool) {

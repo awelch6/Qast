@@ -12,6 +12,12 @@ import BoseWearable
 import simd
 import CoreGraphics
 
+protocol MapViewControllerDelegate: class {
+    func mapViewController(_ mapViewController: MapViewController, shouldStartPlaying soundZone: SoundZone)
+    func mapViewController(_ mapViewController: MapViewController, shouldStopPlaying soundZone: SoundZone?)
+    func mapViewController(_ mapViewController: MapViewController, receivedGesture gestureType: GestureType)
+}
+
 class MapViewController: UIViewController {
 
     let locationManager: LocationManager = LocationManager()
@@ -25,17 +31,17 @@ class MapViewController: UIViewController {
     lazy var vision = VisionManager()
 
     var notificationManager = NotificationManager()
-    let streamingManager = StreamManager()
     
     var sensorDispatch = SensorDispatch(queue: .main)
     
-    public let session: WearableDeviceSession
+    let networker: SoundZoneAPI
     
-    init(session: WearableDeviceSession) {
-        self.session = session
+    weak var delegate: MapViewControllerDelegate?
+    
+    init(networker: SoundZoneAPI = FirebaseManager()) {
+        self.networker = networker
         locationManager.getNearbySoundZones()
         super.init(nibName: nil, bundle: nil)
-        SessionManager.shared.configureSensors([.rotation, .accelerometer, .gyroscope, .magnetometer, .orientation])
     }
 
     override func viewDidLoad() {
@@ -115,41 +121,31 @@ extension MapViewController: LocationManagerDelegate {
         if let currentSoundZone = currentSoundZone {
             self.title = currentSoundZone.id
             notificationManager.displaySoundZoneChangeNotification(currentSoundZone, spoken: true)
-            streamingManager.stop()
-            streamingManager.enqueue(currentSoundZone.streamId)
+            delegate?.mapViewController(self, shouldStartPlaying: currentSoundZone)
         } else {
             self.title = "Not in any SoundZone"
             notificationManager.displaySoundZoneChangeNotification(currentSoundZone, spoken: false)
-            streamingManager.stop()
+            delegate?.mapViewController(self, shouldStopPlaying: currentSoundZone)
         }
     }
-
 }
 
 extension MapViewController: SensorDispatchHandler {
     
+    func receivedGesture(type: GestureType, timestamp: SensorTimestamp) {
+        delegate?.mapViewController(self, receivedGesture: type)
+    }
+    
     func receivedRotation(quaternion: Quaternion, accuracy: QuaternionAccuracy, timestamp: SensorTimestamp) {
         let qMap = Quaternion(ix: 1, iy: 0, iz: 0, r: 0)
         let qResult = quaternion * qMap
-        let yaw: Double = (-qResult.zRotation).toDegrees()
+        let yaw: Double = qResult.zRotation.toDegrees()
         
         guard let userLocation = mapView.userLocation?.location, userLocation.horizontalAccuracy > 0 else {
             return
         }
         
-        let magneticDegrees: Double = (yaw < 0) ? 360 + yaw : yaw
-        
-        vision.updateVisionPath(center: userLocation.coordinate, orientation: 360 - magneticDegrees)
-        locationManager.visionPolygon(for: userLocation.coordinate, orientation: 360 - magneticDegrees)
-        
-        guard let annotations = mapView.annotations?.filter({ $0 is SoundZoneAnnotation }) else { return }
-
-        for annotation in annotations {
-            if vision.contains(annotation.coordinate) {
-//                title = "Found Sound Zone!"
-            } else {
-//                 title = "Did not find Sound Zone"
-            }
-        }
+        vision.updateVisionPath(center: userLocation.coordinate, orientation: yaw)
+        locationManager.visionPolygon(for: userLocation.coordinate, orientation: yaw)
     }
 }

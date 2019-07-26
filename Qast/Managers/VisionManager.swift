@@ -30,6 +30,7 @@ struct VisionManager {
     public var radius: Double
     
     private(set) public var visionPath: UIBezierPath?
+    private(set) public var visionPolygon: MGLPolygon?
     
     init(viewingAngle: Double = 90, radius: Double = 100) {
         self.viewingAngle = viewingAngle
@@ -48,6 +49,8 @@ struct VisionManager {
         path.close()
         
         visionPath = path
+        
+        visionPolygon = updateVisionPolygon(center: center, orientation: orientation)
     }
     
     ///This function is just for showing viewing angle.
@@ -64,6 +67,13 @@ struct VisionManager {
     public func contains(_ coordinate: CLLocationCoordinate2D) -> Bool {
         if let visionPath = visionPath {
             return visionPath.contains(CGPoint(x: coordinate.latitude, y: coordinate.longitude))
+        }
+        return false
+    }
+    
+    public func intersects(soundZone: SoundZone) -> Bool {
+        if let visionPolygon = visionPolygon {
+            return visionPolygon.intersects(soundZone.renderableGeofence.overlayBounds)
         }
         return false
     }

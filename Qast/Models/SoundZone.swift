@@ -25,7 +25,8 @@ struct SoundZone: GeoQueryable {
     let center: GeoPoint
     let radius: Double
     let streamId: String
-    
+    let tracks: [String]
+
     var renderableGeofence: MGLPolygonFeature {
         return polygonFeatureCircleForCoordinate(coordinate: self.center.location, withMeterRadius: self.radius)
     }
@@ -39,7 +40,7 @@ struct SoundZone: GeoQueryable {
     }
     
     var data: [String: Any] {
-        return ["id": id, "streamId": streamId, "center": center, "radius": radius]
+        return ["id": id, "streamId": streamId, "center": center, "radius": radius, "tracks": tracks]
     }
     
     init?(dictionary: [String: Any]) {
@@ -47,7 +48,9 @@ struct SoundZone: GeoQueryable {
             let id = dictionary["id"] as? String,
             let center = dictionary["center"] as? GeoPoint,
             let radius = dictionary["radius"] as? Double,
-            let streamId = dictionary["streamId"] as? String
+            let streamId = dictionary["streamId"] as? String,
+            let tracks = dictionary["tracks"] as? [String]
+
             else {
                 return nil
         }
@@ -55,6 +58,7 @@ struct SoundZone: GeoQueryable {
         self.center = center
         self.radius = radius
         self.streamId = streamId
+        self.tracks = tracks
     }
 }
 
