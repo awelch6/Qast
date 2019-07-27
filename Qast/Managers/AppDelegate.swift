@@ -14,19 +14,20 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BoseWearable.enableCommonLogging()
         BoseWearable.configure()
         
-//        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "wasLaunchedBefore")
+        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "wasLaunchedBefore")
 //        let firstLaunch = FirstLaunch.alwaysFirst()
-//
-//        if firstLaunch.isFirstLaunch {
-//            print("Welcome to Qast!")
-//            navigationController = UINavigationController(rootViewController: PopupTutorialPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil))
-//        } else {
-//            print("Welcome back to Qast!")
-//            navigationController = UINavigationController(rootViewController: ConnectionViewController())
-//        }
+
+        if firstLaunch.isFirstLaunch {
+            print("Welcome to Qast!")
+            navigationController = UINavigationController(rootViewController: PopupTutorialPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil))
+        } else {
+            print("Welcome back to Qast!")
+            navigationController = UINavigationController(rootViewController: ConnectionViewController())
+        }
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        navigationController = UINavigationController(rootViewController: ConnectionViewController())
+        window?.backgroundColor = UIColor.init(hexString: "F96170")
+//        navigationController = UINavigationController(rootViewController: ConnectionViewController())
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
         

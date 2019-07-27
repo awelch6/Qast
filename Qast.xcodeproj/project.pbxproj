@@ -33,10 +33,9 @@
 		5908184B22E697EB0032FF86 /* JSONDecoderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5908184A22E697EB0032FF86 /* JSONDecoderExtensions.swift */; };
 		5908184D22E6981D0032FF86 /* JSONEncoderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5908184C22E6981D0032FF86 /* JSONEncoderExtensions.swift */; };
 		5937CA2522E7B6C3006C73D0 /* StreamMetadataAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5937CA2422E7B6C3006C73D0 /* StreamMetadataAPI.swift */; };
-		5944D97422D1556400579892 /* TutorialCardOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97322D1556400579892 /* TutorialCardOneViewController.swift */; };
+		5944D97422D1556400579892 /* TutorialCardOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97322D1556400579892 /* TutorialCardOneVC.swift */; };
 		5944D97622D1561700579892 /* PopupTutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97522D1561700579892 /* PopupTutorialPageViewController.swift */; };
-		5944D97822D1574700579892 /* TutorialCardTwo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97722D1574700579892 /* TutorialCardTwo.swift */; };
-		5944D97A22D1578400579892 /* TutorialCardThreeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97922D1578400579892 /* TutorialCardThreeViewController.swift */; };
+		5944D97822D1574700579892 /* TutorialCardTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97722D1574700579892 /* TutorialCardTwoVC.swift */; };
 		5944D97C22D159EB00579892 /* UIColorExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97B22D159EB00579892 /* UIColorExtensions.swift */; };
 		5944D97E22D15B7500579892 /* UINavigationBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97D22D15B7500579892 /* UINavigationBarExtension.swift */; };
 		5944D98022D15B9400579892 /* UITabBarExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97F22D15B9400579892 /* UITabBarExtension.swift */; };
@@ -94,10 +93,9 @@
 		5908184A22E697EB0032FF86 /* JSONDecoderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderExtensions.swift; sourceTree = "<group>"; };
 		5908184C22E6981D0032FF86 /* JSONEncoderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderExtensions.swift; sourceTree = "<group>"; };
 		5937CA2422E7B6C3006C73D0 /* StreamMetadataAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamMetadataAPI.swift; sourceTree = "<group>"; };
-		5944D97322D1556400579892 /* TutorialCardOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCardOneViewController.swift; sourceTree = "<group>"; };
+		5944D97322D1556400579892 /* TutorialCardOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCardOneVC.swift; sourceTree = "<group>"; };
 		5944D97522D1561700579892 /* PopupTutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupTutorialPageViewController.swift; sourceTree = "<group>"; };
-		5944D97722D1574700579892 /* TutorialCardTwo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCardTwo.swift; sourceTree = "<group>"; };
-		5944D97922D1578400579892 /* TutorialCardThreeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCardThreeViewController.swift; sourceTree = "<group>"; };
+		5944D97722D1574700579892 /* TutorialCardTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCardTwoVC.swift; sourceTree = "<group>"; };
 		5944D97B22D159EB00579892 /* UIColorExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtensions.swift; sourceTree = "<group>"; };
 		5944D97D22D15B7500579892 /* UINavigationBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UINavigationBarExtension.swift; sourceTree = "<group>"; };
 		5944D97F22D15B9400579892 /* UITabBarExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UITabBarExtension.swift; sourceTree = "<group>"; };
@@ -299,10 +297,9 @@
 		5944D97222D1553700579892 /* PopupTutorial */ = {
 			isa = PBXGroup;
 			children = (
-				5944D97322D1556400579892 /* TutorialCardOneViewController.swift */,
+				5944D97322D1556400579892 /* TutorialCardOneVC.swift */,
 				5944D97522D1561700579892 /* PopupTutorialPageViewController.swift */,
-				5944D97722D1574700579892 /* TutorialCardTwo.swift */,
-				5944D97922D1578400579892 /* TutorialCardThreeViewController.swift */,
+				5944D97722D1574700579892 /* TutorialCardTwoVC.swift */,
 			);
 			path = PopupTutorial;
 			sourceTree = "<group>";
@@ -512,7 +509,7 @@
 				5981045F22DA96A00084337A /* SoundZoneTransitionType.swift in Sources */,
 				2BB8F16922CAE131003BFBA5 /* ConnectionViewController.swift in Sources */,
 				2BA4339122CF68C000C1D6F8 /* SessionManagerDelegate.swift in Sources */,
-				5944D97822D1574700579892 /* TutorialCardTwo.swift in Sources */,
+				5944D97822D1574700579892 /* TutorialCardTwoVC.swift in Sources */,
 				2BA4338B22CF628200C1D6F8 /* VisionManager.swift in Sources */,
 				5981795B22CD30FF0091605E /* FirebaseManager.swift in Sources */,
 				597A381122E14D2000562FF6 /* LocationManager.swift in Sources */,
@@ -531,7 +528,6 @@
 				2BA433A022D189D100C1D6F8 /* SoundZoneAnnotationView.swift in Sources */,
 				2BA4339A22D128C900C1D6F8 /* TrackManagerDelegate.swift in Sources */,
 				2B714BF722E91E79001A8307 /* MainViewController.swift in Sources */,
-				5944D97A22D1578400579892 /* TutorialCardThreeViewController.swift in Sources */,
 				2BA4339E22D187F600C1D6F8 /* SoundZoneAnnotation.swift in Sources */,
 				2B10559022D8006400B7E003 /* CLLocationCoordinate2DExtensions.swift in Sources */,
 				5981795822CD2FE70091605E /* Result.swift in Sources */,
@@ -541,7 +537,7 @@
 				5981795D22CD324D0091605E /* FirstLaunch.swift in Sources */,
 				5908184922E697A90032FF86 /* DataRequestExtensions.swift in Sources */,
 				598E522222E62D6C00865556 /* CoverArtResponse.swift in Sources */,
-				5944D97422D1556400579892 /* TutorialCardOneViewController.swift in Sources */,
+				5944D97422D1556400579892 /* TutorialCardOneVC.swift in Sources */,
 				5908184D22E6981D0032FF86 /* JSONEncoderExtensions.swift in Sources */,
 				5981795422CD2F230091605E /* SoundZone.swift in Sources */,
 				2BA4339C22D1867E00C1D6F8 /* QastMapView.swift in Sources */,
@@ -702,7 +698,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XYA5KJEM32;
+				DEVELOPMENT_TEAM = VK9Q399257;
 				INFOPLIST_FILE = "$(SRCROOT)/Qast/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -721,7 +717,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
-				DEVELOPMENT_TEAM = XYA5KJEM32;
+				DEVELOPMENT_TEAM = VK9Q399257;
 				INFOPLIST_FILE = "$(SRCROOT)/Qast/Configurations/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
