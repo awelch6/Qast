@@ -21,6 +21,7 @@ class ConnectionViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         SessionManager.shared.delegate = self
+        view.backgroundColor = .clear
         setupConnectButton()
     }
 }
@@ -30,6 +31,11 @@ class ConnectionViewController: UIViewController {
 extension ConnectionViewController {
     
     private func setupConnectButton() {
+        connectButton.backgroundColor = UIColor.init(hexString: "FFFFFF", alpha: 0.25)
+        connectButton.layer.cornerRadius = 5
+        connectButton.layer.borderWidth = 1
+        connectButton.layer.borderColor = UIColor.init(hexString: "FFFFFF", alpha: 0.5).cgColor
+        
         view.addSubview(connectButton)
         connectButton.snp.makeConstraints { (make) in
             make.center.equalToSuperview()

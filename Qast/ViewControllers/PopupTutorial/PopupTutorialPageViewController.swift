@@ -41,7 +41,7 @@ extension PopupTutorialPageViewController {
 
 extension PopupTutorialPageViewController: UIPageViewControllerDataSource {
     func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        if viewController is TutorialCardThreeViewController {
+        if viewController is ConnectionViewController {
             // 3 -> 2
             return TutorialCardTwo()
         } else if viewController is TutorialCardTwo {
@@ -59,7 +59,7 @@ extension PopupTutorialPageViewController: UIPageViewControllerDataSource {
             return TutorialCardTwo()
         } else if viewController is TutorialCardTwo {
             // 2 -> 3
-            return TutorialCardThreeViewController()
+            return ConnectionViewController()
         } else {
             // 3 -> end of the road
             return nil
