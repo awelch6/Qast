@@ -18,7 +18,7 @@ public enum PreviewType {
 class NotificationManager {
     
     func preview(soundZone: SoundZone) {
-        let title  = "You are now previewing \(soundZone.id)"
+        let title  = "You are now previewing \(soundZone.name)"
         let content = makeNotificationContent(title: title, body: "Enjoy these amazing tracks", sound: .default)
         let utterance = AVSpeechUtterance(string: title)
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
@@ -34,7 +34,7 @@ class NotificationManager {
     }
     
     func noPreview() {
-        let utterance = AVSpeechUtterance(string: "Preview Unavailable")
+        let utterance = AVSpeechUtterance(string: "No SoundZone to preview in that direction")
         utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
         AVSpeechSynthesizer().speak(utterance)
     }
@@ -50,7 +50,7 @@ class NotificationManager {
         var notificationBody = ""
         
         if let currentSoundZone = currentSoundZone {
-            notificationTitle = "Welcome to \(currentSoundZone.id)"
+            notificationTitle = "Welcome to \(currentSoundZone.name)"
             notificationBody = "Enjoy these amazing tracks"
         } else {
             notificationTitle = "You have left the SoundZone"

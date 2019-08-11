@@ -28,6 +28,7 @@
 		2BB8F17122CAE132003BFBA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16F22CAE132003BFBA5 /* LaunchScreen.storyboard */; };
 		2BB8F17C22CAE132003BFBA5 /* QastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F17B22CAE132003BFBA5 /* QastTests.swift */; };
 		2BF6AD2122D2521800A752D0 /* SoundZoneAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6AD2022D2521700A752D0 /* SoundZoneAPI.swift */; };
+		59032D182300AB7B00C089A3 /* TrackMetadataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59032D172300AB7B00C089A3 /* TrackMetadataResponse.swift */; };
 		5908184922E697A90032FF86 /* DataRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5908184822E697A90032FF86 /* DataRequestExtensions.swift */; };
 		5908184B22E697EB0032FF86 /* JSONDecoderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5908184A22E697EB0032FF86 /* JSONDecoderExtensions.swift */; };
 		5908184D22E6981D0032FF86 /* JSONEncoderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5908184C22E6981D0032FF86 /* JSONEncoderExtensions.swift */; };
@@ -88,6 +89,7 @@
 		2BB8F17D22CAE132003BFBA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BF6AD2022D2521700A752D0 /* SoundZoneAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZoneAPI.swift; sourceTree = "<group>"; };
 		576B0074E8DC05358D881186 /* Pods-QastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QastTests/Pods-QastTests.release.xcconfig"; sourceTree = "<group>"; };
+		59032D172300AB7B00C089A3 /* TrackMetadataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackMetadataResponse.swift; sourceTree = "<group>"; };
 		5908184822E697A90032FF86 /* DataRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestExtensions.swift; sourceTree = "<group>"; };
 		5908184A22E697EB0032FF86 /* JSONDecoderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderExtensions.swift; sourceTree = "<group>"; };
 		5908184C22E6981D0032FF86 /* JSONEncoderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderExtensions.swift; sourceTree = "<group>"; };
@@ -311,6 +313,7 @@
 				2BA4339D22D187F600C1D6F8 /* SoundZoneAnnotation.swift */,
 				5981795722CD2FE70091605E /* Result.swift */,
 				598E522122E62D6C00865556 /* CoverArtResponse.swift */,
+				59032D172300AB7B00C089A3 /* TrackMetadataResponse.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -517,6 +520,7 @@
 				5944D97C22D159EB00579892 /* UIColorExtensions.swift in Sources */,
 				2BA4339322CF6FA700C1D6F8 /* DoubleExtensions.swift in Sources */,
 				5908184B22E697EB0032FF86 /* JSONDecoderExtensions.swift in Sources */,
+				59032D182300AB7B00C089A3 /* TrackMetadataResponse.swift in Sources */,
 				2B10558E22D8005700B7E003 /* GeoPointExtensions.swift in Sources */,
 				2BA4338F22CF651300C1D6F8 /* SessionManager.swift in Sources */,
 				5944D98022D15B9400579892 /* UITabBarExtension.swift in Sources */,

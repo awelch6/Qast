@@ -12,7 +12,17 @@ var player: AVQueuePlayer?
 
 class StreamManager {
     
-    public func start(playing soundZone: SoundZone) {
+    public var currentSoundZonePlaybackTime: CMTime = CMTime(seconds: 0.0, preferredTimescale: CMTimeScale(NSEC_PER_SEC))
+    
+    public func markCurrentPlaybackTime() {
+        guard let player = player else { return }
+        guard let currentItem = player.currentItem else { return }
+
+        currentSoundZonePlaybackTime = currentItem.currentTime()
+        print("CURRENT SOUNDZONE TIME MARKED AT: \(currentSoundZonePlaybackTime)")
+    }
+    
+    public func start(playing soundZone: SoundZone, startingAt targetTime: CMTime = CMTime(seconds: 0.0, preferredTimescale: CMTimeScale(NSEC_PER_SEC))) {
         if player == nil {
             player = makePlayer()
         } else {
@@ -28,6 +38,9 @@ class StreamManager {
             
             previous = playerItem
         }
+        
+        player?.seek(to: targetTime, toleranceBefore: .zero, toleranceAfter: .zero)
+        
         player?.play()
     }
     

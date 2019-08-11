@@ -10,6 +10,13 @@ import BoseWearable
 import CoreLocation.CLLocation
 import UIKit
 
+enum PreviewModeTransitionType {
+    case NO_ZONE_TO_NO_ZONE
+    case NO_ZONE_TO_PREVIEW_ZONE
+    case CURRENT_ZONE_TO_NO_ZONE
+    case CURRENT_ZONE_TO_PREVIEW_ZONE
+}
+
 class MainViewController: UIViewController {
     
     public lazy var mapViewController = MapViewController(networker: networker)
@@ -62,44 +69,88 @@ extension MainViewController: MapViewControllerDelegate {
         streamManager.stop()
     }
     
+    func determinePreviewModeTransitionType(currentSoundZone: SoundZone?, potentialPreviewSoundZone: SoundZone?) -> PreviewModeTransitionType {
+        if currentSoundZone == nil && potentialPreviewSoundZone == nil { return .NO_ZONE_TO_NO_ZONE }
+        if currentSoundZone == nil && potentialPreviewSoundZone != nil { return .NO_ZONE_TO_PREVIEW_ZONE }
+        if currentSoundZone != nil && potentialPreviewSoundZone == nil { return .CURRENT_ZONE_TO_NO_ZONE }
+        if currentSoundZone != nil && potentialPreviewSoundZone != nil { return .CURRENT_ZONE_TO_PREVIEW_ZONE }
+        fatalError()
+    }
+    
+    func determineSoundZoneToPreview() -> SoundZone? {
+        guard let annotations = mapViewController.mapView.annotations?.filter({ $0 is SoundZoneAnnotation }) as? [SoundZoneAnnotation] else {
+            NotificationManager().noPreview()
+            return nil
+        }
+        
+        for annotation in annotations {
+            if mapViewController.vision.intersects(soundZone: annotation.soundZone) && annotation.soundZone.id != currentSoundZone?.id {
+                return annotation.soundZone
+            }
+        }
+        
+        return nil
+    }
+    
+    func attemptToEnterPreviewMode() {
+        var soundZoneToPreview: SoundZone?
+        
+        soundZoneToPreview = determineSoundZoneToPreview()
+        
+        let transitionType = determinePreviewModeTransitionType(currentSoundZone: currentSoundZone, potentialPreviewSoundZone: soundZoneToPreview)
+        
+        switch transitionType {
+        
+        case .NO_ZONE_TO_NO_ZONE:
+            print("NO_ZONE_TO_NO_ZONE")
+            NotificationManager().noPreview()
+            
+        case .CURRENT_ZONE_TO_NO_ZONE:
+            print("CURRENT_ZONE_TO_NO_ZONE")
+            NotificationManager().noPreview()
+            
+        case .NO_ZONE_TO_PREVIEW_ZONE:
+            print("NO_ZONE_TO_PREVIEW_ZONE")
+            
+            guard let soundZoneToPreview = soundZoneToPreview else { fatalError("NO_ZONE_TO_PREVIEW_ZONE: determinePreviewModeTransitionType determined nil") }
+            
+            isPreviewing = true
+            NotificationManager().preview(soundZone: soundZoneToPreview)
+            streamManager.markCurrentPlaybackTime()
+            streamManager.start(playing: soundZoneToPreview)
+            
+        case .CURRENT_ZONE_TO_PREVIEW_ZONE:
+            print("CURRENT_ZONE_TO_PREVIEW_ZONE")
+            
+            guard let soundZoneToPreview = soundZoneToPreview else { fatalError("CURRENT_ZONE_TO_PREVIEW_ZONE: determinePreviewModeTransitionType determined nil") }
+            
+            isPreviewing = true
+            NotificationManager().preview(soundZone: soundZoneToPreview)
+            streamManager.markCurrentPlaybackTime()
+            streamManager.start(playing: soundZoneToPreview)
+        }
+    }
+    
+    func exitPreviewMode() {
+        isPreviewing = false
+        
+        guard let currentSoundZone = currentSoundZone else {
+            streamManager.stop()
+            return
+        }
+        
+        NotificationManager().exitingPreview()
+        streamManager.start(playing: currentSoundZone, startingAt: streamManager.currentSoundZonePlaybackTime)
+    }
+    
     func mapViewController(_ mapViewController: MapViewController, receivedGesture gestureType: GestureType) {
         switch gestureType {
         case .doubleTap:
             if isPreviewing {
-                isPreviewing = false
-                
-                guard let currentSoundZone = currentSoundZone else {
-                    streamManager.stop()
-                    return
-                }
-                
-                NotificationManager().exitingPreview()
-                streamManager.start(playing: currentSoundZone)
-                
+                exitPreviewMode()
             } else {
-                guard let annotations = mapViewController.mapView.annotations?.filter({ $0 is SoundZoneAnnotation }) as? [SoundZoneAnnotation] else {
-                    NotificationManager().noPreview()
-                    return
-                }
-                
-                var soundZoneToPreview: SoundZone?
-                
-                for annotation in annotations {
-                    if mapViewController.vision.intersects(soundZone: annotation.soundZone) && annotation.soundZone.id != currentSoundZone?.id {
-                        soundZoneToPreview = annotation.soundZone
-                        break
-                    }
-                }
-
-                if let soundZone = soundZoneToPreview {
-                    NotificationManager().preview(soundZone: soundZone)
-                    isPreviewing = true
-                    streamManager.start(playing: soundZone)
-                } else {
-                    NotificationManager().noPreview()
-                }
+                attemptToEnterPreviewMode()
             }
-            
         default:
             break
         }

@@ -51,7 +51,14 @@ class MapViewController: UIViewController {
         
         sensorDispatch.handler = self
         
-//        let soundZoneDict: [String: Any] = ["id": "andrews_apartment", "center": CLLocationCoordinate2D(latitude: 42.331424, longitude:  -83.041958).geopoint, "radius": 90.0, "streamId": "USCA20100402", "description": "Short description", "imageURL": "myUrl"]
+//        let soundZoneDict: [String: Any] =
+//            ["id": "andrews_apartment_large",
+//             "center": CLLocationCoordinate2D(latitude: 42.331424, longitude:  -83.041958).geopoint,
+//             "radius": 90.0,
+//             "streamId": "USCA20100402",
+//             "description": "Short description",
+//             "imageURL": "myUrl",
+//             "tracks": ["track1", "track2"]]
 //
 //        networker.create(SoundZone(dictionary: soundZoneDict)!) { (error) in
 //            if let error = error {

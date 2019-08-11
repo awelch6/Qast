@@ -10,13 +10,13 @@ import UIKit
 
 class SoundZoneDetailViewController: UIViewController {
 
-    let soundZone: SoundZone?
-    let soundZoneTitle = UILabel()
-    let soundZoneDescription: UITextView = UITextView()
-    let soundZoneMainImage: UIImageView = UIImageView()
+    let soundZone: SoundZone!
+    let soundZoneTitle: UILabel = UILabel()
+    let soundZoneDescription: UITextView = UITextView(frame: CGRect(x: 0, y: 0, width: 100, height: 100))
+    let soundZoneMainImage: UIImageView = UIImageView(image: UIImage(named: "placeholder"))
     let trackListTableView: UITableView = UITableView()
     let dismissIcon = UIImageView(image: UIImage(named: "x-button"))
-    
+
     let smt: UMGStreamMetadataAPIManager = UMGStreamMetadataAPIManager()
     
     init(_ soundZone: SoundZone) {
@@ -44,8 +44,8 @@ class SoundZoneDetailViewController: UIViewController {
 
 extension SoundZoneDetailViewController {
     func setupUI() {
-        setupTitle()
         setupDismissIcon()
+        setupTitle()
         setupImage()
         setupDescription()
         setupTracklistTableView()
@@ -63,39 +63,52 @@ extension SoundZoneDetailViewController {
     }
     
     func setupTitle() {
-        view.addSubview(soundZoneTitle)
-        soundZoneTitle.snp.makeConstraints { (make) in
-            make.center.equalToSuperview()
-            make.width.equalTo(150)
-            make.height.equalTo(60)
-        }
         soundZoneTitle.textColor = .black
-        soundZoneTitle.text =  soundZone?.id
+        soundZoneTitle.text =  soundZone?.name
         soundZoneTitle.textAlignment = .center
+        soundZoneTitle.numberOfLines = 0
+        
+        view.addSubview(soundZoneTitle)
+        
+        soundZoneTitle.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.top.equalToSuperview().offset(40)
+            make.width.equalToSuperview().inset(20)
+        }
     }
     
     func setupImage() {
         view.addSubview(soundZoneMainImage)
         
-        guard let url = URL(string: soundZone!.imageURL) else { return }
-        
-        soundZoneMainImage.sd_setImage(with: url) { (image, error, cache, url) in
-            self.soundZoneMainImage.snp.makeConstraints { (make) in
-                make.center.equalToSuperview()
-            }
+        self.soundZoneMainImage.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.width.height.equalTo(100)
+            make.top.equalTo(soundZoneTitle.snp.bottom).offset(10)
         }
+        
+//        guard let url = URL(string: soundZone!.imageURL) else { return }
+//
+//        soundZoneMainImage.sd_setImage(with: url) { (image, error, _, url) in
+//            print("ERROR: \(error)")
+//            print("IMAGE: \(image)")
+//        }
     }
     
     func setupDescription() {
-        view.addSubview(soundZoneTitle)
-        soundZoneTitle.snp.makeConstraints { (make) in
+        soundZoneDescription.textColor = .black
+        soundZoneDescription.text =  soundZone?.description
+        soundZoneDescription.textAlignment = .center
+        soundZoneDescription.isScrollEnabled = false
+        
+        view.addSubview(soundZoneDescription)
+        
+        soundZoneDescription.snp.makeConstraints { (make) in
+            make.width.equalToSuperview().inset(20)
+            make.height.equalTo(soundZoneDescription.contentSize.height)
             make.centerX.equalToSuperview()
-            make.width.equalTo(150)
-            make.height.equalTo(60)
+            make.top.equalTo(soundZoneMainImage.snp.bottom).offset(10)
         }
-        soundZoneTitle.textColor = .black
-        soundZoneTitle.text =  soundZone?.description
-        soundZoneTitle.textAlignment = .center
+
     }
     
     func setupTracklistTableView() {
@@ -107,8 +120,8 @@ extension SoundZoneDetailViewController {
         
         trackListTableView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
-            make.top.equalToSuperview().offset(100)
             make.bottom.equalToSuperview()
+            make.height.equalTo(200)
         }
     }
 }
@@ -134,6 +147,10 @@ extension SoundZoneDetailViewController: UITableViewDataSource {
         cell.selectionStyle = .none
         cell.textLabel?.text = soundZone!.tracks[indexPath.row]
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Track List for \(soundZone.name)"
     }
 }
 

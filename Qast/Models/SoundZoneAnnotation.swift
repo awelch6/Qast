@@ -18,8 +18,8 @@ class SoundZoneAnnotation: NSObject, MGLAnnotation {
     init(soundZone: SoundZone) {
         self.coordinate = CLLocationCoordinate2D(latitude: soundZone.center.latitude, longitude: soundZone.center.longitude)
         self.soundZone = soundZone
-        self.title = soundZone.id
-        self.subtitle = soundZone.streamId
+        self.title = soundZone.name
+        self.subtitle = soundZone.description
         super.init()
     }
     

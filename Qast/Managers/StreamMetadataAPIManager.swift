@@ -29,7 +29,26 @@ class UMGStreamMetadataAPIManager: StreamMetadataAPI {
                 return completion(.error(error))
             }
         }
-        
     }
+    
+//    func streamMetadata(getTrackMetadataFor isrc: String, _ completion: @escaping (Result<URL>) -> Void) {
+//        let urlString = "https://hackathon.umusic.com/prod/v1/tracks/\(isrc)"
+//        guard let url = URL(string: urlString) else {
+//            return completion(.error(NSError(domain: "Error", code: 303, userInfo: nil)))
+//        }
+//        let headers = ["x-api-key": "5dsb3jqxzX8D5dIlJzWoTaTM2TzcKufq1geS1SSb"]
+//
+//        Alamofire.request(url, method: .get, parameters: nil, encoding: JSONEncoding.default, headers: headers).responseObject { (response: DataResponse<TrackMetadataResponse>) in
+//            switch response.result {
+//            case .success(let trackMetadataResponse):
+//                return completion(.value(trackMetadataResponse))
+//            case .failure(let error):
+//                return completion(.error(error))
+//            }
+//        }
+//
+//    }
+    
+    
     
 }

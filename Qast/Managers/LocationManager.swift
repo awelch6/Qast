@@ -139,7 +139,8 @@ extension LocationManager {
         
         guard let soundZoneAnnotation = annotation as? SoundZoneAnnotation else { return nil }
         
-        let coverArtImageView = UIImageView(image: UIImage(named: "cover_art_placeholder"))
+//        let coverArtImageView = UIImageView(image: UIImage(named: "cover_art_placeholder"))
+        let coverArtImageView = UIImageView(image: UIImage(named: "spinner"))
         coverArtImageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         
         streamMetadataAPI.streamMetadata(getCoverArtUrlforIsrc: soundZoneAnnotation.soundZone.streamId) { (result) in

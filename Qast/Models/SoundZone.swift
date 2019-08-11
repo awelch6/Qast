@@ -21,6 +21,7 @@ struct SoundZone: GeoQueryable {
     
     let mapView = MGLMapView()
     
+    let name: String
     let id: String
     let center: GeoPoint
     let radius: Double
@@ -42,7 +43,7 @@ struct SoundZone: GeoQueryable {
     }
     
     var data: [String: Any] {
-        return ["id": id, "streamId": streamId, "center": center, "radius": radius, "tracks": tracks, "description": description, "imageURL": imageURL]
+        return ["id": id, "streamId": streamId, "center": center, "radius": radius, "tracks": tracks, "description": description, "imageURL": imageURL, "name": name]
     }
     
     init?(dictionary: [String: Any]) {
@@ -53,8 +54,9 @@ struct SoundZone: GeoQueryable {
             let streamId = dictionary["streamId"] as? String,
             let tracks = dictionary["tracks"] as? [String],
             let description = dictionary["description"] as? String,
-            let imageURL = dictionary["imageURL"] as? String
-
+            let imageURL = dictionary["imageURL"] as? String,
+            let name = dictionary["name"] as? String
+            
             else {
                 return nil
         }
@@ -65,6 +67,7 @@ struct SoundZone: GeoQueryable {
         self.tracks = tracks
         self.description = description
         self.imageURL = imageURL
+        self.name = name
     }
 }
 
