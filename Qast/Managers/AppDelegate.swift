@@ -7,15 +7,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var navigationController: UINavigationController?
+    var locationManager: LocationManager?
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
+        locationManager = LocationManager()
         
         BoseWearable.enableCommonLogging()
         BoseWearable.configure()
         
-//        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "wasLaunchedBefore")
-        let firstLaunch = FirstLaunch.alwaysFirst()
+        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "wasLaunchedBefore")
+//        let firstLaunch = FirstLaunch.alwaysFirst()
 
         if firstLaunch.isFirstLaunch {
             print("Welcome to Qast!")

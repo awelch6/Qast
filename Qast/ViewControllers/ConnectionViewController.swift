@@ -23,6 +23,8 @@ class ConnectionViewController: UIViewController {
         SessionManager.shared.delegate = self
         view.backgroundColor = .clear
         setupConnectButton()
+        
+        navigationController?.navigationBar.isHidden = true
     }
 }
 

@@ -54,8 +54,8 @@ extension SoundZoneDetailViewController {
     func setupDismissIcon() {
         view.addSubview(dismissIcon)
         dismissIcon.snp.makeConstraints { (make) in
-            make.width.height.equalTo(40)
-            make.left.top.equalToSuperview().offset(30)
+            make.width.height.equalTo(20)
+            make.left.top.equalToSuperview().offset(20)
         }
         let dismissIconTapped = UITapGestureRecognizer(target: self, action: #selector(self.dismiss(_:)))
         dismissIcon.addGestureRecognizer(dismissIconTapped)
@@ -68,11 +68,13 @@ extension SoundZoneDetailViewController {
         soundZoneTitle.textAlignment = .center
         soundZoneTitle.numberOfLines = 0
         
+        soundZoneTitle.font = UIFont(name: "AvenirNext-Bold", size: 23.0)!
+        
         view.addSubview(soundZoneTitle)
         
         soundZoneTitle.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
-            make.top.equalToSuperview().offset(40)
+            make.top.equalToSuperview().offset(50)
             make.width.equalToSuperview().inset(20)
         }
     }
@@ -98,7 +100,9 @@ extension SoundZoneDetailViewController {
         soundZoneDescription.textColor = .black
         soundZoneDescription.text =  soundZone?.description
         soundZoneDescription.textAlignment = .center
-        soundZoneDescription.isScrollEnabled = false
+        soundZoneDescription.isScrollEnabled = true
+        
+        soundZoneDescription.font = UIFont(name: "AvenirNext-Regular", size: 20.0)!
         
         view.addSubview(soundZoneDescription)
         

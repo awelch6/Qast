@@ -20,6 +20,7 @@ enum PreviewModeTransitionType {
 class MainViewController: UIViewController {
     
     public lazy var mapViewController = MapViewController(networker: networker)
+    public lazy var soundZonePicker = SoundZonePickerViewController()
     
     public var currentSoundZone: SoundZone?
     
@@ -45,6 +46,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         add(mapViewController)
+        add(soundZonePicker)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -92,12 +94,15 @@ extension MainViewController: MapViewControllerDelegate {
         return nil
     }
     
+    func playSoundZonePreview(for soundZone: SoundZone) {
+        NotificationManager().preview(soundZone: soundZone)
+        streamManager.markCurrentPlaybackTime()
+        streamManager.start(playing: soundZone)
+    }
+    
     func attemptToEnterPreviewMode() {
-        var soundZoneToPreview: SoundZone?
-        
-        soundZoneToPreview = determineSoundZoneToPreview()
-        
-        let transitionType = determinePreviewModeTransitionType(currentSoundZone: currentSoundZone, potentialPreviewSoundZone: soundZoneToPreview)
+        let soundZoneToPreview: SoundZone? = determineSoundZoneToPreview()
+        let transitionType: PreviewModeTransitionType = determinePreviewModeTransitionType(currentSoundZone: currentSoundZone, potentialPreviewSoundZone: soundZoneToPreview)
         
         switch transitionType {
         
@@ -112,22 +117,17 @@ extension MainViewController: MapViewControllerDelegate {
         case .NO_ZONE_TO_PREVIEW_ZONE:
             print("NO_ZONE_TO_PREVIEW_ZONE")
             
-            guard let soundZoneToPreview = soundZoneToPreview else { fatalError("NO_ZONE_TO_PREVIEW_ZONE: determinePreviewModeTransitionType determined nil") }
+            guard let soundZoneToPreview = soundZoneToPreview else { fatalError("Expected NO_ZONE_TO_PREVIEW_ZONE but determinePreviewModeTransitionType returned nil") }
             
             isPreviewing = true
-            NotificationManager().preview(soundZone: soundZoneToPreview)
-            streamManager.markCurrentPlaybackTime()
-            streamManager.start(playing: soundZoneToPreview)
-            
+            playSoundZonePreview(for: soundZoneToPreview)
         case .CURRENT_ZONE_TO_PREVIEW_ZONE:
             print("CURRENT_ZONE_TO_PREVIEW_ZONE")
             
-            guard let soundZoneToPreview = soundZoneToPreview else { fatalError("CURRENT_ZONE_TO_PREVIEW_ZONE: determinePreviewModeTransitionType determined nil") }
+            guard let soundZoneToPreview = soundZoneToPreview else { fatalError("Expected CURRENT_ZONE_TO_PREVIEW_ZONE but determinePreviewModeTransitionType returned nil") }
             
             isPreviewing = true
-            NotificationManager().preview(soundZone: soundZoneToPreview)
-            streamManager.markCurrentPlaybackTime()
-            streamManager.start(playing: soundZoneToPreview)
+            playSoundZonePreview(for: soundZoneToPreview)
         }
     }
     
@@ -146,6 +146,7 @@ extension MainViewController: MapViewControllerDelegate {
     func mapViewController(_ mapViewController: MapViewController, receivedGesture gestureType: GestureType) {
         switch gestureType {
         case .doubleTap:
+            print("Received double tap")
             if isPreviewing {
                 exitPreviewMode()
             } else {

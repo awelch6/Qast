@@ -171,3 +171,10 @@ extension LocationManager {
     }
 
 }
+
+extension LocationManager: SoundZonePickerDelegate {
+    func didSelect(soundZone: SoundZone) {
+        print("SoundZone selected")
+    }
+    
+}

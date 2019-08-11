@@ -31,15 +31,21 @@ class StreamManager {
         
         var previous: AVPlayerItem?
         
-        for track in soundZone.tracks {
-            guard let playerItem = playerItem(for: track) else { continue }
-            
-            player?.insert(playerItem, after: previous)
-            
-            previous = playerItem
-        }
+//        for track in soundZone.tracks {
+//            guard let playerItem = playerItem(for: track) else { continue }
+//
+//            player?.insert(playerItem, after: previous)
+//
+//            previous = playerItem
+//        }
         
-        player?.seek(to: targetTime, toleranceBefore: .zero, toleranceAfter: .zero)
+        guard let playerItem = playerItem(for: soundZone.streamId) else { return }
+
+        player?.insert(playerItem, after: previous)
+        
+        player?.seek(to: targetTime, toleranceBefore: CMTime(seconds: 2.0, preferredTimescale: CMTimeScale(NSEC_PER_SEC)), toleranceAfter: CMTime(seconds: 2.0, preferredTimescale: CMTimeScale(NSEC_PER_SEC)), completionHandler: { (result) in
+            print("Completed seek with status of: \(result)")
+        })
         
         player?.play()
     }

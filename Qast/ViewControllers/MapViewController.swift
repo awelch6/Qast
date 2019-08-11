@@ -19,8 +19,8 @@ protocol MapViewControllerDelegate: class {
 }
 
 class MapViewController: UIViewController {
-
-    let locationManager: LocationManager = LocationManager()
+    
+    let appDelegate = UIApplication.shared.delegate as? AppDelegate
     
     var isInitialLocationUpdate: Bool = true
     
@@ -40,8 +40,12 @@ class MapViewController: UIViewController {
     
     init(networker: SoundZoneAPI = FirebaseManager()) {
         self.networker = networker
-        locationManager.getNearbySoundZones()
         super.init(nibName: nil, bundle: nil)
+        
+        guard let appDelegate = appDelegate else { return }
+        guard let locationManager = appDelegate.locationManager else { return }
+        
+        locationManager.getNearbySoundZones()
     }
 
     override func viewDidLoad() {
@@ -81,8 +85,10 @@ extension MapViewController {
     private func setupMapView() {
         view.addSubview(mapView)
         
-        // This sets up the two way street between MapViewController and LocationManager
-        mapView.delegate = locationManager
+        guard let appDelegate = appDelegate else { return }
+        guard let locationManager = appDelegate.locationManager else { return }
+        
+        mapView.delegate = appDelegate.locationManager
         locationManager.delegate = self
     }
     
@@ -153,6 +159,10 @@ extension MapViewController: SensorDispatchHandler {
         }
         
         vision.updateVisionPath(center: userLocation.coordinate, orientation: yaw)
+        
+        guard let appDelegate = appDelegate else { return }
+        guard let locationManager = appDelegate.locationManager else { return }
+        
         locationManager.visionPolygon(for: userLocation.coordinate, orientation: yaw)
     }
 }
