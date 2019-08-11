@@ -25,7 +25,6 @@
 		2BA433A022D189D100C1D6F8 /* SoundZoneAnnotationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BA4339F22D189D100C1D6F8 /* SoundZoneAnnotationView.swift */; };
 		2BB8F16722CAE131003BFBA5 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F16622CAE131003BFBA5 /* AppDelegate.swift */; };
 		2BB8F16922CAE131003BFBA5 /* ConnectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F16822CAE131003BFBA5 /* ConnectionViewController.swift */; };
-		2BB8F16E22CAE132003BFBA5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16D22CAE132003BFBA5 /* Assets.xcassets */; };
 		2BB8F17122CAE132003BFBA5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2BB8F16F22CAE132003BFBA5 /* LaunchScreen.storyboard */; };
 		2BB8F17C22CAE132003BFBA5 /* QastTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BB8F17B22CAE132003BFBA5 /* QastTests.swift */; };
 		2BF6AD2122D2521800A752D0 /* SoundZoneAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6AD2022D2521700A752D0 /* SoundZoneAPI.swift */; };
@@ -33,6 +32,7 @@
 		5908184B22E697EB0032FF86 /* JSONDecoderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5908184A22E697EB0032FF86 /* JSONDecoderExtensions.swift */; };
 		5908184D22E6981D0032FF86 /* JSONEncoderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5908184C22E6981D0032FF86 /* JSONEncoderExtensions.swift */; };
 		5937CA2522E7B6C3006C73D0 /* StreamMetadataAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5937CA2422E7B6C3006C73D0 /* StreamMetadataAPI.swift */; };
+		593887C122ECFD8B00981BF6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 593887C022ECFD8B00981BF6 /* Assets.xcassets */; };
 		5944D97422D1556400579892 /* TutorialCardOneVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97322D1556400579892 /* TutorialCardOneVC.swift */; };
 		5944D97622D1561700579892 /* PopupTutorialPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97522D1561700579892 /* PopupTutorialPageViewController.swift */; };
 		5944D97822D1574700579892 /* TutorialCardTwoVC.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5944D97722D1574700579892 /* TutorialCardTwoVC.swift */; };
@@ -81,7 +81,6 @@
 		2BB8F16322CAE131003BFBA5 /* Qast.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Qast.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2BB8F16622CAE131003BFBA5 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2BB8F16822CAE131003BFBA5 /* ConnectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionViewController.swift; sourceTree = "<group>"; };
-		2BB8F16D22CAE132003BFBA5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2BB8F17022CAE132003BFBA5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2BB8F17222CAE132003BFBA5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		2BB8F17722CAE132003BFBA5 /* QastTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = QastTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -93,6 +92,7 @@
 		5908184A22E697EB0032FF86 /* JSONDecoderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderExtensions.swift; sourceTree = "<group>"; };
 		5908184C22E6981D0032FF86 /* JSONEncoderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderExtensions.swift; sourceTree = "<group>"; };
 		5937CA2422E7B6C3006C73D0 /* StreamMetadataAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamMetadataAPI.swift; sourceTree = "<group>"; };
+		593887C022ECFD8B00981BF6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5944D97322D1556400579892 /* TutorialCardOneVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCardOneVC.swift; sourceTree = "<group>"; };
 		5944D97522D1561700579892 /* PopupTutorialPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupTutorialPageViewController.swift; sourceTree = "<group>"; };
 		5944D97722D1574700579892 /* TutorialCardTwoVC.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TutorialCardTwoVC.swift; sourceTree = "<group>"; };
@@ -288,8 +288,8 @@
 		2BB8F18F22CAE5CD003BFBA5 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				593887C022ECFD8B00981BF6 /* Assets.xcassets */,
 				2BB8F16F22CAE132003BFBA5 /* LaunchScreen.storyboard */,
-				2BB8F16D22CAE132003BFBA5 /* Assets.xcassets */,
 			);
 			path = Resources;
 			sourceTree = "<group>";
@@ -406,8 +406,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				5981795F22CD3E470091605E /* GoogleService-Info.plist in Resources */,
+				593887C122ECFD8B00981BF6 /* Assets.xcassets in Resources */,
 				2BB8F17122CAE132003BFBA5 /* LaunchScreen.storyboard in Resources */,
-				2BB8F16E22CAE132003BFBA5 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -704,7 +704,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bose.Qast.Qast;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bose.Qast.QastBeta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -723,7 +723,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.bose.Qast.Qast;
+				PRODUCT_BUNDLE_IDENTIFIER = com.bose.Qast.QastBeta;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";

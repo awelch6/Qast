@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDisplayName</key>
+	<string>Qast</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -17,11 +19,13 @@
 	<key>CFBundleShortVersionString</key>
 	<string>1.0</string>
 	<key>CFBundleVersion</key>
-	<string>1</string>
+	<string>4</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>MGLMapboxAccessToken</key>
 	<string>pk.eyJ1Ijoid2VsY2gzYW0iLCJhIjoiY2pzaWE5eTYyMjl5bTRhb2E5aDR3YjdqbiJ9.hG5trWOKzx2-4yd1G9Mqew</string>
+	<key>NSBluetoothPeripheralUsageDescription</key>
+	<string>To connect with your Bose Wearable</string>
 	<key>NSLocationAlwaysAndWhenInUseUsageDescription</key>
 	<string>We need your location so we can determine what music stream to deliver.</string>
 	<key>NSLocationWhenInUseUsageDescription</key>

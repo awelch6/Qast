@@ -12,7 +12,12 @@ class SoundZoneDetailViewController: UIViewController {
 
     let soundZone: SoundZone?
     let soundZoneTitle = UILabel()
+    let soundZoneDescription: UITextView = UITextView()
+    let soundZoneMainImage: UIImageView = UIImageView()
+    let trackListTableView: UITableView = UITableView()
     let dismissIcon = UIImageView(image: UIImage(named: "x-button"))
+    
+    let smt: UMGStreamMetadataAPIManager = UMGStreamMetadataAPIManager()
     
     init(_ soundZone: SoundZone) {
         self.soundZone = soundZone
@@ -26,8 +31,11 @@ class SoundZoneDetailViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupText()
-        setupDismissIcon()
+        
+        trackListTableView.delegate = self
+        trackListTableView.dataSource = self
+        
+        setupUI()
     }
 
 }
@@ -35,6 +43,14 @@ class SoundZoneDetailViewController: UIViewController {
 // MARK: UI Setup
 
 extension SoundZoneDetailViewController {
+    func setupUI() {
+        setupTitle()
+        setupDismissIcon()
+        setupImage()
+        setupDescription()
+        setupTracklistTableView()
+    }
+    
     func setupDismissIcon() {
         view.addSubview(dismissIcon)
         dismissIcon.snp.makeConstraints { (make) in
@@ -46,7 +62,7 @@ extension SoundZoneDetailViewController {
         dismissIcon.isUserInteractionEnabled = true
     }
     
-    func setupText() {
+    func setupTitle() {
         view.addSubview(soundZoneTitle)
         soundZoneTitle.snp.makeConstraints { (make) in
             make.center.equalToSuperview()
@@ -57,6 +73,44 @@ extension SoundZoneDetailViewController {
         soundZoneTitle.text =  soundZone?.id
         soundZoneTitle.textAlignment = .center
     }
+    
+    func setupImage() {
+        view.addSubview(soundZoneMainImage)
+        
+        guard let url = URL(string: soundZone!.imageURL) else { return }
+        
+        soundZoneMainImage.sd_setImage(with: url) { (image, error, cache, url) in
+            self.soundZoneMainImage.snp.makeConstraints { (make) in
+                make.center.equalToSuperview()
+            }
+        }
+    }
+    
+    func setupDescription() {
+        view.addSubview(soundZoneTitle)
+        soundZoneTitle.snp.makeConstraints { (make) in
+            make.centerX.equalToSuperview()
+            make.width.equalTo(150)
+            make.height.equalTo(60)
+        }
+        soundZoneTitle.textColor = .black
+        soundZoneTitle.text =  soundZone?.description
+        soundZoneTitle.textAlignment = .center
+    }
+    
+    func setupTracklistTableView() {
+        trackListTableView.separatorStyle = .none
+        trackListTableView.showsVerticalScrollIndicator = false
+        trackListTableView.backgroundColor = .clear
+        
+        view.addSubview(trackListTableView)
+        
+        trackListTableView.snp.makeConstraints { (make) in
+            make.left.right.equalToSuperview()
+            make.top.equalToSuperview().offset(100)
+            make.bottom.equalToSuperview()
+        }
+    }
 }
 
 // MARK: Gesture Recognizer Actions
@@ -65,3 +119,28 @@ extension SoundZoneDetailViewController {
         self.dismiss(animated: true, completion: nil)
     }
 }
+
+extension SoundZoneDetailViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return soundZone!.tracks.count
+    }
+    
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 1
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
+        cell.selectionStyle = .none
+        cell.textLabel?.text = soundZone!.tracks[indexPath.row]
+        return cell
+    }
+}
+
+extension SoundZoneDetailViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        trackListTableView.deselectRow(at: indexPath, animated: false)
+    }
+}
+
+

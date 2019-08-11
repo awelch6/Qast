@@ -14,8 +14,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         BoseWearable.enableCommonLogging()
         BoseWearable.configure()
         
-        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "wasLaunchedBefore")
-//        let firstLaunch = FirstLaunch.alwaysFirst()
+//        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "wasLaunchedBefore")
+        let firstLaunch = FirstLaunch.alwaysFirst()
 
         if firstLaunch.isFirstLaunch {
             print("Welcome to Qast!")

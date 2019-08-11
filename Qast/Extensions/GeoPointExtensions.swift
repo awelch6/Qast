@@ -14,3 +14,5 @@ extension GeoPoint {
         return CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
     }
 }
+
+
