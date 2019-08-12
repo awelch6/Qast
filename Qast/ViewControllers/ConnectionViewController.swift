@@ -12,11 +12,18 @@ import BoseWearable
 import CoreLocation
 import FirebaseFirestore
 
-class ConnectionViewController: UIViewController {
+class ConnectionViewController: NiblessViewController {
 
     private var session: WearableDeviceSession?
     
     let connectButton = UIButton()
+    
+    var mainViewControllerFactory: (WearableDeviceSession) -> MainViewController
+    
+    init(mainViewControllerFactory: @escaping (WearableDeviceSession) -> MainViewController) {
+        self.mainViewControllerFactory = mainViewControllerFactory
+        super.init()
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,8 +69,7 @@ extension ConnectionViewController {
 extension ConnectionViewController: SessionManagerDelegate {
     
     func session(_ session: WearableDeviceSession, didOpen: Bool) {
-        let mainViewController = MainViewController(session: session)
-        navigationController?.pushViewController(mainViewController, animated: true)
+        navigationController?.pushViewController(mainViewControllerFactory(session), animated: true)
     }
     
     func session(_ session: WearableDeviceSession, didClose: Bool) {

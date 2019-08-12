@@ -18,9 +18,7 @@ protocol MapViewControllerDelegate: class {
     func mapViewController(_ mapViewController: MapViewController, receivedGesture gestureType: GestureType)
 }
 
-class MapViewController: UIViewController {
-    
-    let appDelegate = UIApplication.shared.delegate as? AppDelegate
+class MapViewController: NiblessViewController {
     
     var isInitialLocationUpdate: Bool = true
     
@@ -28,22 +26,32 @@ class MapViewController: UIViewController {
     
     var mapView: MGLMapView = QastMapView()
     
-    lazy var vision = VisionManager()
-
-    var notificationManager = NotificationManager()
+    let soundZonePicker: UIView = UIView(frame: CGRect(x: 0, y: (UIScreen.main.bounds.height - 115), width: UIScreen.main.bounds.width, height: 115))
     
     var sensorDispatch = SensorDispatch(queue: .main)
     
-    let networker: SoundZoneAPI
-    
     weak var delegate: MapViewControllerDelegate?
     
-    init(networker: SoundZoneAPI = FirebaseManager()) {
+    // MARK: Dependencies
+    var visionManager: VisionManager
+    var notificationManager: NotificationManager
+    var locationManager: LocationManager
+    var soundZoneDetailViewControllerFactory: (SoundZone) -> SoundZoneDetailViewController
+    let networker: SoundZoneAPI
+    
+    init(
+        locationManager: LocationManager,
+        soundZoneDetailViewControllerFactory: @escaping (SoundZone) -> SoundZoneDetailViewController,
+        networker: SoundZoneAPI,
+        notificationManager: NotificationManager,
+        visionManager: VisionManager = VisionManager()
+        ) {
         self.networker = networker
-        super.init(nibName: nil, bundle: nil)
-        
-        guard let appDelegate = appDelegate else { return }
-        guard let locationManager = appDelegate.locationManager else { return }
+        self.locationManager = locationManager
+        self.visionManager = visionManager
+        self.notificationManager = notificationManager
+        self.soundZoneDetailViewControllerFactory = soundZoneDetailViewControllerFactory
+        super.init()
         
         locationManager.getNearbySoundZones()
     }
@@ -51,6 +59,7 @@ class MapViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupMapView()
+        setupSoundZonePicker()
         setupCenterOnUserButton()
         
         sensorDispatch.handler = self
@@ -73,9 +82,6 @@ class MapViewController: UIViewController {
         
     }
     
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
 }
 
 // MARK: UI Setup
@@ -85,11 +91,23 @@ extension MapViewController {
     private func setupMapView() {
         view.addSubview(mapView)
         
-        guard let appDelegate = appDelegate else { return }
-        guard let locationManager = appDelegate.locationManager else { return }
-        
-        mapView.delegate = appDelegate.locationManager
+        mapView.delegate = locationManager
         locationManager.delegate = self
+    }
+    
+    private func setupSoundZonePicker() {
+        soundZonePicker.backgroundColor = UIColor.init(hexString: "F96170", alpha: 0.5)
+        
+        view.addSubview(soundZonePicker)
+    }
+    
+    @objc func focusSoundZone(recognizer: UITapGestureRecognizer) {
+        let tappedImage = recognizer.view as? SoundZonePickerView
+        
+        guard let annotations = mapView.annotations else { return }
+        guard let annotation = annotations.first else { return }
+        mapView.selectAnnotation(annotation, animated: true)
+        mapView.setCenter(annotation.coordinate, zoomLevel: 15, animated: true)
     }
     
     private func setupCenterOnUserButton() {
@@ -99,12 +117,12 @@ extension MapViewController {
         
         view.addSubview(imageView)
         
-        let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.singleTapping(recognizer:)))
+        let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.centerUser(recognizer:)))
         singleTap.numberOfTapsRequired = 1
         imageView.addGestureRecognizer(singleTap)
     }
     
-    @objc func singleTapping(recognizer: UIGestureRecognizer) {
+    @objc func centerUser(recognizer: UIGestureRecognizer) {
         guard let location = mapView.userLocation else { return }
         mapView.setCenter(location.coordinate, zoomLevel: 15, animated: true)
     }
@@ -128,6 +146,36 @@ extension MapViewController: LocationManagerDelegate {
     func qastMap(didReceive nearbySoundZones: [SoundZone]) {
         self.mapView.addAnnotations(nearbySoundZones.map { $0.renderableGeofence })
         self.mapView.addAnnotations(nearbySoundZones.map { SoundZoneAnnotation(soundZone: $0) })
+        self.populateSoundZonePicker(nearbySoundZones)
+    }
+    
+    func populateSoundZonePicker(_ nearbySoundZones: [SoundZone]) {
+        for zone in nearbySoundZones {
+            let tempt = UIImageView(image: UIImage(named: "temptations_rect_vertical"))
+            
+            switch zone.name {
+            case "The Temptations":
+                tempt.frame = CGRect(x: 0, y: 0, width: 50, height: 70)
+                tempt.contentMode = .scaleAspectFit
+                tempt.isUserInteractionEnabled = true
+                
+                let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(focusSoundZone(recognizer:)))
+                singleTap.numberOfTapsRequired = 1
+                tempt.addGestureRecognizer(singleTap)
+                
+                tempt.snp.makeConstraints { (make) in
+                    make.left.equalToSuperview().offset(10)
+                    make.width.equalTo(80)
+                    make.height.equalTo(100)
+                    make.bottom.equalToSuperview().offset(20)
+                }
+            default:
+                print("Not temptations")
+            }
+//            let soundZonePickerView = SoundZonePickerView(zone, tempt)
+//            soundZonePicker.addSubview(soundZonePickerView)
+        }
+        
     }
     
     func qastMap(didUpdate currentSoundZone: SoundZone?) {
@@ -158,10 +206,7 @@ extension MapViewController: SensorDispatchHandler {
             return
         }
         
-        vision.updateVisionPath(center: userLocation.coordinate, orientation: yaw)
-        
-        guard let appDelegate = appDelegate else { return }
-        guard let locationManager = appDelegate.locationManager else { return }
+        visionManager.updateVisionPath(center: userLocation.coordinate, orientation: yaw)
         
         locationManager.visionPolygon(for: userLocation.coordinate, orientation: yaw)
     }

@@ -30,6 +30,7 @@
 		2BF6AD2122D2521800A752D0 /* SoundZoneAPI.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2BF6AD2022D2521700A752D0 /* SoundZoneAPI.swift */; };
 		59032D182300AB7B00C089A3 /* TrackMetadataResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59032D172300AB7B00C089A3 /* TrackMetadataResponse.swift */; };
 		59032D1A2300C2BB00C089A3 /* SoundZonePickerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59032D192300C2BB00C089A3 /* SoundZonePickerViewController.swift */; };
+		59032D1C2300DBAE00C089A3 /* SoundZonePickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59032D1B2300DBAE00C089A3 /* SoundZonePickerView.swift */; };
 		5908184922E697A90032FF86 /* DataRequestExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5908184822E697A90032FF86 /* DataRequestExtensions.swift */; };
 		5908184B22E697EB0032FF86 /* JSONDecoderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5908184A22E697EB0032FF86 /* JSONDecoderExtensions.swift */; };
 		5908184D22E6981D0032FF86 /* JSONEncoderExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5908184C22E6981D0032FF86 /* JSONEncoderExtensions.swift */; };
@@ -52,6 +53,10 @@
 		598E522222E62D6C00865556 /* CoverArtResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598E522122E62D6C00865556 /* CoverArtResponse.swift */; };
 		598E522422E64A3100865556 /* SoundZoneDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598E522322E64A3100865556 /* SoundZoneDetailViewController.swift */; };
 		598E522622E683CD00865556 /* StreamMetadataAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 598E522522E683CD00865556 /* StreamMetadataAPIManager.swift */; };
+		59AD2A69230188C100130711 /* QastDependencyContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD2A68230188C100130711 /* QastDependencyContainer.swift */; };
+		59AD2A6C230189F000130711 /* NiblessViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD2A6B230189F000130711 /* NiblessViewController.swift */; };
+		59AD2A6E2301923200130711 /* NiblessNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD2A6D2301923200130711 /* NiblessNavigationController.swift */; };
+		59AD2A702301928200130711 /* QastNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59AD2A6F2301928200130711 /* QastNavigationController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -92,6 +97,7 @@
 		576B0074E8DC05358D881186 /* Pods-QastTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QastTests.release.xcconfig"; path = "Pods/Target Support Files/Pods-QastTests/Pods-QastTests.release.xcconfig"; sourceTree = "<group>"; };
 		59032D172300AB7B00C089A3 /* TrackMetadataResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackMetadataResponse.swift; sourceTree = "<group>"; };
 		59032D192300C2BB00C089A3 /* SoundZonePickerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZonePickerViewController.swift; sourceTree = "<group>"; };
+		59032D1B2300DBAE00C089A3 /* SoundZonePickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZonePickerView.swift; sourceTree = "<group>"; };
 		5908184822E697A90032FF86 /* DataRequestExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataRequestExtensions.swift; sourceTree = "<group>"; };
 		5908184A22E697EB0032FF86 /* JSONDecoderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONDecoderExtensions.swift; sourceTree = "<group>"; };
 		5908184C22E6981D0032FF86 /* JSONEncoderExtensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONEncoderExtensions.swift; sourceTree = "<group>"; };
@@ -115,6 +121,10 @@
 		598E522122E62D6C00865556 /* CoverArtResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoverArtResponse.swift; sourceTree = "<group>"; };
 		598E522322E64A3100865556 /* SoundZoneDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoundZoneDetailViewController.swift; sourceTree = "<group>"; };
 		598E522522E683CD00865556 /* StreamMetadataAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamMetadataAPIManager.swift; sourceTree = "<group>"; };
+		59AD2A68230188C100130711 /* QastDependencyContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QastDependencyContainer.swift; sourceTree = "<group>"; };
+		59AD2A6B230189F000130711 /* NiblessViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessViewController.swift; sourceTree = "<group>"; };
+		59AD2A6D2301923200130711 /* NiblessNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NiblessNavigationController.swift; sourceTree = "<group>"; };
+		59AD2A6F2301928200130711 /* QastNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QastNavigationController.swift; sourceTree = "<group>"; };
 		9E7E693DB0310FEF888CE173 /* Pods-Qast.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Qast.release.xcconfig"; path = "Pods/Target Support Files/Pods-Qast/Pods-Qast.release.xcconfig"; sourceTree = "<group>"; };
 		CB73906A245800CD0D5ED108 /* Pods-QastTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-QastTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-QastTests/Pods-QastTests.debug.xcconfig"; sourceTree = "<group>"; };
 		DD881D6E2EC7047D6EEB28F6 /* Pods_QastTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_QastTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -231,6 +241,7 @@
 			children = (
 				2BA4339B22D1867E00C1D6F8 /* QastMapView.swift */,
 				2BA4339F22D189D100C1D6F8 /* SoundZoneAnnotationView.swift */,
+				59032D1B2300DBAE00C089A3 /* SoundZonePickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -253,6 +264,7 @@
 				2B714BF622E91E79001A8307 /* MainViewController.swift */,
 				598E522322E64A3100865556 /* SoundZoneDetailViewController.swift */,
 				59032D192300C2BB00C089A3 /* SoundZonePickerViewController.swift */,
+				59AD2A6F2301928200130711 /* QastNavigationController.swift */,
 			);
 			path = ViewControllers;
 			sourceTree = "<group>";
@@ -269,6 +281,7 @@
 				597CD73B22DB793B00B56C6F /* NotificationManager.swift */,
 				597A381022E14D2000562FF6 /* LocationManager.swift */,
 				598E522522E683CD00865556 /* StreamMetadataAPIManager.swift */,
+				59AD2A68230188C100130711 /* QastDependencyContainer.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -276,6 +289,7 @@
 		2BB8F18E22CAE5C5003BFBA5 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				59AD2A6A230189E100130711 /* Nibless Components */,
 				2BA4339222CF6FA700C1D6F8 /* DoubleExtensions.swift */,
 				5944D97B22D159EB00579892 /* UIColorExtensions.swift */,
 				2B714BF822E9206D001A8307 /* UIViewControllerExtensions.swift */,
@@ -319,6 +333,15 @@
 				59032D172300AB7B00C089A3 /* TrackMetadataResponse.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		59AD2A6A230189E100130711 /* Nibless Components */ = {
+			isa = PBXGroup;
+			children = (
+				59AD2A6B230189F000130711 /* NiblessViewController.swift */,
+				59AD2A6D2301923200130711 /* NiblessNavigationController.swift */,
+			);
+			path = "Nibless Components";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -518,12 +541,15 @@
 				5944D97822D1574700579892 /* TutorialCardTwoVC.swift in Sources */,
 				2BA4338B22CF628200C1D6F8 /* VisionManager.swift in Sources */,
 				5981795B22CD30FF0091605E /* FirebaseManager.swift in Sources */,
+				59AD2A6E2301923200130711 /* NiblessNavigationController.swift in Sources */,
 				597A381122E14D2000562FF6 /* LocationManager.swift in Sources */,
 				2B82021822CC0B0E005E3BC1 /* MapViewController.swift in Sources */,
 				5944D97C22D159EB00579892 /* UIColorExtensions.swift in Sources */,
 				2BA4339322CF6FA700C1D6F8 /* DoubleExtensions.swift in Sources */,
+				59032D1C2300DBAE00C089A3 /* SoundZonePickerView.swift in Sources */,
 				5908184B22E697EB0032FF86 /* JSONDecoderExtensions.swift in Sources */,
 				59032D182300AB7B00C089A3 /* TrackMetadataResponse.swift in Sources */,
+				59AD2A6C230189F000130711 /* NiblessViewController.swift in Sources */,
 				2B10558E22D8005700B7E003 /* GeoPointExtensions.swift in Sources */,
 				2BA4338F22CF651300C1D6F8 /* SessionManager.swift in Sources */,
 				5944D98022D15B9400579892 /* UITabBarExtension.swift in Sources */,
@@ -535,6 +561,7 @@
 				2BA433A022D189D100C1D6F8 /* SoundZoneAnnotationView.swift in Sources */,
 				2BA4339A22D128C900C1D6F8 /* TrackManagerDelegate.swift in Sources */,
 				2B714BF722E91E79001A8307 /* MainViewController.swift in Sources */,
+				59AD2A702301928200130711 /* QastNavigationController.swift in Sources */,
 				2BA4339E22D187F600C1D6F8 /* SoundZoneAnnotation.swift in Sources */,
 				2B10559022D8006400B7E003 /* CLLocationCoordinate2DExtensions.swift in Sources */,
 				5981795822CD2FE70091605E /* Result.swift in Sources */,
@@ -545,6 +572,7 @@
 				59032D1A2300C2BB00C089A3 /* SoundZonePickerViewController.swift in Sources */,
 				5908184922E697A90032FF86 /* DataRequestExtensions.swift in Sources */,
 				598E522222E62D6C00865556 /* CoverArtResponse.swift in Sources */,
+				59AD2A69230188C100130711 /* QastDependencyContainer.swift in Sources */,
 				5944D97422D1556400579892 /* TutorialCardOneVC.swift in Sources */,
 				5908184D22E6981D0032FF86 /* JSONEncoderExtensions.swift in Sources */,
 				5981795422CD2F230091605E /* SoundZone.swift in Sources */,

@@ -7,24 +7,24 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     var window: UIWindow?
     var navigationController: UINavigationController?
-    var locationManager: LocationManager?
+    
+    private lazy var qastContainer = QastDependencyContainer()
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         FirebaseApp.configure()
-        locationManager = LocationManager()
         
         BoseWearable.enableCommonLogging()
         BoseWearable.configure()
         
-        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "wasLaunchedBefore")
-//        let firstLaunch = FirstLaunch.alwaysFirst()
+//        let firstLaunch = FirstLaunch(userDefaults: .standard, key: "wasLaunchedBefore")
+        let firstLaunch = FirstLaunch.alwaysFirst()
 
         if firstLaunch.isFirstLaunch {
             print("Welcome to Qast!")
-            navigationController = UINavigationController(rootViewController: PopupTutorialPageViewController(transitionStyle: .scroll, navigationOrientation: .horizontal, options: nil))
+            navigationController = qastContainer.makeQastNavigationController(rootViewController: qastContainer.makePopupTutorialPageViewController())
         } else {
             print("Welcome back to Qast!")
-            navigationController = UINavigationController(rootViewController: ConnectionViewController())
+            navigationController = qastContainer.makeQastNavigationController(rootViewController: qastContainer.makeConnectionViewController())
         }
         
         window = UIWindow(frame: UIScreen.main.bounds)

@@ -19,19 +19,19 @@ enum PreviewModeTransitionType {
 
 class MainViewController: UIViewController {
     
-    public lazy var mapViewController = MapViewController(networker: networker)
-    public lazy var soundZonePicker = SoundZonePickerViewController()
-    
     public var currentSoundZone: SoundZone?
     
     public var isPreviewing: Bool = false
     
     let session: WearableDeviceSession
+    
     let streamManager: StreamManager
     let networker: SoundZoneAPI
+    public var mapViewController: MapViewController
     
-    init(session: WearableDeviceSession, streamManager: StreamManager = StreamManager(), networker: SoundZoneAPI = FirebaseManager()) {
+    init(session: WearableDeviceSession, mapViewController: MapViewController, streamManager: StreamManager = StreamManager(), networker: SoundZoneAPI = FirebaseManager()) {
         self.session = session
+        self.mapViewController = mapViewController
         self.streamManager = streamManager
         self.networker = networker
         super.init(nibName: nil, bundle: nil)
@@ -46,7 +46,6 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         add(mapViewController)
-        add(soundZonePicker)
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -86,7 +85,7 @@ extension MainViewController: MapViewControllerDelegate {
         }
         
         for annotation in annotations {
-            if mapViewController.vision.intersects(soundZone: annotation.soundZone) && annotation.soundZone.id != currentSoundZone?.id {
+            if mapViewController.visionManager.intersects(soundZone: annotation.soundZone) && annotation.soundZone.id != currentSoundZone?.id {
                 return annotation.soundZone
             }
         }
