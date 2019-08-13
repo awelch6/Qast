@@ -26,7 +26,7 @@ class MapViewController: NiblessViewController {
     
     var mapView: MGLMapView = QastMapView()
     
-    let soundZonePicker: UIView = UIView(frame: CGRect(x: 0, y: (UIScreen.main.bounds.height - 115), width: UIScreen.main.bounds.width, height: 115))
+    let soundZonePicker: UIView = UIView()
     
     var sensorDispatch = SensorDispatch(queue: .main)
     
@@ -97,8 +97,52 @@ extension MapViewController {
     
     private func setupSoundZonePicker() {
         soundZonePicker.backgroundColor = UIColor.init(hexString: "F96170", alpha: 0.5)
+        soundZonePicker.frame = CGRect.zero
         
         view.addSubview(soundZonePicker)
+        
+        soundZonePicker.snp.makeConstraints { (make) in
+            make.bottom.equalToSuperview()
+            make.width.equalToSuperview()
+            make.height.equalTo(100)
+        }
+        
+        let michaelJackson = UIImageView(image: UIImage(named: "mihcael_jackson"))
+        michaelJackson.frame = CGRect.zero
+        michaelJackson.contentMode = .scaleAspectFill
+        
+        let dianaRoss = UIImageView(image: UIImage(named: "diana_ross"))
+        dianaRoss.frame = CGRect.zero
+        dianaRoss.contentMode = .scaleAspectFill
+        
+        let temptations = UIImageView(image: UIImage(named: "temptations"))
+        temptations.frame = CGRect.zero
+        temptations.contentMode = .scaleAspectFill
+        
+        soundZonePicker.addSubview(michaelJackson)
+        soundZonePicker.addSubview(dianaRoss)
+        soundZonePicker.addSubview(temptations)
+        
+        dianaRoss.snp.makeConstraints { (make) in
+            make.height.equalTo(70)
+            make.width.equalTo(50)
+            make.center.equalToSuperview()
+        }
+        
+        michaelJackson.snp.makeConstraints { (make) in
+            make.height.equalTo(70)
+            make.width.equalTo(50)
+            make.right.equalTo(dianaRoss.snp.left).offset(-70)
+            make.centerY.equalToSuperview()
+        }
+        
+        temptations.snp.makeConstraints { (make) in
+            make.height.equalTo(70)
+            make.width.equalTo(50)
+            make.left.equalTo(dianaRoss.snp.right).offset(70)
+            make.centerY.equalToSuperview()
+        }
+
     }
     
     @objc func focusSoundZone(recognizer: UITapGestureRecognizer) {

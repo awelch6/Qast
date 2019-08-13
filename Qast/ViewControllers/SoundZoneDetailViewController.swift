@@ -8,7 +8,7 @@
 
 import UIKit
 
-class SoundZoneDetailViewController: UIViewController {
+class SoundZoneDetailViewController: NiblessViewController {
 
     let soundZone: SoundZone!
     let soundZoneTitle: UILabel = UILabel()
@@ -21,12 +21,8 @@ class SoundZoneDetailViewController: UIViewController {
     
     init(_ soundZone: SoundZone) {
         self.soundZone = soundZone
-        super.init(nibName: nil, bundle: nil)
+        super.init()
         view.backgroundColor = .white
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
     }
     
     override func viewDidLoad() {
