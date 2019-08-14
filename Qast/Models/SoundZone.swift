@@ -48,14 +48,14 @@ struct SoundZone: GeoQueryable {
     
     init?(dictionary: [String: Any]) {
         guard
+            let name = dictionary["name"] as? String,
             let id = dictionary["id"] as? String,
             let center = dictionary["center"] as? GeoPoint,
             let radius = dictionary["radius"] as? Double,
             let streamId = dictionary["streamId"] as? String,
             let tracks = dictionary["tracks"] as? [String],
             let description = dictionary["description"] as? String,
-            let imageURL = dictionary["imageURL"] as? String,
-            let name = dictionary["name"] as? String
+            let imageURL = dictionary["imageURL"] as? String
             
             else {
                 return nil

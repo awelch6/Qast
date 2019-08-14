@@ -20,24 +20,22 @@ protocol MapViewControllerDelegate: class {
 
 class MapViewController: NiblessViewController {
     
-    var isInitialLocationUpdate: Bool = true
-    
-    var nearbySoundZones: [SoundZone]?
-    
-    var mapView: MGLMapView = QastMapView()
-    
-    let soundZonePicker: UIView = UIView()
-    
-    var sensorDispatch = SensorDispatch(queue: .main)
-    
-    weak var delegate: MapViewControllerDelegate?
-    
     // MARK: Dependencies
     var visionManager: VisionManager
     var notificationManager: NotificationManager
     var locationManager: LocationManager
     var soundZoneDetailViewControllerFactory: (SoundZone) -> SoundZoneDetailViewController
     let networker: SoundZoneAPI
+    
+    var isInitialLocationUpdate: Bool = true
+    
+    var nearbySoundZones: [SoundZone]?
+    
+    var mapView: MGLMapView = QastMapView()
+    
+    var sensorDispatch = SensorDispatch(queue: .main)
+    
+    weak var delegate: MapViewControllerDelegate?
     
     init(
         locationManager: LocationManager,
@@ -58,27 +56,31 @@ class MapViewController: NiblessViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        setupMapView()
-        setupSoundZonePicker()
-        setupCenterOnUserButton()
+        setupUI()
         
         sensorDispatch.handler = self
         
-//        let soundZoneDict: [String: Any] =
-//            ["id": "andrews_apartment_large",
-//             "center": CLLocationCoordinate2D(latitude: 42.331424, longitude:  -83.041958).geopoint,
-//             "radius": 90.0,
-//             "streamId": "USCA20100402",
-//             "description": "Short description",
-//             "imageURL": "myUrl",
-//             "tracks": ["track1", "track2"]]
-//
-//        networker.create(SoundZone(dictionary: soundZoneDict)!) { (error) in
-//            if let error = error {
-//                print("SoundZone creation error \(error)")
-//            }
-//            print("Created SoundZone")
-//        }
+        var tracks: [String] = [String]()
+        tracks.append("track one")
+        tracks.append("track two")
+        
+        let soundZoneDict: [String: Any] =
+            ["name": "Diana Rosss",
+             "id": "Diana Ross",
+             "center": CLLocationCoordinate2D(latitude: 42.331424, longitude:  -83.041958).geopoint,
+             "radius": 100.0,
+             "streamId": "USCA20100402",
+             "tracks": ["track1", "track2"],
+             "description": "Short description",
+             "imageURL": "myUrl"
+        ]
+
+        networker.create(SoundZone(dictionary: soundZoneDict)!) { (error) in
+            if let error = error {
+                print("SoundZone creation error \(error)")
+            }
+            print("Created SoundZone")
+        }
         
     }
     
@@ -88,6 +90,12 @@ class MapViewController: NiblessViewController {
 
 extension MapViewController {
     
+    private func setupUI() {
+        setupMapView()
+        setupSoundZonePicker()
+        setupCenterOnUserButton()
+    }
+    
     private func setupMapView() {
         view.addSubview(mapView)
         
@@ -96,6 +104,8 @@ extension MapViewController {
     }
     
     private func setupSoundZonePicker() {
+        let soundZonePicker: UIView = UIView()
+        
         soundZonePicker.backgroundColor = UIColor.init(hexString: "F96170", alpha: 0.5)
         soundZonePicker.frame = CGRect.zero
         
@@ -110,19 +120,23 @@ extension MapViewController {
         let michaelJackson = UIImageView(image: UIImage(named: "michael_jackson"))
         michaelJackson.frame = CGRect.zero
         michaelJackson.contentMode = .scaleAspectFill
+        michaelJackson.isUserInteractionEnabled = true
         
         let dianaRoss = UIImageView(image: UIImage(named: "diana_ross"))
         dianaRoss.frame = CGRect.zero
         dianaRoss.contentMode = .scaleAspectFill
+        dianaRoss.isUserInteractionEnabled = true
         
         let temptations = UIImageView(image: UIImage(named: "temptations"))
         temptations.frame = CGRect.zero
         temptations.contentMode = .scaleAspectFill
+        temptations.isUserInteractionEnabled = true
         
         soundZonePicker.addSubview(michaelJackson)
         soundZonePicker.addSubview(dianaRoss)
         soundZonePicker.addSubview(temptations)
         
+        // DIANA ROSS
         dianaRoss.snp.makeConstraints { (make) in
             make.height.equalTo(70)
             make.width.equalTo(70)
@@ -136,6 +150,10 @@ extension MapViewController {
         dianaRoss.layer.cornerRadius = dianaRoss.frame.width/2
         dianaRoss.clipsToBounds = true
         
+        let dianaRossTapped: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(focusSoundZone_dianaRoss(recognizer:)))
+        dianaRoss.addGestureRecognizer(dianaRossTapped)
+        
+        // MICHAEL JACKSON
         michaelJackson.snp.makeConstraints { (make) in
             make.height.equalTo(70)
             make.width.equalTo(70)
@@ -149,6 +167,9 @@ extension MapViewController {
         michaelJackson.layer.borderColor = UIColor.init(hexString: "F96170").cgColor
         michaelJackson.layer.cornerRadius = michaelJackson.frame.width/2
         michaelJackson.clipsToBounds = true
+        
+        let michaelJacksonTapped: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(focusSoundZone_michaelJackson(recognizer:)))
+        michaelJackson.addGestureRecognizer(michaelJacksonTapped)
         
         temptations.snp.makeConstraints { (make) in
             make.height.equalTo(70)
@@ -164,38 +185,63 @@ extension MapViewController {
         temptations.layer.cornerRadius = temptations.frame.width/2
         temptations.clipsToBounds = true
         
-    }
-    
-    @objc func focusSoundZone(recognizer: UITapGestureRecognizer) {
-        let tappedImage = recognizer.view as? SoundZonePickerView
-        
-        guard let annotations = mapView.annotations else { return }
-        guard let annotation = annotations.first else { return }
-        mapView.selectAnnotation(annotation, animated: true)
-        mapView.setCenter(annotation.coordinate, zoomLevel: 15, animated: true)
+        let temptationsTapped: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(focusSoundZone_temptations(recognizer:)))
+        temptations.addGestureRecognizer(temptationsTapped)
     }
     
     private func setupCenterOnUserButton() {
-        let imageView: UIImageView = UIImageView(frame: CGRect(x: 30.0, y: 65.0, width: 50.0, height: 50.0))
-        imageView.image = UIImage(named: "centerOnUser")
-        imageView.isUserInteractionEnabled = true
+        let centerOnUserIcon: UIImageView = UIImageView(frame: CGRect(x: 30.0, y: 65.0, width: 50.0, height: 50.0))
+        centerOnUserIcon.image = UIImage(named: "centerOnUser")
+        centerOnUserIcon.isUserInteractionEnabled = true
         
-        view.addSubview(imageView)
+        view.addSubview(centerOnUserIcon)
         
-        let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.centerUser(recognizer:)))
-        singleTap.numberOfTapsRequired = 1
-        imageView.addGestureRecognizer(singleTap)
-    }
-    
-    @objc func centerUser(recognizer: UIGestureRecognizer) {
-        guard let location = mapView.userLocation else { return }
-        mapView.setCenter(location.coordinate, zoomLevel: 15, animated: true)
+        let centerOnUserTapped: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(self.centerMapOnUserLocation(recognizer:)))
+        centerOnUserTapped.numberOfTapsRequired = 1
+        centerOnUserIcon.addGestureRecognizer(centerOnUserTapped)
     }
     
 }
 
-// MARK: LocationManager Delegate
+// MARK: Event Handlers
+extension MapViewController {
+    @objc func focusSoundZone_dianaRoss(recognizer: UITapGestureRecognizer) {
+        guard let annotations = mapView.annotations else { return }
+        let annotation = annotations.filter({ (annotation) -> Bool in
+            return annotation.title == "Diana Ross"
+        })
+        guard let dianaRossAnnotation = annotation.first else { return }
+        mapView.selectAnnotation(dianaRossAnnotation, animated: true)
+        mapView.setCenter(dianaRossAnnotation.coordinate, zoomLevel: 15, animated: true)
+    }
+    
+    @objc func focusSoundZone_temptations(recognizer: UITapGestureRecognizer) {
+        guard let annotations = mapView.annotations else { return }
+        let annotation = annotations.filter({ (annotation) -> Bool in
+            return annotation.title == "The Temptations"
+        })
+        guard let dianaRossAnnotation = annotation.first else { return }
+        mapView.selectAnnotation(dianaRossAnnotation, animated: true)
+        mapView.setCenter(dianaRossAnnotation.coordinate, zoomLevel: 15, animated: true)
+    }
+    
+    @objc func focusSoundZone_michaelJackson(recognizer: UITapGestureRecognizer) {
+        guard let annotations = mapView.annotations else { return }
+        let annotation = annotations.filter({ (annotation) -> Bool in
+            return annotation.title == "Michael Jackson"
+        })
+        guard let dianaRossAnnotation = annotation.first else { return }
+        mapView.selectAnnotation(dianaRossAnnotation, animated: true)
+        mapView.setCenter(dianaRossAnnotation.coordinate, zoomLevel: 15, animated: true)
+    }
+    
+    @objc func centerMapOnUserLocation(recognizer: UIGestureRecognizer) {
+        guard let location = mapView.userLocation else { return }
+        mapView.setCenter(location.coordinate, zoomLevel: 15, animated: true)
+    }
+}
 
+// MARK: LocationManager Delegate
 extension MapViewController: LocationManagerDelegate {
     func qastMap(didTap soundZone: SoundZone) {
         self.present(SoundZoneDetailViewController(soundZone), animated: true, completion: nil)
@@ -211,36 +257,6 @@ extension MapViewController: LocationManagerDelegate {
     func qastMap(didReceive nearbySoundZones: [SoundZone]) {
         self.mapView.addAnnotations(nearbySoundZones.map { $0.renderableGeofence })
         self.mapView.addAnnotations(nearbySoundZones.map { SoundZoneAnnotation(soundZone: $0) })
-        self.populateSoundZonePicker(nearbySoundZones)
-    }
-    
-    func populateSoundZonePicker(_ nearbySoundZones: [SoundZone]) {
-        for zone in nearbySoundZones {
-            let tempt = UIImageView(image: UIImage(named: "temptations_rect_vertical"))
-            
-            switch zone.name {
-            case "The Temptations":
-                tempt.frame = CGRect(x: 0, y: 0, width: 50, height: 70)
-                tempt.contentMode = .scaleAspectFit
-                tempt.isUserInteractionEnabled = true
-                
-                let singleTap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(focusSoundZone(recognizer:)))
-                singleTap.numberOfTapsRequired = 1
-                tempt.addGestureRecognizer(singleTap)
-                
-                tempt.snp.makeConstraints { (make) in
-                    make.left.equalToSuperview().offset(10)
-                    make.width.equalTo(80)
-                    make.height.equalTo(100)
-                    make.bottom.equalToSuperview().offset(20)
-                }
-            default:
-                print("Not temptations")
-            }
-//            let soundZonePickerView = SoundZonePickerView(zone, tempt)
-//            soundZonePicker.addSubview(soundZonePickerView)
-        }
-        
     }
     
     func qastMap(didUpdate currentSoundZone: SoundZone?) {

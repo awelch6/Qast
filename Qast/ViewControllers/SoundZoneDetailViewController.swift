@@ -22,7 +22,7 @@ class SoundZoneDetailViewController: NiblessViewController {
     init(_ soundZone: SoundZone) {
         self.soundZone = soundZone
         super.init()
-        view.backgroundColor = .white
+        view.backgroundColor = UIColor.init(hexString: "F96170")
     }
     
     override func viewDidLoad() {
@@ -59,7 +59,7 @@ extension SoundZoneDetailViewController {
     }
     
     func setupTitle() {
-        soundZoneTitle.textColor = .black
+        soundZoneTitle.textColor = .white
         soundZoneTitle.text =  soundZone?.name
         soundZoneTitle.textAlignment = .center
         soundZoneTitle.numberOfLines = 0
@@ -78,11 +78,18 @@ extension SoundZoneDetailViewController {
     func setupImage() {
         view.addSubview(soundZoneMainImage)
         
-        self.soundZoneMainImage.snp.makeConstraints { (make) in
+        soundZoneMainImage.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.width.height.equalTo(100)
             make.top.equalTo(soundZoneTitle.snp.bottom).offset(10)
         }
+        soundZoneMainImage.layoutIfNeeded()
+        
+        soundZoneMainImage.layer.borderWidth = 1
+        soundZoneMainImage.layer.masksToBounds = false
+        soundZoneMainImage.layer.borderColor = UIColor.gray.cgColor
+        soundZoneMainImage.layer.cornerRadius = soundZoneMainImage.frame.width/2
+        soundZoneMainImage.clipsToBounds = true
         
 //        guard let url = URL(string: soundZone!.imageURL) else { return }
 //
@@ -93,10 +100,12 @@ extension SoundZoneDetailViewController {
     }
     
     func setupDescription() {
-        soundZoneDescription.textColor = .black
+        soundZoneDescription.textColor = .white
+        soundZoneDescription.backgroundColor = .clear
         soundZoneDescription.text =  soundZone?.description
         soundZoneDescription.textAlignment = .center
         soundZoneDescription.isScrollEnabled = true
+        soundZoneDescription.isUserInteractionEnabled = false
         
         soundZoneDescription.font = UIFont(name: "AvenirNext-Regular", size: 20.0)!
         
@@ -145,12 +154,11 @@ extension SoundZoneDetailViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = UITableViewCell(style: .default, reuseIdentifier: "cell")
         cell.selectionStyle = .none
+        cell.backgroundColor = .clear
+        cell.contentView.backgroundColor = .clear
+        cell.textLabel?.textColor = .white
         cell.textLabel?.text = soundZone!.tracks[indexPath.row]
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return "Track List for \(soundZone.name)"
     }
 }
 
