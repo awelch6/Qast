@@ -78,6 +78,17 @@ extension SoundZoneDetailViewController {
     func setupImage() {
         view.addSubview(soundZoneMainImage)
         
+        switch soundZone.name {
+        case "Diana Ross":
+            soundZoneMainImage.image = UIImage(named: "diana_ross")
+        case "Michael Jackson":
+            soundZoneMainImage.image = UIImage(named: "michael_jackson")
+        case "The Temptations":
+            soundZoneMainImage.image = UIImage(named: "temptations")
+        default:
+            soundZoneMainImage.image = UIImage(named: "temptations")
+        }
+        
         soundZoneMainImage.snp.makeConstraints { (make) in
             make.centerX.equalToSuperview()
             make.width.height.equalTo(100)
@@ -104,16 +115,16 @@ extension SoundZoneDetailViewController {
         soundZoneDescription.backgroundColor = .clear
         soundZoneDescription.text =  soundZone?.description
         soundZoneDescription.textAlignment = .center
-        soundZoneDescription.isScrollEnabled = true
+        soundZoneDescription.isScrollEnabled = false
         soundZoneDescription.isUserInteractionEnabled = false
         
-        soundZoneDescription.font = UIFont(name: "AvenirNext-Regular", size: 20.0)!
+        soundZoneDescription.font = UIFont(name: "AvenirNext-Regular", size: 16.0)!
         
         view.addSubview(soundZoneDescription)
         
         soundZoneDescription.snp.makeConstraints { (make) in
             make.width.equalToSuperview().inset(20)
-            make.height.equalTo(soundZoneDescription.contentSize.height)
+            make.height.equalTo(250)
             make.centerX.equalToSuperview()
             make.top.equalTo(soundZoneMainImage.snp.bottom).offset(10)
         }
@@ -130,7 +141,7 @@ extension SoundZoneDetailViewController {
         trackListTableView.snp.makeConstraints { (make) in
             make.left.right.equalToSuperview()
             make.bottom.equalToSuperview()
-            make.height.equalTo(200)
+            make.height.equalTo(150)
         }
     }
 }
@@ -143,6 +154,10 @@ extension SoundZoneDetailViewController {
 }
 
 extension SoundZoneDetailViewController: UITableViewDataSource {
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        return "Tracks for \(soundZone.name) SoundZone"
+    }
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return soundZone!.tracks.count
     }

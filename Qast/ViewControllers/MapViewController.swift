@@ -60,27 +60,27 @@ class MapViewController: NiblessViewController {
         
         sensorDispatch.handler = self
         
-        var tracks: [String] = [String]()
-        tracks.append("track one")
-        tracks.append("track two")
-        
-        let soundZoneDict: [String: Any] =
-            ["name": "Diana Rosss",
-             "id": "Diana Ross",
-             "center": CLLocationCoordinate2D(latitude: 42.331424, longitude:  -83.041958).geopoint,
-             "radius": 100.0,
-             "streamId": "USCA20100402",
-             "tracks": ["track1", "track2"],
-             "description": "Short description",
-             "imageURL": "myUrl"
-        ]
-
-        networker.create(SoundZone(dictionary: soundZoneDict)!) { (error) in
-            if let error = error {
-                print("SoundZone creation error \(error)")
-            }
-            print("Created SoundZone")
-        }
+//        let soundZoneDict: [String: Any] =
+//            ["name": "The Temptations",
+//             "id": "The Temptations",
+//             "center": CLLocationCoordinate2D(latitude: 42.364156, longitude:  -83.087137).geopoint,
+//             "radius": 60.0,
+//             "streamId": "USCA20001612",
+//             "tracks": ["Cloud Nine", "My Girl", "Psychedelic Shack"],
+//             "description": """
+//                The group’s work with producer Norman
+//                Whitfield, beginning with the Top 10 hit single "Cloud Nine" in October 1968, pioneered psychedelic
+//                soul, and was significant in the evolution of R&B and soul music.
+//                """,
+//             "imageURL": "myUrl"
+//        ]
+//
+//        networker.create(SoundZone(dictionary: soundZoneDict)!) { (error) in
+//            if let error = error {
+//                print("SoundZone creation error \(error)")
+//            }
+//            print("Created SoundZone")
+//        }
         
     }
     

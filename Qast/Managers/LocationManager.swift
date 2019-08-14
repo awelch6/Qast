@@ -143,14 +143,25 @@ extension LocationManager {
         let coverArtImageView = UIImageView(image: UIImage(named: "spinner"))
         coverArtImageView.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         
-        streamMetadataAPI.streamMetadata(getCoverArtUrlforIsrc: soundZoneAnnotation.soundZone.streamId) { (result) in
-            switch result {
-            case .value(let coverArtUrl):
-                coverArtImageView.sd_setImage(with: coverArtUrl, completed: nil)
-            case .error(let error):
-                print(error)
-            }
+        switch soundZoneAnnotation.title {
+        case "Diana Ross":
+            coverArtImageView.image = UIImage(named: "diana_ross")
+        case "Michael Jackson":
+            coverArtImageView.image = UIImage(named: "michael_jackson")
+        case "The Temptations":
+            coverArtImageView.image = UIImage(named: "temptations")
+        default:
+            coverArtImageView.image = UIImage(named: "temptations")
         }
+        
+//        streamMetadataAPI.streamMetadata(getCoverArtUrlforIsrc: soundZoneAnnotation.soundZone.streamId) { (result) in
+//            switch result {
+//            case .value(let coverArtUrl):
+//                coverArtImageView.sd_setImage(with: coverArtUrl, completed: nil)
+//            case .error(let error):
+//                print(error)
+//            }
+//        }
         return coverArtImageView
     }
     
