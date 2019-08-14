@@ -107,7 +107,7 @@ extension MapViewController {
             make.height.equalTo(100)
         }
         
-        let michaelJackson = UIImageView(image: UIImage(named: "mihcael_jackson"))
+        let michaelJackson = UIImageView(image: UIImage(named: "michael_jackson"))
         michaelJackson.frame = CGRect.zero
         michaelJackson.contentMode = .scaleAspectFill
         
@@ -125,24 +125,45 @@ extension MapViewController {
         
         dianaRoss.snp.makeConstraints { (make) in
             make.height.equalTo(70)
-            make.width.equalTo(50)
+            make.width.equalTo(70)
             make.center.equalToSuperview()
         }
+        dianaRoss.layoutIfNeeded()
+        
+        dianaRoss.layer.borderWidth = 1
+        dianaRoss.layer.masksToBounds = false
+        dianaRoss.layer.borderColor = UIColor.init(hexString: "F96170").cgColor
+        dianaRoss.layer.cornerRadius = dianaRoss.frame.width/2
+        dianaRoss.clipsToBounds = true
         
         michaelJackson.snp.makeConstraints { (make) in
             make.height.equalTo(70)
-            make.width.equalTo(50)
-            make.right.equalTo(dianaRoss.snp.left).offset(-70)
+            make.width.equalTo(70)
+            make.right.equalTo(dianaRoss.snp.left).offset(-40)
             make.centerY.equalToSuperview()
         }
+        michaelJackson.layoutIfNeeded()
+        
+        michaelJackson.layer.borderWidth = 1
+        michaelJackson.layer.masksToBounds = false
+        michaelJackson.layer.borderColor = UIColor.init(hexString: "F96170").cgColor
+        michaelJackson.layer.cornerRadius = michaelJackson.frame.width/2
+        michaelJackson.clipsToBounds = true
         
         temptations.snp.makeConstraints { (make) in
             make.height.equalTo(70)
-            make.width.equalTo(50)
-            make.left.equalTo(dianaRoss.snp.right).offset(70)
+            make.width.equalTo(70)
+            make.left.equalTo(dianaRoss.snp.right).offset(40)
             make.centerY.equalToSuperview()
         }
+        temptations.layoutIfNeeded()
 
+        temptations.layer.borderWidth = 1
+        temptations.layer.masksToBounds = false
+        temptations.layer.borderColor = UIColor.init(hexString: "F96170").cgColor
+        temptations.layer.cornerRadius = temptations.frame.width/2
+        temptations.clipsToBounds = true
+        
     }
     
     @objc func focusSoundZone(recognizer: UITapGestureRecognizer) {
